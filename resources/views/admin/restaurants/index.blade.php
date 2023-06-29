@@ -18,6 +18,14 @@
                         <a class="btn btn-warning" href="{{ route('admin.restaurants.edit', $item->slug) }}">
                             MODIFICA
                         </a>
+                        <form action="{{ route('admin.restaurants.destroy', $item->slug) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger"
+                                onclick="return confirm('Vuoi cancellare il ristorante? Sei sicuro?')">
+                                Elimina
+                            </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
