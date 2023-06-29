@@ -6,6 +6,7 @@
             <tr>
                 <th scope="col">id</th>
                 <th scope="col">Nome ristorante</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -13,6 +14,11 @@
                 <tr>
                     <td scope="row">{{ $item->id }}</td>
                     <td scope="row">{{ $item->restaurant_name }}</td>
+                    <td scope="row">
+                        <a class="btn btn-warning" href="{{ route('admin.restaurants.edit', $item->slug) }}">
+                            MODIFICA
+                        </a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
