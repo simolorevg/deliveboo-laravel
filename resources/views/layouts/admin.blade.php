@@ -95,13 +95,9 @@
                                     <i class="fa-regular fa-folder-open mx-2"  style="color:  rgb(151, 71, 255);"></i> Lista dei TIPI
                                 </a> --}}
                             </li>
-                     
+
                             <li class="nav-item text-white">
-                                <a href=""> CREA NUOVO RISTORANTE </a>
-                                {{-- <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.technologies.create' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.technologies.create') }}">
-                                    <i class="fa-solid fa-circle-plus mx-2" style="color: rgb(5, 225, 240);"></i>Inserisci nuova tecnologia
-                                </a> --}}
+                                <a href="{{ route('admin.restaurants.create') }}"> CREA NUOVO RISTORANTE </a>
                             </li>
                         </ul>
 
