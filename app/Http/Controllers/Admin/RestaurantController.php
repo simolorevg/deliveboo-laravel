@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
