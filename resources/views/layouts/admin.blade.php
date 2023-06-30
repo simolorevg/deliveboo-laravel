@@ -109,7 +109,7 @@
                             
 
                             
-                                @if (count($restaurant) == 0)
+                            @if (count($restaurant) == 0)
                                 <li class="nav-item text-white">
                                     {{-- <a href="{{ route('admin.restaurants.create') }}"> CREA NUOVO RISTORANTE </a> --}}
                                     <a class="nav-link text-white" href="{{ route('admin.restaurants.create') }}">
@@ -117,7 +117,7 @@
                                         CREA UN NUOVO RISTORANTE
                                     </a>
                                 </li>
-                                @endif
+                            @endif
 
                         </ul>
 
