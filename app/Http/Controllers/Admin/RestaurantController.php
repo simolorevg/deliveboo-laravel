@@ -41,6 +41,7 @@ class RestaurantController extends Controller
     {
         $data = $request->all();
         $data['slug'] = Str::slug($data['restaurant_name']);
+        $data['user_id'] = Auth::user()->id; //in questo modo il campo user_id prende il valore dell'id dell'utente
         $restaurant = Restaurant::create($data);
         return redirect()->route('admin.restaurants.index', compact('restaurant'))->with('message', 'Hai creato il tuo ristorante.');
     }

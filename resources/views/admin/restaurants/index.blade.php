@@ -14,8 +14,8 @@
                 <tr>
                     <td scope="row">{{ $item->id }}</td>
                     <td scope="row">{{ $item->restaurant_name }}</td>
-                    <td scope="row">
-                        <a class="btn btn-warning" href="{{ route('admin.restaurants.edit', $item->slug) }}">
+                    <td scope="row" class="d-flex">
+                        <a class="btn btn-warning mx-1" href="{{ route('admin.restaurants.edit', $item->slug) }}">
                             MODIFICA
                         </a>
                         <form action="{{ route('admin.restaurants.destroy', $item->slug) }}" method="POST">
