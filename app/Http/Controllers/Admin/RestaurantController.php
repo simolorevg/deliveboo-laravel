@@ -18,8 +18,11 @@ class RestaurantController extends Controller
      */
     public function index()
     {
+        
         $restaurant = Restaurant::all();
-        $count = Auth::user()->restaurant->count();
+        // if(!is_null($restaurant)){
+            $count = Auth::user()->restaurant->count();
+        // }
         // dd($count);
         return view('admin.restaurants.index', compact('restaurant', 'count'));
     }
@@ -95,6 +98,6 @@ class RestaurantController extends Controller
     public function destroy(Restaurant $restaurant)
     {
         $restaurant->delete();
-        return redirect()->route('admin.restaurants.index')->with('message', 'Ristorante eliminato.');
+        return redirect()->route('admin.dashboard')->with('message', 'Ristorante eliminato.');
     }
 }

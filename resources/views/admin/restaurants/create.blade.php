@@ -1,5 +1,13 @@
 @extends('layouts.app')
 @section('content')
+
+@php
+    use App\Models\Restaurant;
+                            
+    $restaurant = Restaurant::where("user_id" , Auth::user()->id)->get(); 
+ @endphp
+
+@if (count($restaurant) == 0)
     <h2 class="mx-5">Crea il tuo risorante: se ne hai il coraggio</h2>
     <div class="mx-5">
         
@@ -18,6 +26,11 @@
             <button type="submit" class="btn btn-primary">CREA</button>
         </form>
     </div>
+    @else
+
+    <h5>Hai già un ristorante associato al tuo account</h5>
+        
+    @endif
 @endsection
 
 

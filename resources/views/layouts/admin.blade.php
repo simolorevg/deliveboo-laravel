@@ -1,3 +1,11 @@
+@php
+use App\Models\Restaurant;
+
+ $restaurant = Restaurant::where("user_id" , Auth::user()->id)->get(); 
+//    dd($restaurant);
+@endphp
+
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -67,6 +75,7 @@
                                 </a>
                             </li>
 
+                            @if (count($restaurant) != 0)
                             <li class="nav-item text-white">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.index' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.restaurants.index') }}">
@@ -98,14 +107,10 @@
                                     <i class="fa-regular fa-folder-open mx-2"  style="color:  rgb(151, 71, 255);"></i> Lista dei TIPI
                                 </a> --}}
                             </li>
+                            @endif
 
                             {{-- ! Gestiamo il blocco dashboard per la creazione del ristorante e lo facciamo apparire solo se l'utente non ha ancora creato un ristorante  --}}
-                            @php
-                             use App\Models\Restaurant;
                             
-                              $restaurant = Restaurant::where("user_id" , Auth::user()->id)->get(); 
-                            //    dd($restaurant);
-                            @endphp
                             
 
                             
