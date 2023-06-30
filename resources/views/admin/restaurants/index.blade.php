@@ -16,7 +16,7 @@
                         <td scope="row">{{ $item->id }}</td>
                         <td scope="row">{{ $item->restaurant_name }}</td>
                         <td scope="row" class="d-flex">
-                            <a class="btn btn-warning mx-1" href="{{ route('admin.restaurants.show', $item->slug) }}">
+                            <a class="btn btn-success mx-1" href="{{ route('admin.restaurants.show', $item->slug) }}">
                                 DETTAGLI
                             </a>
                             <a class="btn btn-warning mx-1" href="{{ route('admin.restaurants.edit', $item->slug) }}">
