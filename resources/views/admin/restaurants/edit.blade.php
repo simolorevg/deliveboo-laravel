@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    <form action="{{ route('admin.restaurants.update', $restaurant->slug) }}" method="post">
+<div class="mx-5">
+    <form class="d-flex flex-column form" action="{{ route('admin.restaurants.update', $restaurant->slug) }}" method="post">
         @csrf
         @method('PUT')
         <label for="restaurant_name">Nome Ristorante: </label>
@@ -15,6 +16,14 @@
         <label for="closure_day">Quando chiudi? </label>
         <input type="text" name="closure_day" id="closure_day"
             value="{{ old('closure_day', $restaurant->closure_day) }}">
-        <button type="submit" class="btn btn-primary"></button>
-    </form>
+        </form>
+        <button type="submit" class="btn btn-warning">MODIFICA</button>
+</div>
 @endsection
+
+<style>
+    .form{
+        width: 400px
+    }
+    
+    </style>

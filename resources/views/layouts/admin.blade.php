@@ -63,7 +63,7 @@
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.dashboard' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.dashboard') }}">
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw mx-2 "
-                                        style="color: rgb(45, 243, 0);"></i> Dashboard
+                                        style="color: rgb(45, 243, 0);"></i> DASHBOARD
                                 </a>
                             </li>
 
@@ -72,7 +72,7 @@
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.index' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.restaurants.index') }}">
                                     <i class="fa-regular fa-folder-open mx-2" style="color: rgb(151, 71, 255);"></i>
-                                    Projects
+                                    IL TUO RISTORANTE
                                 </a>
                             </li>
                             <li class="nav-item text-white">
@@ -98,7 +98,11 @@
                             </li>
 
                             <li class="nav-item text-white">
-                                <a href="{{ route('admin.restaurants.create') }}"> CREA NUOVO RISTORANTE </a>
+                                {{-- <a href="{{ route('admin.restaurants.create') }}"> CREA NUOVO RISTORANTE </a> --}}
+                                <a class="nav-link text-white" href="{{ route('admin.restaurants.create') }}">
+                                    <i class="fa-regular fa-folder-open mx-2" style="color: rgb(255, 230, 71);"></i>
+                                    CREA UN NUOVO RISTORANTE
+                                </a>
                             </li>
                         </ul>
 
