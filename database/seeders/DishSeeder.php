@@ -19,15 +19,15 @@ class DishSeeder extends Seeder
     {
         for ($i = 0; $i < 10; $i ++){
 
-            $dish = new Dish();
-            $dish->dish_name = $faker->sentence(2);
-            $dish->slug = Str::slug($dish->dish_name, '-');
-            $dish->description = $faker->sentences(10);
-            $dish->ingredients = $faker->sentences(10);
-            $dish->price = $faker->randomFloat(2 , 1 , 111);
-            $dish->is_available = $faker->boolean();
-            $dish->img = $faker->imageUrl(400, 700, 'foods', true);
-            $dish->save();
+            // $dish = new Dish();
+            // $dish->dish_name = $faker->sentence(2);
+            // $dish->slug = Str::slug($dish->dish_name, '-');
+            // $dish->description = $faker->sentences(10);
+            // $dish->ingredients = $faker->sentences(10);
+            // $dish->price = $faker->randomFloat(2 , 1 , 111);
+            // $dish->is_available = $faker->boolean();
+            // $dish->img = $faker->imageUrl(400, 700, 'foods', true);
+            // $dish->save();
 
         }
     }

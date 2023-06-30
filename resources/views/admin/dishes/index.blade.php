@@ -6,16 +6,15 @@
             <tr>
                 <th scope="col">id</th>
                 <th scope="col">Nome Piatto</th>
-                <th scope="col">Actions</th>
+                {{-- <th scope="col">Actions</th> --}}
             </tr>
         </thead>
         <tbody>
             @foreach ($dish as $item)
-                @if ($item->user_id == Auth::user()->id)
                     <tr>
                         <td scope="row">{{ $item->id }}</td>
-                        <td scope="row">{{ $item->restaurant_name }}</td>
-                        <td scope="row" class="d-flex">
+                        <td scope="row">{{ $item->dish_name }}</td>
+                        {{-- <td scope="row" class="d-flex">
                             <a class="btn btn-success mx-1" href="{{ route('admin.restaurants.show', $item->slug) }}">
                                 DETTAGLI
                             </a>
@@ -30,9 +29,8 @@
                                     Elimina
                                 </button>
                             </form>
-                        </td>
+                        </td> --}}
                     </tr>
-                @endif
             @endforeach
         </tbody>
     </table>
