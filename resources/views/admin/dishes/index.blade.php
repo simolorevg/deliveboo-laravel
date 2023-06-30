@@ -7,6 +7,7 @@
             <tr>
                 <th scope="col">id</th>
                 <th scope="col">Nome Piatto</th>
+                <th scope="col">Azioni</th>
                 {{-- <th scope="col">Actions</th> --}}
             </tr>
         </thead>
@@ -18,6 +19,9 @@
                     <tr>
                         <td scope="row">{{ $item->id }}</td>
                         <td scope="row">{{ $item->dish_name }}</td>
+                        <td scope="row"><a class="btn btn-warning mx-1" href="{{ route('admin.dishes.edit', $item->slug) }}">
+                            MODIFICA
+                            </a></td>
                         {{-- <td scope="row" class="d-flex">
                             <a class="btn btn-success mx-1" href="{{ route('admin.restaurants.show', $item->slug) }}">
                                 DETTAGLI
