@@ -39,6 +39,10 @@
                     </tr>
                 @endif
             @endforeach
+
+            <a class="btn btn-warning mx-1" href="{{ route('admin.dashboard', $item->slug) }}">
+                TORNA INDIETRO in dashboard daje
+            </a>
         </tbody>
     </table>
 @endsection
