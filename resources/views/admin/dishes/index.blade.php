@@ -10,7 +10,10 @@
             </tr>
         </thead>
         <tbody>
+
+
             @foreach ($dish as $item)
+                @if ($item->restaurant_id == Auth::user()->id)
                     <tr>
                         <td scope="row">{{ $item->id }}</td>
                         <td scope="row">{{ $item->dish_name }}</td>
@@ -31,6 +34,7 @@
                             </form>
                         </td> --}}
                     </tr>
+                @endif
             @endforeach
         </tbody>
     </table>
