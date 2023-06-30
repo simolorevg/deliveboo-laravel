@@ -19,25 +19,23 @@
                     <tr>
                         <td scope="row">{{ $item->id }}</td>
                         <td scope="row">{{ $item->dish_name }}</td>
-                        <td scope="row"><a class="btn btn-warning mx-1" href="{{ route('admin.dishes.edit', $item->slug) }}">
-                            MODIFICA
-                            </a></td>
-                        {{-- <td scope="row" class="d-flex">
-                            <a class="btn btn-success mx-1" href="{{ route('admin.restaurants.show', $item->slug) }}">
-                                DETTAGLI
-                            </a>
-                            <a class="btn btn-warning mx-1" href="{{ route('admin.restaurants.edit', $item->slug) }}">
+                        
+                        <td scope="row" class="d-flex">
+                            <a class="btn btn-primary mx-1" href="{{ route('admin.dishes.show', $item->slug) }}">
+                              VISUALIZZA
+                                </a>
+                            <a class="btn btn-warning mx-1" href="{{ route('admin.dishes.edit', $item->slug) }}">
                                 MODIFICA
-                            </a>
-                            <form action="{{ route('admin.restaurants.destroy', $item->slug) }}" method="POST">
+                                </a>
+                            <form action="{{ route('admin.dishes.destroy', $item->slug) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('Vuoi cancellare il ristorante? Sei sicuro?')">
+                                    onclick="return confirm('Vuoi cancellare il piatto? Sei sicuro?')">
                                     Elimina
                                 </button>
-                            </form>
-                        </td> --}}
+                            </form> 
+                        </td> 
                     </tr>
                 @endif
             @endforeach
