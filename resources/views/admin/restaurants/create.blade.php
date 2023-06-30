@@ -15,8 +15,8 @@
             <input type="text" name="vat_number" id="vat_number">
             <label for="closure_day">Quando chiudi? </label>
             <input type="text" name="closure_day" id="closure_day">
+            <button type="submit" class="btn btn-primary">CREA</button>
         </form>
-        <button type="submit" class="btn btn-primary">CREA</button>
     </div>
 @endsection
 
@@ -24,6 +24,10 @@
 <style>
 .form{
     width: 400px
+}
+.btn{
+    width: 120px;
+    margin-top: 20px
 }
 
 </style>

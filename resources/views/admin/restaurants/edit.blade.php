@@ -16,8 +16,8 @@
         <label for="closure_day">Quando chiudi? </label>
         <input type="text" name="closure_day" id="closure_day"
             value="{{ old('closure_day', $restaurant->closure_day) }}">
-        </form>
         <button type="submit" class="btn btn-warning">MODIFICA</button>
+        </form>
 </div>
 @endsection
 
@@ -25,5 +25,10 @@
     .form{
         width: 400px
     }
+    .btn{
+    width: 120px;
+    margin-top: 20px
+}
+
     
     </style>
