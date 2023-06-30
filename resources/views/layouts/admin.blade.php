@@ -69,10 +69,11 @@
 
                             <li class="nav-item text-white">
                                 - Panoramica ristorante
-                                {{-- <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.projects.index' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.projects.index') }}">
-                                    <i class="fa-regular fa-folder-open mx-2"  style="color: rgb(151, 71, 255);"></i> Projects
-                                </a> --}}
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.index' ? 'bg-secondary' : '' }}"
+                                    href="{{ route('admin.restaurants.index') }}">
+                                    <i class="fa-regular fa-folder-open mx-2" style="color: rgb(151, 71, 255);"></i>
+                                    Projects
+                                </a>
                             </li>
                             <li class="nav-item text-white">
                                 - Controlla il tuo menu
