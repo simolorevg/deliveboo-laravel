@@ -68,7 +68,6 @@
                             </li>
 
                             <li class="nav-item text-white">
-                                - Panoramica ristorante
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.index' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.restaurants.index') }}">
                                     <i class="fa-regular fa-folder-open mx-2" style="color: rgb(151, 71, 255);"></i>
@@ -76,7 +75,10 @@
                                 </a>
                             </li>
                             <li class="nav-item text-white">
-                                - Controlla il tuo menu
+                                <a class="nav-link text-white" href="{{ route('admin.dishes.index') }}">
+                                    <i class="fa-regular fa-folder-open mx-2" style="color: rgb(255, 71, 71);"></i>
+                                    IL TUO MENU     
+                                </a>
                                 {{-- <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.projects.create' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.projects.create') }}">
                                     <i class="fa-solid fa-circle-plus mx-2"  style="color: rgb(5, 225, 240);"></i> Crea uno nuovo Progetto
