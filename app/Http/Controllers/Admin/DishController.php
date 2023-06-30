@@ -41,7 +41,7 @@ class DishController extends Controller
     {
         $data = $request->all();
         $data['slug'] = Str::slug($data['dish_name']);
-        $data['restaurant_id'] = Auth::user()->id; //in questo modo il campo user_id prende il valore dell'id dell'utente
+        $data['restaurant_id'] = Auth::user()->id;   //!in questo modo il campo user_id prende il valore dell'id dell'utente da rivedere
         $dish = Dish::create($data);
         return redirect()->route('admin.dishes.index', compact('dish'))->with('message', 'Hai creato il tuo piatto.');
     }
