@@ -1,47 +1,47 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="wrapper container ">
-        <div class="row row-cols-3 flex-column ">
+    <div class="wrapper container text-center ">
+        <div class="row flex-column ">
 
-            <section class="bio text-center my-5 mx-auto">
-                <h1 class="welcome">Welcome! 📱</h1>
+            <section class="bio  my-5 mx-auto">
+                <h1 class="welcome">🍔 Benvenuto nel gestionale Ristoratori! 🍔</h1>
             </section>
-            <figure class="mx-auto my-5 code d-flex gap-2 flex-row align-items-end justify-content-between ">
-                <div class="tooltipp" data-tooltip="HTML">
+            <ul class="mx-auto my-5 code d-flex gap-2 flex-row align-items-end justify-content-center gap-4 list-unstyled">
+                <li class="tooltipp" data-tooltip="HTML">
                     <i class="fa-brands fa-html5" style="color: #f53d00;"></i>
-                </div>
-                <div class="tooltipp" data-tooltip="CSS">
+                </li>
+                <li class="tooltipp" data-tooltip="CSS">
                     <i class="fa-brands fa-css3-alt" style="color: #0353dd;"></i>
-                </div>
-                <div class="tooltipp" data-tooltip="BOOTSTRAP">
+                </li>
+                <li class="tooltipp" data-tooltip="BOOTSTRAP">
                     <i class="fa-brands fa-bootstrap" style="color: #a90dfd;"></i>
-                </div>
-                <div class="tooltipp" data-tooltip="JAVASCRIPT">
+                </li>
+                <li class="tooltipp" data-tooltip="JAVASCRIPT">
                     <i class="fa-brands fa-square-js" style="color: #edf104;"></i>
-                </div>
-                <div class="tooltipp" data-tooltip="VUE">
+                </li>
+                <li class="tooltipp" data-tooltip="VUE">
                     <i class="fa-brands fa-vuejs" style="color: #3FB984;"></i>
-                </div>
-                <div class="tooltipp" data-tooltip="VITE">
+                </li>
+                <li class="tooltipp" data-tooltip="VITE">
                     <i class="fa-brands fa-vuejs" style="color: #8966F2;"></i>
-                </div>
-                <div class="tooltipp" data-tooltip="SCSS">
+                </li>
+                <li class="tooltipp" data-tooltip="SCSS">
                     <i class="fa-brands fa-sass" style="color: #fd444d;"></i>
-                </div>
-                <div class="tooltipp" data-tooltip="PHP">
+                </li>
+                <li class="tooltipp" data-tooltip="PHP">
                     <i class="fa-brands fa-php" style="color: #787CB4;"></i>
-                </div>
-                <div class="tooltipp" data-tooltip="MYSQL">
+                </li>
+                <li class="tooltipp" data-tooltip="MYSQL">
                     <i class="fa-solid fa-database" style="color: #417399;"></i>
-                </div>
-                <div class="tooltipp" data-tooltip="LARAVEL">
+                </li>
+                <li class="tooltipp" data-tooltip="LARAVEL">
                     <i class="fa-brands fa-laravel" style="color:#F2271C"></i>
-                </div>
-            </figure>
+                </li>
+            </ul>
 
-            <div class="mx-auto">
-                <ul class="d-flex social gap-3 justify-content-center">
+            <div class="mx-auto my-4">
+                <ul class="d-flex social gap-3 justify-content-center list-unstyled">
                     <li class="my-2">
                         <a href="https://www.instagram.com/fedekh_/">
                             <i class="fa-brands fa-instagram"></i>
