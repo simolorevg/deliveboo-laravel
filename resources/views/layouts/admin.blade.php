@@ -99,13 +99,26 @@
                                 </a> --}}
                             </li>
 
-                            <li class="nav-item text-white">
-                                {{-- <a href="{{ route('admin.restaurants.create') }}"> CREA NUOVO RISTORANTE </a> --}}
-                                <a class="nav-link text-white" href="{{ route('admin.restaurants.create') }}">
-                                    <i class="fa-regular fa-folder-open mx-2" style="color: rgb(255, 230, 71);"></i>
-                                    CREA UN NUOVO RISTORANTE
-                                </a>
-                            </li>
+                            {{-- ! Gestiamo il blocco dashboard per la creazione del ristorante e lo facciamo apparire solo se l'utente non ha ancora creato un ristorante  --}}
+                            @php
+                             use App\Models\Restaurant;
+                            
+                              $restaurant = Restaurant::where("user_id" , Auth::user()->id)->get(); 
+                            //    dd($restaurant);
+                            @endphp
+                            
+
+                            
+                                @if (count($restaurant) == 0)
+                                <li class="nav-item text-white">
+                                    {{-- <a href="{{ route('admin.restaurants.create') }}"> CREA NUOVO RISTORANTE </a> --}}
+                                    <a class="nav-link text-white" href="{{ route('admin.restaurants.create') }}">
+                                        <i class="fa-regular fa-folder-open mx-2" style="color: rgb(255, 230, 71);"></i>
+                                        CREA UN NUOVO RISTORANTE
+                                    </a>
+                                </li>
+                                @endif
+
                         </ul>
 
 
