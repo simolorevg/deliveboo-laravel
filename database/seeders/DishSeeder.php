@@ -28,7 +28,6 @@ class DishSeeder extends Seeder
             // $dish->is_available = $faker->boolean();
             // $dish->img = $faker->imageUrl(400, 700, 'foods', true);
             // $dish->save();
-
         }
     }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('dish_name', 30);
             $table->string('slug');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->text('ingredients');
             $table->float('price', 5 , 2);
             // $table->tinyInteger('is_available')->default(1);
