@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
     <h1>I Piatti di {{ Auth::user()->name }}</h1>
     <a class="btn btn-danger" href="{{ route('admin.dishes.create')}}"> CREA UN NUOVO PIATTO</a>
@@ -40,7 +40,7 @@
                 @endif
             @endforeach
 
-            <a class="btn btn-warning mx-1" href="{{ route('admin.dashboard', $item->slug) }}">
+            <a class="btn btn-warning mx-1" href="{{ route('admin.dashboard') }}">
                 TORNA INDIETRO in dashboard daje
             </a>
         </tbody>

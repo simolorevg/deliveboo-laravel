@@ -1,8 +1,9 @@
+{{-- ! Gestiamo il blocco dashboard per la creazione del ristorante e lo facciamo apparire solo se l'utente non ha ancora creato un ristorante  --}}
 @php
-use App\Models\Restaurant;
-
- $restaurant = Restaurant::where("user_id" , Auth::user()->id)->get(); 
-//    dd($restaurant);
+    use App\Models\Restaurant;
+    
+    $restaurant = Restaurant::where('user_id', Auth::user()->id)->get();
+    //    dd($restaurant);
 @endphp
 
 
@@ -59,11 +60,8 @@ use App\Models\Restaurant;
             </div>
         </header>
 
-        <div class="container-fluid vh-100">
+        <div class="container-dashboard">
             <div class="row h-100">
-                <!-- Definire solo parte del menu di navigazione inizialmente per poi
-        aggiungere i link necessari giorno per giorno
-        -->
                 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse">
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
@@ -76,45 +74,38 @@ use App\Models\Restaurant;
                             </li>
 
                             @if (count($restaurant) != 0)
-                            <li class="nav-item text-white">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.index' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.restaurants.index') }}">
-                                    <i class="fa-regular fa-folder-open mx-2" style="color: rgb(151, 71, 255);"></i>
-                                    IL TUO RISTORANTE
-                                </a>
-                            </li>
-                            <li class="nav-item text-white">
-                                <a class="nav-link text-white" href="{{ route('admin.dishes.index') }}">
-                                    <i class="fa-regular fa-folder-open mx-2" style="color: rgb(255, 71, 71);"></i>
-                                    IL TUO MENU     
-                                </a>
-                                {{-- <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.projects.create' ? 'bg-secondary' : '' }}"
+                                <li class="nav-item text-white">
+                                    <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.index' ? 'bg-secondary' : '' }}"
+                                        href="{{ route('admin.restaurants.index') }}">
+                                        <i class="fa-regular fa-folder-open mx-2" style="color: rgb(151, 71, 255);"></i>
+                                        IL TUO RISTORANTE
+                                    </a>
+                                </li>
+                                <li class="nav-item text-white">
+                                    <a class="nav-link text-white" href="{{ route('admin.dishes.index') }}">
+                                        <i class="fa-regular fa-folder-open mx-2" style="color: rgb(255, 71, 71);"></i>
+                                        IL TUO MENU
+                                    </a>
+                                    {{-- <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.projects.create' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.projects.create') }}">
                                     <i class="fa-solid fa-circle-plus mx-2"  style="color: rgb(5, 225, 240);"></i> Crea uno nuovo Progetto
                                 </a> --}}
-                            </li>
-                            <li class="nav-item text-white">
-                                - controlla o modifica tipologia di cucina del tuo ristorante
-                                {{-- <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.types.create' ? 'bg-secondary' : '' }}"
+                                </li>
+                                <li class="nav-item text-white">
+                                    - controlla o modifica tipologia di cucina del tuo ristorante
+                                    {{-- <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.types.create' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.types.create') }}">
                                     <i class="fa-solid fa-circle-plus mx-2"  style="color: rgb(5, 225, 240);"></i> Inserisci nuovo TIPO
                                 </a> --}}
-                            </li>
-                            <li class="nav-item text-white">
-                                - Controlla gli ordini dei clienti
-                                {{-- <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.types.index' ? 'bg-secondary' : '' }}"
+                                </li>
+                                <li class="nav-item text-white">
+                                    - Controlla gli ordini dei clienti
+                                    {{-- <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.types.index' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.types.index') }}">
                                     <i class="fa-regular fa-folder-open mx-2"  style="color:  rgb(151, 71, 255);"></i> Lista dei TIPI
                                 </a> --}}
-                            </li>
-                            @endif
-
-                            {{-- ! Gestiamo il blocco dashboard per la creazione del ristorante e lo facciamo apparire solo se l'utente non ha ancora creato un ristorante  --}}
-                            
-                            
-
-                            
-                            @if (count($restaurant) == 0)
+                                </li>
+                            @elseif (count($restaurant) == 0)
                                 <li class="nav-item text-white">
                                     {{-- <a href="{{ route('admin.restaurants.create') }}"> CREA NUOVO RISTORANTE </a> --}}
                                     <a class="nav-link text-white" href="{{ route('admin.restaurants.create') }}">
@@ -129,8 +120,12 @@ use App\Models\Restaurant;
 
                     </div>
                 </nav>
+                <!-- Definire solo parte del menu di navigazione inizialmente per poi
+        aggiungere i link necessari giorno per giorno
+        -->
 
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" style="background-color: #555; color:white;">
+                <main class="content-main col-md-9 ms-sm-auto col-lg-10 px-md-4"
+                    style="background-color: #555; color:white;">
                     @yield('content')
                 </main>
             </div>

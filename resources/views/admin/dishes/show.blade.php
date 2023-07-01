@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
     <h2 class="text-center">{{ $dish->dish_name }}</h2>
     <ul>

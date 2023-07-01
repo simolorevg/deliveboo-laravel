@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
     <h2 class="mx-5">Il ristorante di {{ Auth::user()->name }}</h2>
     <table class="mx-5">
@@ -34,7 +34,7 @@
                     </tr>
                 @endif
             @endforeach
-            <a class="btn btn-warning mx-1" href="{{ route('admin.dashboard', $item->slug) }}">
+            <a class="btn btn-warning mx-1" href="{{ route('admin.dashboard') }}">
                 TORNA INDIETRO
             </a>
         </tbody>

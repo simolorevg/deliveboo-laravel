@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
 <div class="mx-5">
     <form class="d-flex flex-column form" action="{{ route('admin.restaurants.update', $restaurant->slug) }}" method="post">
