@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <h2 class="mx-5">Il ristorante di {{ Auth::user()->name }}</h2>
-    <table class="mx-5">
+    <table class="table table-dark table-hover table-striped text-center">
         <thead>
             <tr>
                 <th scope="col" class="px-3">id</th>

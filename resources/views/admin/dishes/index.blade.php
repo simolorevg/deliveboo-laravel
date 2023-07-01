@@ -2,12 +2,14 @@
 @section('content')
     <h1>I Piatti di {{ Auth::user()->name }}</h1>
     <a class="btn btn-danger" href="{{ route('admin.dishes.create')}}"> CREA UN NUOVO PIATTO</a>
-    <table>
+    <table class="table table-dark table-hover table-striped">
         <thead>
-            <tr>
-                <th scope="col">id</th>
-                <th scope="col">Nome Piatto</th>
-                <th scope="col">Azioni</th>
+            <tr class="text-center">
+                <th  scope="col">PIATTO ID</th>
+                <th  scope="col">NOME PIATTO</th>
+                <th  scope="col">RISTORANTE ID</th>
+
+                <th  scope="col">AZIONI</th>
                 {{-- <th scope="col">Actions</th> --}}
             </tr>
         </thead>
@@ -16,18 +18,19 @@
 
             @foreach ($dish as $item)
                 @if ($item->restaurant_id == Auth::user()->id)
-                    <tr>
-                        <td scope="row">{{ $item->id }}</td>
-                        <td scope="row">{{ $item->dish_name }}</td>
+                    <tr class="text-center">
+                        <td  scope="row">{{ $item->id }}</td>
+                        <td  scope="row">{{ $item->dish_name }}</td>
+                        <td  scope="row">{{ $item->restaurant_id}}</td>
                         
-                        <td scope="row" class="d-flex">
+                        <td  scope="row" class="d-flex">
                             <a class="btn btn-primary mx-1" href="{{ route('admin.dishes.show', $item->slug) }}">
                               VISUALIZZA
                                 </a>
                             <a class="btn btn-warning mx-1" href="{{ route('admin.dishes.edit', $item->slug) }}">
                                 MODIFICA
                                 </a>
-                            <form action="{{ route('admin.dishes.destroy', $item->slug) }}" method="POST">
+                            <form class="d-inline-block" action="{{ route('admin.dishes.destroy', $item->slug) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger"
