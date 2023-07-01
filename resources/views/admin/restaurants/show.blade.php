@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <h2 class="text-center">{{ $restaurant->restaurant_name }}</h2>
-    <ul>
+    <ul class="list-unstyled">
         <li>Indirizzo: {{ $restaurant->address }}</li>
         <li>Telefono: {{ $restaurant->phone }}</li>
         <li>P.IVA: {{ $restaurant->vat_number }}</li>

@@ -1,21 +1,25 @@
 @import './variables';
 
-#boss{
+#boss {
     color: $boss-color;
 }
 
-.navbar-toggler{
+.navbar-toggler {
     margin-right: 90%;
 }
 
-#sidebarMenu{
+#sidebarMenu {
     position: fixed;
     height: 100%;
 }
-.container-dashboard{
+
+.container-dashboard {
     border: 1px solid red;
-    .content-main{
+
+    .content-main {
         height: calc(100vh - $header-h);
         overflow-y: auto;
+        overflow-x: hidden;
+
     }
 }

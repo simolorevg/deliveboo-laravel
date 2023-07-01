@@ -126,8 +126,7 @@
         aggiungere i link necessari giorno per giorno
         -->
 
-                <main class="content-main col-md-9 ms-sm-auto col-lg-10 px-md-4"
-                    style="background-color: #555; color:white;">
+                <main class="content-main index-main col-md-9 ms-sm-auto col-lg-10 px-md-4">
                     @yield('content')
                 </main>
             </div>
