@@ -1,5 +1,17 @@
 @import './variables';
 
+#boss{
+    color: $boss-color;
+}
+
+.navbar-toggler{
+    margin-right: 90%;
+}
+
+#sidebarMenu{
+    position: fixed;
+    height: 100%;
+}
 .container-dashboard{
     border: 1px solid red;
     .content-main{

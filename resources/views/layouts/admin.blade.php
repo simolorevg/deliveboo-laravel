@@ -36,9 +36,11 @@
 <body>
     <div id="app">
 
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
-            <div class="row justify-content-between">
-                <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">BoolPress</a>
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-5 shadow">
+            <div class="row justify-content-end justify-content-md-between">
+                <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">
+                    <img src="{{ Vite::asset('./resources/img/gif_home.gif')}}" alt="">
+                </a>
                 <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"
                     data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +49,7 @@
             </div>
             <div class="navbar-nav">
                 <div class="nav-item text-nowrap ms-2">
-                    <p id="capo" class="d-inline-block mx-4"> {{ Auth::user()->name }}</p>
+                    <p id="boss" class="d-md-inline-block d-none text-decoration-underline fs-4 mx-4"> {{ Auth::user()->name }}</p>
                     <a class="nav-link d-inline-block" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
