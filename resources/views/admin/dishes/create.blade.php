@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
     <h2 class="mx-5">Crea il tuo piatto</h2>
     <div class="mx-5">

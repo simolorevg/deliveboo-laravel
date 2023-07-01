@@ -1,1 +1,9 @@
+@import './variables';
 
+.container-dashboard{
+    border: 1px solid red;
+    .content-main{
+        height: calc(100vh - $header-h);
+        overflow-y: auto;
+    }
+}

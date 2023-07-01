@@ -1,1 +1,16 @@
+@use './variables' as *;
 
+.navbar{
+    width: $maxwidth;
+    height: $header-h;
+    img{
+        max-width: 80%;
+    }
+    background-color: $header-bg;
+    color: $header-color;
+    .navbar-brand{
+        width: 100px;
+        margin: 0;
+        padding: 0;
+    }
+}
