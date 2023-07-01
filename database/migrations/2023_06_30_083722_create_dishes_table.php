@@ -20,7 +20,6 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('ingredients');
             $table->float('price', 5 , 2);
-            // $table->tinyInteger('is_available')->default(1);
             $table->boolean('is_available')->default(true);
             $table->text('img')->nullable();
             $table->timestamps();
