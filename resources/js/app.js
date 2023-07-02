@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Imposta la lingua su italiano
 Settings.defaultLocale = 'it';
-//funzione per visualizzare l'ora e data in diretta
+//funzione per visualizzare l'ora e data istantanea
 function updateDateTime() {
   const datetimeElement = document.getElementById('datetime');
   let now = DateTime.local();
