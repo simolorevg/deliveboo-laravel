@@ -11,8 +11,8 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($restaurant as $item)
-                @if ($Aitem->user_id == uth::user()->id)
+             @foreach ($restaurant as $item)
+                @if ($item->user_id == Auth::user()->id)
                     <tr>
                         <td scope="row" class="px-3">{{ $item->id }}</td>
                         <td scope="row" class="px-3">{{ $item->restaurant_name }}</td>
@@ -21,9 +21,9 @@
                             <a class="btn btn-success mx-1" href="{{ route('admin.restaurants.show', $item->slug) }}">
                                 DETTAGLI
                             </a>
-                            {{-- <a class="btn btn-warning mx-1" href="{{ route('admin.restaurants.edit', $item->slug) }}">
+                            <a class="btn btn-warning mx-1" href="{{ route('admin.restaurants.edit', $item->slug) }}">
                                 MODIFICA
-                            </a> --}}
+                            </a>
                             {{-- <form action="{{ route('admin.restaurants.destroy', $item->slug) }}" method="POST">
                                 @csrf
                                 @method('DELETE')

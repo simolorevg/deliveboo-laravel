@@ -19,11 +19,9 @@ class RestaurantController extends Controller
     public function index()
     {
         
-        $restaurant = Restaurant::all();
-        // if(!is_null($restaurant)){
-            $count = Auth::user()->restaurant->count();
-        // }
-        // dd($count);
+        $restaurant = Restaurant::where("user_id" , Auth::user()->id)->get();
+        // dd($restaurant);
+        $count = Auth::user()->restaurant->count();
         return view('admin.restaurants.index', compact('restaurant', 'count'));
     }
 
