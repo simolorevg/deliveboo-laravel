@@ -19,9 +19,8 @@
 
             {{-- <label for="vat_number">P.IVA : </label>
             <input class="mb-3" type="text" name="vat_number" id="vat_number"
-                value="{{ old('vat_number', $restaurant->vat_number) }}">
-            <label for="closure_day">Giorno di chiusura: </label> --}}
-            
+                value="{{ old('vat_number', $restaurant->vat_number) }}"> --}}
+            <label for="closure_day">Giorno di chiusura: </label>
             <input class="mb-3" type="text" name="closure_day" id="closure_day"
                 value="{{ old('closure_day', $restaurant->closure_day) }}">
 
