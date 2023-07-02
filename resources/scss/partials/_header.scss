@@ -1,8 +1,10 @@
 @use './variables' as *;
 
 .navbar{
+    position: sticky;
+    // position: relative;
+    z-index: 3;
     width: $maxwidth;
-    // height: $header-h;
     img{
         max-width: 80%;
     }
