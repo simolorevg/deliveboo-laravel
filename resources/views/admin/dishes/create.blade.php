@@ -35,14 +35,3 @@
         </form>
     </div>
 @endsection
-
-<style>
-    .form{
-        width: 400px
-    }
-    .btn{
-        width: 120px;
-        margin-top: 20px
-    }
-    
-    </style>

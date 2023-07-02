@@ -1,11 +1,15 @@
-:root{
-    --bs-emphasis-color-rgb:$header-color; /* sovrascrittura color bootstrap*/
+:root {
+    --bs-emphasis-color-rgb: $header-color;
+    /* sovrascrittura color bootstrap*/
 }
 
 
-$header-bg:#1f17177b;
-$header-color:white;
-$boss-color:rgb(207, 4, 4);
-$homepage-color:white;
-$maxwidth:100%;
-$header-h:100px;
+$bg-main: #444;
+$header-bg: #1f17177b;
+$header-color: white;
+$boss-color: rgb(207, 4, 4);
+$th-color:$boss-color;
+$homepage-color: white;
+$main-color: white;
+$maxwidth: 100%;
+$header-h: 100px;

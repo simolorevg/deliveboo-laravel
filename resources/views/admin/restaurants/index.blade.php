@@ -1,23 +1,30 @@
 @extends('layouts.admin')
 @section('content')
-    <h2 class="mx-5">Il ristorante di {{ Auth::user()->name }}</h2>
+
+<div class="wrapper p-5">
+
+    <h2 class="mb-5">Il ristorante di {{ Auth::user()->name }}</h2>
     <table class="table table-dark table-hover table-striped text-center">
         <thead>
             <tr>
-                <th scope="col" class="px-3">id</th>
+                <th scope="col" class="px-3">ID</th>
                 <th scope="col" class="px-3">Nome ristorante</th>
                 <th scope="col" class="px-3">Utente ID</th>
                 <th scope="col" class="px-3">Actions</th>
             </tr>
         </thead>
         <tbody>
+<<<<<<< HEAD
              @foreach ($restaurant as $item)
+=======
+            @foreach ($restaurant as $item)
+>>>>>>> 64c1600d95d0a266f8218e366b9983c7cffdafc3
                 @if ($item->user_id == Auth::user()->id)
                     <tr>
-                        <td scope="row" class="px-3">{{ $item->id }}</td>
-                        <td scope="row" class="px-3">{{ $item->restaurant_name }}</td>
-                        +<td scope="row" class="px-3">{{ $item->user_id }}</td>
-                        <td scope="row" class="d-flex">
+                        <td scope="row">{{ $item->id }}</td>
+                        <td scope="row">{{ $item->restaurant_name }}</td>
+                        <td scope="row">{{ $item->user_id }}</td>
+                        <td scope="row" class="d-flex justify-content-center">
                             <a class="btn btn-success mx-1" href="{{ route('admin.restaurants.show', $item->slug) }}">
                                 DETTAGLI
                             </a>
@@ -36,9 +43,8 @@
                     </tr>
                 @endif
             @endforeach
-            <a class="btn btn-warning mx-1" href="{{ route('admin.dashboard') }}">
-                TORNA INDIETRO
-            </a>
+            
         </tbody>
     </table>
+</div>
 @endsection

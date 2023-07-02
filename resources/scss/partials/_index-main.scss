@@ -1,0 +1,11 @@
+@import './variables';
+
+
+.index-main {
+    background-color: $bg-main;
+    color: $main-color;
+
+    th {
+        color: $th-color;
+    }
+}
