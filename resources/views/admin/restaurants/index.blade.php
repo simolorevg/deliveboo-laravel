@@ -14,11 +14,7 @@
             </tr>
         </thead>
         <tbody>
-<<<<<<< HEAD
              @foreach ($restaurant as $item)
-=======
-            @foreach ($restaurant as $item)
->>>>>>> 64c1600d95d0a266f8218e366b9983c7cffdafc3
                 @if ($item->user_id == Auth::user()->id)
                     <tr>
                         <td scope="row">{{ $item->id }}</td>
