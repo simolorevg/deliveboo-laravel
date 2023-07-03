@@ -1,13 +1,14 @@
 @import './variables';
 
 
-.container-create-restaurant{
+.container-create-restaurant {
     max-width: 700px;
 
     margin: 50px auto;
-    .btn-group > .btn{
+
+    .btn-group>.btn {
         flex: none;
-    --bs-btn-border-color:white;
-    --bs-btn-color:white;
+        --bs-btn-border-color: white;
+        --bs-btn-color: white;
     }
 }

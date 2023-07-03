@@ -15,6 +15,7 @@
 
                 <form class="d-flex flex-column form" action="{{ route('admin.restaurants.store') }}" method="POST">
                     @csrf
+
                     <label class="info my-2" for="restaurant_name">Nome Ristorante: </label>
                     <input class="@error('restaurant_name') is-invalid @enderror" type="text" name="restaurant_name"
                         id="restaurant_name" value="{{ old('restaurant_name') }}">
@@ -23,13 +24,31 @@
                             {{ $message }}
                         </div>
                     @enderror
-                    <label class="info my-2" for="city">Città: </label>
+
+                    <label class="info my-2 @error('city') is-invalid @enderror" for="city">Città: </label>
                     <input type="text" name="city" id="city" value="{{ old('city') }}">
-                    <label class="info my-2" for="address">Indirizzo: </label>
+                    @error('restaurant_name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                    <label class="info my-2 @error('address') is-invalid @enderror" for="address">Indirizzo: </label>
                     <input type="text" name="address" id="address" value="{{ old('address') }}">
-                    <label class="info my-2" for="phone">Telefono: </label>
+                    @error('restaurant_name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                    <label class="info my-2 @error('phone') is-invalid @enderror" for="phone">Telefono: </label>
                     <input type="text" name="phone" id="phone" value="{{ old('phone') }}">
-                    <label class="info my-2" for="vat_number">P.IVA : </label>
+                    @error('restaurant_name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                    <label class="info my-2 @error('vat_number') is-invalid @enderror" for="vat_number">P.IVA : </label>
                     <input type="text" name="vat_number" id="vat_number"
                         class="@error('vat_number') is-invalid @enderror" value="{{ old('vat_number') }}">
                     @error('vat_number')
@@ -43,8 +62,13 @@
                     <div class="btn-group d-flex flex-wrap mb-4 gap-2 " role="group"
                         aria-label="Basic checkbox toggle button group">
                         @foreach ($categories as $category)
-                            <input type="checkbox" class="btn-check" id="{{ $category->category_name }}" autocomplete="off"
+                            <input type="checkbox" class="btn-check @error('category_id') is-invalid @enderror" id="{{ $category->category_name }}" autocomplete="off"
                                 name="category_id[]" value="{{ $category->id }}" @checked(in_array($category->id, old('categories', [])))>
+                            @error('category_id')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                             <label class="btn btn-outline-primary " for="{{ $category->category_name }}">
                                 {{ $category->category_name }}</label>
                         @endforeach

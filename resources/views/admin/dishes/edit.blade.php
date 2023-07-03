@@ -5,7 +5,7 @@
         <h2 class="mx-5">Modifica il tuo piatto: <span class="info">{{$dish->dish_name}}</span></h2>
         <div class="mx-5">
 
-            <form class="d-flex flex-column form" action="{{ route('admin.dishes.update', $dish->slug) }}" method="POST">
+            <form class="d-flex flex-column form" action="{{ route('admin.dishes.update', $dish->slug) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <label for="dish_name">Nome Piatto: </label>
