@@ -99,13 +99,13 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
+    public function update(Request $request, Restaurant $restaurant)
     {
-        $data = $request->validated();
+        $data = $request->all();
         $data['slug'] = Str::slug($data['restaurant_name']);
         $restaurant->update($data);
         if ($request->has('category_id')) {
-            $restaurant->categories()->sync($request->category);
+            $restaurant->categories()->sync($data['category_id']);
         } else {
             $restaurant->categories()->detach();
         };
