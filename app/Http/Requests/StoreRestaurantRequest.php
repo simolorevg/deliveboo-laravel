@@ -27,7 +27,7 @@ class StoreRestaurantRequest extends FormRequest
     public function rules()
     {
         return [
-            'restaurant_name' => ['required', 'min:5', 'max:40'],
+            'restaurant_name' => ['required', 'min:5', 'max:40', Rule::unique('restaurants')->ignore($this->restaurant)],
             'city' => 'required|string',
             'address' => 'required|string',
             'phone' => 'required|string',
