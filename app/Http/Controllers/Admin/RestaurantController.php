@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRestaurantRequest;
+use App\Http\Requests\UpdateRestaurantRequest;
 use App\Models\Category;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
@@ -98,9 +99,9 @@ class RestaurantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Restaurant $restaurant)
+    public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
     {
-        $data = $request->all();
+        $data = $request->validated();
         $data['slug'] = Str::slug($data['restaurant_name']);
         $restaurant->update($data);
         if ($request->has('category_id')) {
