@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 @section('content')
 
-{{-- @php
+@php
     use App\Models\Restaurant;
                             
     $restaurant = Restaurant::where("user_id" , Auth::user()->id)->get(); 
-@endphp --}}
+@endphp
 
 @if (count($restaurant) == 0)
     <h2 class="mx-5">Crea il tuo risorante: se ne hai il coraggio</h2>

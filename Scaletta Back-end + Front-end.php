@@ -146,7 +146,7 @@
 //
 ///**
 //  *!  php artisan make:request StoreComicRequest
-//  *!  hp artisan make:request UpdateComicRequest
+//  *!  php artisan make:request UpdateComicRequest
 // *
 // 
 // **  quindi modifichiamo i 2 metodi store e update cosi:

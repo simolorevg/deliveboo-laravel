@@ -22,7 +22,7 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::where("user_id" , Auth::user()->id)->get();
         // dd($restaurant);
         $count = Auth::user()->restaurant->count();
-        return view('admin.restaurants.index', compact('restaurant', 'count'));
+        return view('admin.restaurants.index', compact('restaurant'));
     }
 
     /**

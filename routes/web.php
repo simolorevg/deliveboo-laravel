@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
@@ -27,6 +28,6 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('restaurants', RestaurantController::class)->parameters(['restaurants' => 'restaurant:slug']);
     Route::resource('dishes', DishController::class)->parameters(['dishes' => 'dish:slug']);
-    // Route::resource('technologies', TechnologyController::class)->parameters(['technologies' => 'technology:slug']);
+    Route::resource('categories', CategoryController::class)->parameters(['categories' => 'technology:slug']);
 });
 require __DIR__ . '/auth.php';
