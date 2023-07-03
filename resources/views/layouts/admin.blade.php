@@ -91,11 +91,11 @@
                                 </a> --}}
                                 </li>
                                 <li class="nav-item text-white">
-                                    - controlla o modifica tipologia di cucina del tuo ristorante
-                                    {{-- <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.types.create' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.types.create') }}">
-                                    <i class="fa-solid fa-circle-plus mx-2"  style="color: rgb(5, 225, 240);"></i> Inserisci nuovo TIPO
-                                </a> --}}
+                                    <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.categories.create' ? 'bg-secondary' : '' }}"
+                                    href="{{ route('admin.categories.index') }}">
+                                    <i class="fa-regular fa-folder-open mx-2"  style="color: rgb(5, 225, 240);"></i> CATEGORIE DISPONIBILI
+
+                                </a>
                                 </li>
                                 <li class="nav-item text-white">
                                     - Controlla gli ordini dei clienti
