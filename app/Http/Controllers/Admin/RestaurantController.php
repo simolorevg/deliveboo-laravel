@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreRestaurantRequest;
 use App\Models\Category;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +22,9 @@ class RestaurantController extends Controller
     {
         $data = $request->all();
         $categories = Category::all();
-        $restaurant = Restaurant::where("user_id" , Auth::user()->id)->get();
-        
-        if ($request->has('category_id') && !is_null($data['category_id'])){
+        $restaurant = Restaurant::where("user_id", Auth::user()->id)->get();
+
+        if ($request->has('category_id') && !is_null($data['category_id'])) {
             $restaurant = Restaurant::where('category_id', $data['category_id']);
         }
 
@@ -49,10 +50,10 @@ class RestaurantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRestaurantRequest $request)
     {
         // creazione ristorante
-        $data = $request->all();
+        $data = $request->validated();
         $data['slug'] = Str::slug($data['restaurant_name']);
         $data['user_id'] = Auth::user()->id; //in questo modo il campo user_id prende il valore dell'id dell'utente
 
@@ -60,7 +61,7 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::create($data);
 
         //salvataggio dati tabella ponte
-        if ($request->has('category_id')){
+        if ($request->has('category_id')) {
             $restaurant->categories()->attach($request->category_id);
         }
         return redirect()->route('admin.restaurants.index')->with('message', 'Hai creato il tuo ristorante.');
@@ -73,9 +74,9 @@ class RestaurantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Restaurant $restaurant)
-    {   
+    {
         $categories = Category::all();
-        return view('admin.restaurants.show', compact('restaurant','categories'));
+        return view('admin.restaurants.show', compact('restaurant', 'categories'));
     }
 
     /**
@@ -102,12 +103,10 @@ class RestaurantController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($data['restaurant_name']);
         $restaurant->update($data);
-        if ($request->has('category_id')){
+        if ($request->has('category_id')) {
             $restaurant->categories()->sync($data['category_id']);
-
-        } else{
+        } else {
             $restaurant->categories()->detach();
-
         };
         return redirect()->route('admin.restaurants.index');
     }

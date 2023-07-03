@@ -16,7 +16,13 @@
                 <form class="d-flex flex-column form" action="{{ route('admin.restaurants.store') }}" method="POST">
                     @csrf
                     <label class="info my-2" for="restaurant_name">Nome Ristorante: </label>
-                    <input type="text" name="restaurant_name" id="restaurant_name">
+                    <input class="@error('restaurant_name') is-invalid @enderror" type="text" name="restaurant_name"
+                        id="restaurant_name">
+                    @error('restaurant_name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <label class="info my-2" for="city">Città: </label>
                     <input type="text" name="city" id="city">
                     <label class="info my-2" for="address">Indirizzo: </label>
@@ -28,7 +34,8 @@
                     <label class="info my-2" for="closure_day">Giorno di chiusura: </label>
                     <input type="text" name="closure_day" id="closure_day">
                     <p class="info my-2">Categorie:</p>
-                    <div class="btn-group d-flex flex-wrap mb-4 gap-2 " role="group" aria-label="Basic checkbox toggle button group">
+                    <div class="btn-group d-flex flex-wrap mb-4 gap-2 " role="group"
+                        aria-label="Basic checkbox toggle button group">
                         @foreach ($categories as $category)
                             <input type="checkbox" class="btn-check" id="{{ $category->category_name }}" autocomplete="off"
                                 name="category_id[]" value="{{ $category->id }}">
@@ -39,7 +46,7 @@
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">Crea</button>
-                        <a href="{{ route('admin.dashboard')}}" class="btn btn-warning">Annulla</a>
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-warning">Annulla</a>
                     </div>
 
                 </form>
