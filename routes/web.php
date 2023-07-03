@@ -28,6 +28,6 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('restaurants', RestaurantController::class)->parameters(['restaurants' => 'restaurant:slug']);
     Route::resource('dishes', DishController::class)->parameters(['dishes' => 'dish:slug']);
-    Route::resource('categories', CategoryController::class)->parameters(['categories' => 'technology:slug']);
+    Route::resource('categories', CategoryController::class)->parameters(['categories' => 'category:slug']);
 });
 require __DIR__ . '/auth.php';
