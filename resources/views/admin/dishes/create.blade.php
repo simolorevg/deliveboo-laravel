@@ -7,9 +7,9 @@
 
             <form class="d-flex flex-column form" action="{{ route('admin.dishes.store') }}" method="POST">
                 @csrf
-                <div class="mb-3">
+                <div class="my-3">
                     <label for="dish_name">Nome Piatto: </label>
-                    <input class="mb-3 @error('dish_name') is-invalid @enderror" type="text" name="dish_name"
+                    <input class="mb-3 d-block @error('dish_name') is-invalid @enderror" type="text" name="dish_name"
                         id="dish_name">
                     @error('dish_name')
                         <div class="invalid-feedback">
@@ -17,8 +17,8 @@
                         </div>
                     @enderror
                 </div>
+                <div class="my-3">
 
-                <div class="mb-3">
                     <label for="description"
                         class="form-label @error('description') is-invalid @enderror">Descrizione</label>
                     <textarea class="form-control" id="description" rows="3" name='description'>
@@ -31,7 +31,8 @@
                     @enderror
                 </div>
 
-                <div class="mb-3">
+                <div class="my-3">
+
                     <label for="ingredients"
                         class="form-label @error('ingredients') is-invalid @enderror">Ingredienti</label>
                     <textarea class="form-control" id="ingredients" rows="2" name='ingredients'>
@@ -47,22 +48,21 @@
 
                 <label for="price">Prezzo: € </label>
                 <input class="mb-3 @error('price') is-invalid @enderror" type="number" name="price" id="price"
-                    step="0.01">
+                step="0.01">
                 @error('price')
-                    <div class="invalid-feedback">
+                    <span class="invalid-feedback">
                         {{ $message }}
-                    </div>
+                    </span>
                 @enderror
 
-                <div class="form-check"> <input class="form-check-input" type="checkbox" value="1" id="is_available">
+                <div class="form-check my-3"> <input class="form-check-input" type="checkbox" value="1" id="is_available">
                     <label class="form-check-label" for="is_available">
                         Terminato
                     </label>
                 </div>
-                <div class="mb-3">
-                    <label for="img" class="form-label" >Carica Logo</label>
-                    <input class="form-control"
-                        type="file" id="img">
+                <div class="my-3">
+                    <label for="img" class="form-label">Carica Logo</label>
+                    <input class="form-control" type="file" id="img">
                 </div>
                 <div class="button d-flex justify-content-center gap-3">
                     <button type="submit" class="btn btn-primary">Crea</button>
