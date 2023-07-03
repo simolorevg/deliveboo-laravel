@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories_restaurants', function (Blueprint $table) {
+        Schema::create('category_restaurant', function (Blueprint $table) {
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
            
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories_restaurants');
+        Schema::dropIfExists('category_restaurant');
     }
 };

@@ -60,8 +60,8 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::create($data);
 
         //salvataggio dati tabella ponte
-        if ($request->has('categories')){
-            $restaurant->categories()->attach($request->categories);
+        if ($request->has('category_id')){
+            $restaurant->categories()->attach($request->category_id);
         }
         return redirect()->route('admin.restaurants.index')->with('message', 'Hai creato il tuo ristorante.');
     }
