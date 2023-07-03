@@ -5,7 +5,7 @@
         <h2 class="mx-5">Crea il tuo piatto</h2>
         <div class="mx-5 mt-3">
 
-            <form class="d-flex flex-column form" action="{{ route('admin.dishes.store') }}" method="POST">
+            <form class="d-flex flex-column form" action="{{ route('admin.dishes.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="my-3">
                     <label for="dish_name">Nome Piatto: </label>

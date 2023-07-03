@@ -8,7 +8,7 @@
         
         
         <form method="POST" class="d-flex flex-column form"
-            action="{{ route('admin.restaurants.update', $restaurant->slug) }}">
+            action="{{ route('admin.restaurants.update', $restaurant->slug) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
