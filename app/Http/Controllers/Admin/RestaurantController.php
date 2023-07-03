@@ -31,7 +31,7 @@ class RestaurantController extends Controller
 
         // dd($restaurant);
         $count = Auth::user()->restaurant->count();
-        return view('admin.restaurants.index', compact('restaurant', 'count'));
+        return view('admin.restaurants.index', compact('restaurant', 'count', 'categories'));
     }
 
     /**
