@@ -10,6 +10,13 @@
             <li class="my-4"><span class="info">Prezzo: </span>{{ $dish->price }}</li>
             <li class="my-4"><span class="info">Descrizione: </span>{{ $dish->description }}</li>
             <li class="my-4"><span class="info">Ingredienti: </span>{{ $dish->ingredients }}</li>
+            <li class="my-4"><span class="info">Disponibile: </span>
+                @if ($dish->is_available)
+                    <span>Si</span>
+                @else
+                    <span>No</span>
+                @endif
+            </li>
             <li class="my-4"><span class="info">Foto: </span>{{ $dish->thumb }}</li>
         </ul>
     </div>

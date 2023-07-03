@@ -30,9 +30,11 @@
                 <div class="tecno d-flex my-5 gap-4">
                     <span class="info">Cucine associate:</span>
 
-                    @foreach ($restaurant->categories as $item)
+                    @forelse ($restaurant->categories as $item)
                         <h5>{{ $item->category_name }}</h5>
-                    @endforeach
+                    @empty
+                        Non ci sono categorie associate
+                    @endforelse
                 </div>
             </li>
             <li class="my-4">

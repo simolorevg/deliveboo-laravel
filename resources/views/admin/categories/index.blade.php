@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>ciao</h2>
+    <h2>Categorie disponibili: <span class="info"> {{count($categories)}} </span></h2>
 
     <div class="row">
         <div class="col-6">

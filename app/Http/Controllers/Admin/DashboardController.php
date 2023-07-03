@@ -18,7 +18,7 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         $count = User::count();
-        return view('layouts.admin' , compact('user','count'));
+        return view('admin.dashboard' , compact('user','count'));
     }
 
 }

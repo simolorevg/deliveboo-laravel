@@ -1,0 +1,13 @@
+@import './variables';
+
+
+.container-create-restaurant{
+    max-width: 700px;
+
+    margin: 50px auto;
+    .btn-group > .btn{
+        flex: none;
+    --bs-btn-border-color:white;
+    --bs-btn-color:white;
+    }
+}
