@@ -25,7 +25,16 @@
             <input type="text" name="vat_number" id="vat_number">
             <label for="closure_day">Giorno di chiusura: </label>
             <input type="text" name="closure_day" id="closure_day">
+            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+
+                @foreach ($categories as $category)
+                <input type="checkbox" class="btn-check" id="{{$category->category_name}}" autocomplete="off" name= "category_id[]" value="{{$category->id}}">
+                <label class="btn btn-outline-primary" for="{{$category->category_name}}"> {{$category->category_name}}</label>
+                @endforeach
+    
+            </div>
             <button type="submit" class="btn btn-primary">CREA</button>
+
         </form>
     </div>
     @else

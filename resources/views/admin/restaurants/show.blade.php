@@ -4,6 +4,7 @@
     <div class="container p-3">
 
         <h2 class="text-center">Dettagli del tuo ristorante: <span class="info">{{ $restaurant->restaurant_name }} </span>
+            @dd($restaurant);
         </h2>
         <div class="d-flex justify-content-end">
             <a href="{{ route('admin.restaurants.index') }}" class="btn btn-info">Torna indietro</a>
@@ -24,6 +25,18 @@
             </li>
             <li class="my-4">
                 <span class="info">Giorno chiusura:</span> {{ $restaurant->closure_day }}
+            </li>
+            <li>
+                <div class="tecno d-flex my-5 gap-4">
+                    <h4 class="tiping">Cucine associate:</h4>
+                    @foreach ($restaurant as $item)
+                    @dd($item);
+                    @endforeach
+
+                    {{-- @foreach ($restaurant->categories as $item)
+                        <h5>{{ $item->category_name }}</h5>
+                    @endforeach --}}
+                </div>
             </li>
             <li class="my-4">
                 <span class="info">Foto:</span>
