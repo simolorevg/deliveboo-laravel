@@ -6,7 +6,7 @@
             <a href="{{ url()->previous() }}" class="btn btn-info">Torna indietro</a>
         </div>
         <form class="d-flex flex-column form" action="{{ route('admin.restaurants.update', $restaurant->slug) }}"
-            method="post">
+            method="POST">
             @csrf
             @method('PUT')
             <label for="restaurant_name">Nome Ristorante: </label>
@@ -30,12 +30,11 @@
 
             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
 
-                @foreach ($categories as $category)
-                    <input type="checkbox" class="btn-check" id="category-{{ $category->category_name }}" autocomplete="off"
-                        name="categories[]" value="{{ $category->id }}" @checked(old('category_id') ? in_array($category->id, old('category_id', [])) : $restaurant->categories->contains($category))>
-                    <label class="btn btn-outline-primary" for="category-{{ $category->category_name }}">
-                        {{ $category->category_name }}</label>
-                @endforeach
+            @foreach ($categories as $category)
+            <input type="checkbox" class="btn-check" id="{{$category->category_name}}" autocomplete="off" name= "category_id[]" value="{{$category->id}}"
+             @checked(old('category_id') ? in_array($category->id, old('category_id', [])) : $restaurant->categories->contains($category))>
+            <label class="btn btn-outline-primary" for="{{$category->category_name}}"> {{$category->category_name}}</label>
+            @endforeach
 
             </div>
 

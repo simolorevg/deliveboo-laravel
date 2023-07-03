@@ -105,7 +105,7 @@ class RestaurantController extends Controller
         $data['slug'] = Str::slug($data['restaurant_name']);
         $restaurant->update($data);
         if ($request->has('category_id')) {
-            $restaurant->categories()->sync($data['category_id']);
+            $restaurant->categories()->sync($request->category);
         } else {
             $restaurant->categories()->detach();
         };

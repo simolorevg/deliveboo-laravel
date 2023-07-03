@@ -32,8 +32,8 @@ class StoreRestaurantRequest extends FormRequest
             'address' => 'required|string',
             'phone' => 'required|string',
             'vat_number' => ['required', Rule::unique('restaurants', 'vat_number')],
-            'categories' => ['required', 'exists:categories,id'],
-            'image' => 'nullable'
+            'category_id' => ['required', 'exists:categories,id'],
+            'thumb' => 'nullable'
         ];
     }
     public function messages()

@@ -26,13 +26,13 @@ class UpdateRestaurantRequest extends FormRequest
     public function rules()
     {
         return [
-            'restaurant_name' => ['required', 'min:5', 'max:40', Rule::unique('restaurants')->ignore($this->restaurant)],
+            'restaurant_name' => ['required', 'min:5', 'max:40'],
             'city' => 'required|string',
             'address' => 'required|string',
             'phone' => 'required|string',
             'vat_number' => ['required', Rule::unique('restaurants', 'vat_number')],
-            'categories' => ['required', 'exists:categories,id'],
-            'image' => 'nullable'
+            'category_id' => ['required', 'exists:categories,id'],
+            'thumb' => 'nullable'
         ];
     }
     public function messages()
