@@ -15,6 +15,8 @@
             @csrf
             <label for="restaurant_name">Nome Ristorante: </label>
             <input type="text" name="restaurant_name" id="restaurant_name">
+            <label for="city">Città: </label>
+            <input type="text" name="city" id="city">
             <label for="address">Indirizzo: </label>
             <input type="text" name="address" id="address">
             <label for="phone">Telefono: </label>

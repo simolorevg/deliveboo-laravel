@@ -1,10 +1,10 @@
-{{-- ! Gestiamo il blocco dashboard per la creazione del ristorante e lo facciamo apparire solo se l'utente non ha ancora creato un ristorante  --}}
+ {{-- Gestiamo il blocco dashboard per la creazione del ristorante e lo facciamo apparire solo se l'utente non ha ancora creato un ristorante  --}}
 @php
     use App\Models\Restaurant;
     
     $restaurant = Restaurant::where('user_id', Auth::user()->id)->get();
     //    dd($restaurant);
-@endphp
+@endphp 
 
 
 <!doctype html>
@@ -50,11 +50,8 @@
             <div class="navbar-nav">
                 <div class="nav-item text-nowrap ms-2">
                     <p id="boss" class="d-md-inline-block d-none text-decoration-underline fs-4 mx-4"> {{ Auth::user()->name }}</p>
-                    <a class="nav-link d-inline-block" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
+                    <a class="nav-link d-inline-block" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>

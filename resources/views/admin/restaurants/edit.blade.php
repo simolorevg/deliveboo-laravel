@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 @section('content')
     <div class="edit mx-auto">
+        <h2 class="mb-5">Modifica il tuo ristorante <span class="info">{{$restaurant->restaurant_name}}</span> </h2>
+        <div class="d-flex justify-content-end">
+            <a href="{{ url()->previous() }}" class="btn btn-info">Torna indietro</a>
+        </div>
         <form class="d-flex flex-column form" action="{{ route('admin.restaurants.update', $restaurant->slug) }}"
             method="post">
             @csrf
@@ -37,7 +41,7 @@
             <div class="d-flex justify-content-center my-3">
                 <img class="d-none" id="thumb-preview" src="" alt="">
             </div>
-            <button type="submit" class="btn mx-auto btn-warning">MODIFICA</button>
+            <button type="submit" class="btn mx-auto btn-warning">Modifica</button>
         </form>
     </div>
 @endsection

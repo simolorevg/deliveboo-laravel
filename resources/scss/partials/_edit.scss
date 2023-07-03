@@ -1,7 +1,10 @@
 @import './variables';
 
 .edit{
-    width: 500px;
+    max-width: 700px;
     overflow-x: hidden;
-    margin-top: 100px;
+    margin-top: 60px;
+    label{
+        color:$boss-color;
+    }
 }
