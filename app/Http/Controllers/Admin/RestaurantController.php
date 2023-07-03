@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -16,13 +17,19 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        
+        $data = $request->all();
+        $categories = Category::all();
         $restaurant = Restaurant::where("user_id" , Auth::user()->id)->get();
+        
+        if ($request->has('category_id') && !is_null($data['category_id'])){
+            $restaurant = Restaurant::where('category_id', $data['category_id']);
+        }
+
         // dd($restaurant);
         $count = Auth::user()->restaurant->count();
-        return view('admin.restaurants.index', compact('restaurant'));
+        return view('admin.restaurants.index', compact('restaurant', 'count'));
     }
 
     /**
@@ -32,7 +39,8 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        return view('admin.restaurants.create');
+        $categories = Category::all();
+        return view('admin.restaurants.create', compact('categories'));
     }
 
     /**
@@ -43,11 +51,19 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
+        // creazione ristorante
         $data = $request->all();
         $data['slug'] = Str::slug($data['restaurant_name']);
         $data['user_id'] = Auth::user()->id; //in questo modo il campo user_id prende il valore dell'id dell'utente
+
+        // salvataggio in DB
         $restaurant = Restaurant::create($data);
-        return redirect()->route('admin.restaurants.index', compact('restaurant'))->with('message', 'Hai creato il tuo ristorante.');
+
+        //salvataggio dati tabella ponte
+        if ($request->has('categories')){
+            $restaurant->categories()->attach($request->categories);
+        }
+        return redirect()->route('admin.restaurants.index')->with('message', 'Hai creato il tuo ristorante.');
     }
 
     /**
@@ -57,8 +73,9 @@ class RestaurantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Restaurant $restaurant)
-    {
-        return view('admin.restaurants.show', compact('restaurant'));
+    {   
+        $categories = Category::all();
+        return view('admin.restaurants.show', compact('restaurant','categories'));
     }
 
     /**
