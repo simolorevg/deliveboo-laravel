@@ -27,13 +27,14 @@ class StoreRestaurantRequest extends FormRequest
     public function rules()
     {
         return [
-            'restaurant_name' => ['required', 'min:5', 'max:40', Rule::unique('restaurants')->ignore($this->restaurant)],
+            'restaurant_name' => ['required', 'min:5', 'max:40'],
             'city' => 'required|string',
             'address' => 'required|string',
             'phone' => 'required|string',
-            'vat_number' => ['required', Rule::unique('restaurants', 'vat_number')],
+            'vat_number' => ['required', Rule::unique('restaurants')],
             'category_id' => ['required', 'exists:categories,id'],
-            'thumb' => 'nullable'
+            'thumb' => 'nullable',
+            'closure_day'=> 'nullable'
         ];
     }
     public function messages()

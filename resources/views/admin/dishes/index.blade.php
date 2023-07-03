@@ -3,7 +3,10 @@
 
 <div class="wrapper p-5">
     <h2>I Piatti del tuo ristorante: <span class="info">{{ Auth::user()->name }}</span></h2>
-    <h3>Piatti totali: <span class="info">{{count($dish )}}</span></h3>
+    
+    {{-- <h3>Piatti totali: <span class="info">{{count($item )}}</span></h3> --}}
+
+
     <div class="d-flex justify-content-end">
         <a class="btn btn-info my-4" href="{{ route('admin.dishes.create') }}"> Crea nuovo piatto</a>
     </div>
