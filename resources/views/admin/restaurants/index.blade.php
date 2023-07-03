@@ -22,10 +22,10 @@
                         <td scope="row">{{ $item->user_id }}</td>
                         <td scope="row" class="d-flex justify-content-center">
                             <a class="btn btn-success mx-1" href="{{ route('admin.restaurants.show', $item->slug) }}">
-                                DETTAGLI
+                                Dettagli
                             </a>
                             <a class="btn btn-warning mx-1" href="{{ route('admin.restaurants.edit', $item->slug) }}">
-                                MODIFICA
+                                Modifica
                             </a>
                             {{-- <form action="{{ route('admin.restaurants.destroy', $item->slug) }}" method="POST">
                                 @csrf

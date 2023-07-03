@@ -2,10 +2,10 @@
 @section('content')
 
 <div class="wrapper p-5">
-    <h1>I Piatti del tuo ristorante: <span class="info">{{ Auth::user()->name }}</span></h1>
+    <h2>I Piatti del tuo ristorante: <span class="info">{{ Auth::user()->name }}</span></h2>
 
     <div class="d-flex justify-content-end">
-        <a class="btn btn-info my-4" href="{{ route('admin.dishes.create') }}"> CREA UN NUOVO PIATTO</a>
+        <a class="btn btn-info my-4" href="{{ route('admin.dishes.create') }}"> Crea nuovo piatto</a>
     </div>
     <table class="table table-dark table-hover table-striped">
         <thead>

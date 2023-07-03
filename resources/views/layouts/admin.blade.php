@@ -93,7 +93,7 @@
                                 <li class="nav-item text-white">
                                     <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.categories.create' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.categories.index') }}">
-                                    <i class="fa-regular fa-folder-open mx-2"  style="color: rgb(5, 225, 240);"></i> CATEGORIE DISPONIBILI
+                                    <i class="fa-regular fa-folder-open mx-2"  style="color: rgb(5, 225, 240);"></i> CATEGORIE 
 
                                 </a>
                                 </li>
