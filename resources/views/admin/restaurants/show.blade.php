@@ -12,7 +12,7 @@
         </div>
         <ul class="list-unstyled">
             <li class="my-4">
-                <span class="info">Città:</span> {{ $restaurant->address }}
+                <span class="info">Città:</span> {{ $restaurant->city }}
             </li>
             <li class="my-4">
                 <span class="info">Indirizzo:</span> {{ $restaurant->address }}
