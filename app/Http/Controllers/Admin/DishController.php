@@ -39,9 +39,9 @@ class DishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDishRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->validated();
+        $data = $request->all();
         $data['slug'] = Str::slug($data['dish_name']);
         $data['restaurant_id'] = Auth::user()->id;   //!in questo modo il campo user_id prende il valore dell'id dell'utente da rivedere
         $dish = Dish::create($data);
@@ -77,9 +77,9 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDishRequest $request, Dish $dish)
+    public function update(Request $request, Dish $dish)
     {
-        $data=$request->validated();
+        $data=$request->all();
         $data['slug'] = Str::slug($data['dish_name']);
         $dish->update($data);
         return redirect()->route('admin.dishes.index');
