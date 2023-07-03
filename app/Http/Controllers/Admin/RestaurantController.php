@@ -86,7 +86,8 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
-        return view('admin.restaurants.edit', compact('restaurant'));
+        $categories = Category::all();
+        return view('admin.restaurants.edit', compact('restaurant', 'categories'));
     }
 
     /**
@@ -101,6 +102,13 @@ class RestaurantController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($data['restaurant_name']);
         $restaurant->update($data);
+        if ($request->has('category_id')){
+            $restaurant->categories()->sync($data['category_id']);
+
+        } else{
+            $restaurant->categories()->detach();
+
+        };
         return redirect()->route('admin.restaurants.index');
     }
 
