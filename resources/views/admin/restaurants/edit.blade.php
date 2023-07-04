@@ -14,7 +14,7 @@
 
             <label for="restaurant_name">Nome Ristorante: </label>
             <input class="mb-3 @error('restaurant_name') is-invalid @enderror" type="text" name="restaurant_name" id="restaurant_name"
-                value="{{ old('restaurant_name', $restaurant->restaurant_name) }}">
+                value="{{ old('restaurant_name', $restaurant->restaurant_name) }}" required>
                 @error('restaurant_name')
                 <div class="invalid-feedback">
                     {{$message}}
@@ -24,14 +24,14 @@
             <label class="info my-2" for="city">Città: </label>
             <input class="mb-3 @error('city') is-invalid @enderror" type="text" name="city" id="city" value="{{ old('city', $restaurant->city) }}">
             @error('city')
-            <div class="invalid-feedback">
+            <div class="invalid-feedback" required>
                 {{$message}}
             </div>
         @enderror
 
             <label for="address">Indirizzo: </label>
             <input class="mb-3 @error('address') is-invalid @enderror" type="text" name="address" id="address"
-                value="{{ old('address', $restaurant->address) }}">
+                value="{{ old('address', $restaurant->address) }}" required>
                 @error('address')
                 <div class="invalid-feedback">
                     {{$message}}
@@ -39,7 +39,7 @@
             @enderror
 
             <label for="phone">Telefono: </label>
-            <input class="mb-3 @error('phone') is-invalid @enderror" type="text" name="phone" id="phone"
+            <input class="mb-3 @error('phone') is-invalid @enderror" type="number" name="phone" id="phone"
                 value="{{ old('phone', $restaurant->phone) }}">
                 @error('phone')
                 <div class="invalid-feedback">
@@ -93,3 +93,17 @@
         </form>
     </div>
 @endsection
+
+<style>
+    
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+    
+    
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    </style>

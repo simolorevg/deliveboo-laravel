@@ -9,20 +9,20 @@
                 @csrf
                 @method('PUT')
                 <label for="dish_name">Nome Piatto: </label>
-                <input type="text" name="dish_name" id="dish_name" value="{{ old('dish_name', $dish->dish_name) }}">
+                <input type="text" name="dish_name" id="dish_name" value="{{ old('dish_name', $dish->dish_name) }}" required>
 
                 <div class="mb-3">
                     <label for="description" class="form-label">Descrizione</label>
-                    <textarea class="form-control" id="description" rows="3" name='description'>{{ old('description', $dish->description) }}</textarea>
+                    <textarea class="form-control" id="description" rows="3" name='description' required>{{ old('description', $dish->description) }}</textarea>
                 </div>
 
                 <div class="mb-3">
                     <label for="ingredients" class="form-label">Ingredienti</label>
-                    <textarea class="form-control" id="ingredients" rows="2" name='ingredients'>{{ old('ingredients', $dish->ingredients) }}</textarea>
+                    <textarea class="form-control" id="ingredients" rows="2" name='ingredients' required>{{ old('ingredients', $dish->ingredients) }}</textarea>
                 </div>
 
                 <label for="price">Prezzo: € </label>
-                <input type="number" name="price" id="price" step="0.01" value="{{ old('price', $dish->price) }}">
+                <input type="number" name="price" id="price" step="0.1" min="0" value="{{ old('price', $dish->price) }}" required>
 
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="is_available" name="is_available" value="1" {{ $dish->is_available ? '' : 'checked' }}>

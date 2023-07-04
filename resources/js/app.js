@@ -55,5 +55,30 @@ btn.addEventListener('click', function(e){
 const deletBtn = document.querySelectorAll('.deletBtn');
 console.log(deletBtn);
 
+//validazione client side create restaurant checkbox
+
+
+//
+// document.getElementById('create-restaurant-form').addEventListener('submit', function(event) {
+//   let checkboxes = document.querySelectorAll('#checkboxGroup input[type="checkbox"]');
+//   let checked = false;
+
+//   for (let i = 0; i < checkboxes.length; i++) {
+//     if (checkboxes[i].checked) {
+//       checked = true;
+//       break;
+//     }
+//   }
+
+//   if (!checked) {
+//     event.preventDefault(); // Previeni l'invio del modulo se nessuna checkbox è selezionata
+//     alert('Seleziona almeno una checkbox.');
+//   }
+// });
+
+
+
+
 setInterval(updateDateTime, 1000);
 updateDateTime();
+
