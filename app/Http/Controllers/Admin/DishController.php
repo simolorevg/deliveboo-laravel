@@ -60,9 +60,9 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-        $restaurant = $dish->restaurant;
-
-
+        if ($dish->restaurant->user_id !== Auth::user()->id){
+            abort(404, '');
+        }
         return view('admin.dishes.show', compact('dish'));
     }
 
@@ -74,6 +74,9 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
+        if ($dish->restaurant->user_id !== Auth::user()->id){
+            abort(404, '');
+        }
         return view('admin.dishes.edit', compact('dish'));
     }
 
