@@ -6,8 +6,9 @@
         <table class="table table-dark table-hover table-striped text-center">
             <thead>
                 <tr>
-                    <th scope="col" class="px-3">ID</th>
+                    {{-- <th scope="col" class="px-3">ID</th> --}}
                     <th scope="col" class="px-3">Nome ristorante</th>
+                    <th scope="col" class="px-3">Cucine associate </th>
                     <th scope="col" class="px-3">Actions</th>
                 </tr>
             </thead>
@@ -15,8 +16,13 @@
                 @foreach ($restaurant as $item)
                     @if ($item->user_id == Auth::user()->id)
                         <tr>
-                            <td scope="row">{{ $item->id }}</td>
+                            {{-- <td scope="row">{{ $item->id }}</td> --}}
                             <td scope="row">{{ $item->restaurant_name }}</td>
+                            <td scope="row">
+                                @foreach ($item->categories as $category)
+                                    {{ $category->category_name }} {{ ($loop->last? '' : ',') }}
+                                @endforeach
+                            </td>
                             <td scope="row" class="d-flex justify-content-center">
                                 <a class="btn btn-success mx-1" href="{{ route('admin.restaurants.show', $item->slug) }}">
                                     Dettagli
