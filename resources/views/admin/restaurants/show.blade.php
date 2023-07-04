@@ -31,7 +31,7 @@
                     <span class="info">Cucine associate:</span>
 
                     @forelse ($restaurant->categories as $item)
-                        <h5>{{ $item->category_name }}</h5>
+                        <span>{{ $item->category_name }}</span>
                     @empty
                         Non ci sono categorie associate
                     @endforelse
