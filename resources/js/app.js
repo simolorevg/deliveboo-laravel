@@ -28,53 +28,79 @@ function updateDateTime() {
 }
 
 
-
 //validazione registrazione utente
 
 let password = document.getElementById('password');
 let passwordConfirm = document.getElementById('password-confirm');
-let form = document.getElementById('registration-form');
 let btn = document.getElementById('prova');
 const errorFront = document.querySelector('.error-front');
 
-btn.addEventListener('click', function(e){
-  if(password.value !== passwordConfirm.value){
-    e.preventDefault();
-    errorFront.classList.remove('d-none');
-    errorFront.classList.add('d-block');
-    errorFront.style.color('red');
-    console.log('password non uguali');
-  }
-  console.log(password.value, passwordConfirm.value);
+if (password && passwordConfirm && btn && errorFront) {
+  btn.addEventListener('click', function (e) {
+    if (password.value !== passwordConfirm.value) {
+      e.preventDefault();
+      errorFront.classList.remove('d-none');
+      errorFront.classList.add('d-block');
+      console.log('password non uguali');
+    }
+    console.log(password.value, passwordConfirm.value);
 
-})
+  })
+}
+
+//validazione client side create restaurant checkbox
+const btnCreate = document.getElementById('btn-create');
+let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+let numChecked = 0;
+const errorCategory = document.querySelector('.error-category');
+
+
+if (btnCreate && checkboxes.length > 0) {
+  btnCreate.addEventListener('click', function (event) {
+
+    for (let i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i].checked) {
+        numChecked++;
+      }
+    }
+
+    if (numChecked === 0) {
+      event.preventDefault();
+      errorCategory.classList.remove('d-none');
+      errorCategory.classList.add('d-block');
+    }
+  });
+}
+
 
 
 // Modal per cancellare
 
-const deletBtn = document.querySelectorAll('.deletBtn');
-console.log(deletBtn);
+const deleteBtns = document.querySelectorAll(".btn-delete");
 
-//validazione client side create restaurant checkbox
+if (deleteBtns.length > 0) {
+  deleteBtns.forEach((btn) => {
+    btn.addEventListener("click", function (event) {
+      event.preventDefault();
+      const dishName = btn.getAttribute("data-dish-name");
+
+      const deleteModal = new bootstrap.Modal(
+        document.getElementById("delete-modal")
+      );
+      document.getElementById("dish-name").innerText = dishName;
+
+      document
+        .getElementById("action-delete")
+        .addEventListener("click", function () {
+          btn.parentElement.submit();
+        });
+
+      deleteModal.show();
+    });
+  });
+}
 
 
-//
-// document.getElementById('create-restaurant-form').addEventListener('submit', function(event) {
-//   let checkboxes = document.querySelectorAll('#checkboxGroup input[type="checkbox"]');
-//   let checked = false;
-
-//   for (let i = 0; i < checkboxes.length; i++) {
-//     if (checkboxes[i].checked) {
-//       checked = true;
-//       break;
-//     }
-//   }
-
-//   if (!checked) {
-//     event.preventDefault(); // Previeni l'invio del modulo se nessuna checkbox è selezionata
-//     alert('Seleziona almeno una checkbox.');
-//   }
-// });
 
 
 

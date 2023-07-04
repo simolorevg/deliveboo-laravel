@@ -34,7 +34,7 @@
                                 method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger deletBtn" onclick="return confirm('Vuoi cancellare il piatto? Sei sicuro?')">Elimina</button>
+                                <button type="submit" class="btn btn-danger btn-delete" data-dish-name="{{ $item->dish_name}}">Elimina</button>
                             </form>
                         </td>
                     </tr>
@@ -42,6 +42,8 @@
             @endforeach
         </tbody>
     </table>
+    @include('admin.partials.modal_delete')
+
 </div>
 
 @endsection

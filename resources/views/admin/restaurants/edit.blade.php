@@ -12,7 +12,7 @@
             @csrf
             @method('PUT')
 
-            <label for="restaurant_name">Nome Ristorante: </label>
+            <label for="restaurant_name">Nome Ristorante: <span class="need">*</span></label>
             <input class="mb-3 @error('restaurant_name') is-invalid @enderror" type="text" name="restaurant_name" id="restaurant_name"
                 value="{{ old('restaurant_name', $restaurant->restaurant_name) }}" required>
                 @error('restaurant_name')
@@ -21,7 +21,7 @@
                 </div>
             @enderror
 
-            <label class="info my-2" for="city">Città: </label>
+            <label class="info my-2" for="city">Città: <span class="need">*</span></label>
             <input class="mb-3 @error('city') is-invalid @enderror" type="text" name="city" id="city" value="{{ old('city', $restaurant->city) }}">
             @error('city')
             <div class="invalid-feedback" required>
@@ -29,7 +29,7 @@
             </div>
         @enderror
 
-            <label for="address">Indirizzo: </label>
+            <label for="address">Indirizzo: <span class="need">*</span></label>
             <input class="mb-3 @error('address') is-invalid @enderror" type="text" name="address" id="address"
                 value="{{ old('address', $restaurant->address) }}" required>
                 @error('address')
@@ -38,7 +38,7 @@
                 </div>
             @enderror
 
-            <label for="phone">Telefono: </label>
+            <label for="phone">Telefono: <span class="need">*</span></label>
             <input class="mb-3 @error('phone') is-invalid @enderror" type="number" name="phone" id="phone"
                 value="{{ old('phone', $restaurant->phone) }}">
                 @error('phone')
@@ -60,6 +60,7 @@
                 </div>
             @enderror
 
+            <p class="d-block">Seleziona categorie: <span class="need">*</span></p>
             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                 @foreach ($categories as $category)
                     <input type="checkbox" class="btn-check  @error('category_id') is-invalid @enderror" id="{{ $category->category_name }}" autocomplete="off"
@@ -70,7 +71,7 @@
                             </div>
                         @enderror
                         <label class="btn btn-outline-primary" for="{{ $category->category_name }}">
-                            {{ $category->category_name }}</label>
+                            {{ $category->category_name }} </label>
                             @endforeach
             </div>
 

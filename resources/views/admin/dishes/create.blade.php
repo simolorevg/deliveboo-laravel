@@ -9,8 +9,8 @@
                 enctype="multipart/form-data">
                 @csrf
                 <div class="my-3">
-                    <label for="dish_name">Nome Piatto: </label>
-                    <input class="mb-3 d-block @error('dish_name') is-invalid @enderror" type="text" name="dish_name"
+                    <label for="dish_name">Nome Piatto:  <span class="need">*</span></label>
+                    <input class="mb-2 d-block @error('dish_name') is-invalid @enderror" type="text" name="dish_name"
                         id="dish_name" required>
                     @error('dish_name')
                         <div class="invalid-feedback">
@@ -21,8 +21,8 @@
                 <div class="my-3">
 
                     <label for="description"
-                        class="form-label @error('description') is-invalid @enderror">Descrizione</label>
-                    <textarea class="form-control" id="description" rows="3" name='description' required>{{ old('description') }}</textarea>
+                        class="form-label @error('description') is-invalid @enderror">Descrizione: </label>
+                    <textarea class="form-control" id="description" rows="3" name='description' >{{ old('description') }}</textarea>
                     @error('dish_name')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -33,7 +33,7 @@
                 <div class="my-3">
 
                     <label for="ingredients"
-                        class="form-label @error('ingredients') is-invalid @enderror">Ingredienti</label>
+                        class="form-label @error('ingredients') is-invalid @enderror">Ingredienti <span class="need">*</span></label>
                     <textarea class="form-control" id="ingredients" rows="2" name='ingredients' required>{{ old('ingredients') }}</textarea>
                     @error('ingredients')
                         <div class="invalid-feedback">
@@ -42,7 +42,7 @@
                     @enderror
                 </div>
 
-                <label for="price">Prezzo: € </label>
+                <label for="price">Prezzo: €  <span class="need">*</span></label>
                 <input class="mb-3 @error('price') is-invalid @enderror" type="number" name="price" id="price" min="0"
                     step="0.1" required>
                 @error('price')
