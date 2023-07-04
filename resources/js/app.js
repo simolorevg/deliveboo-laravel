@@ -9,6 +9,7 @@ import.meta.glob([
   '../img/**'
 ]);
 
+// Animazione homepage
 document.addEventListener("DOMContentLoaded", function () {
   setTimeout(function () {
     const welcome = document.querySelector("h1");
@@ -49,6 +50,10 @@ btn.addEventListener('click', function(e){
 })
 
 
+// Modal per cancellare
+
+const deletBtn = document.querySelectorAll('.deletBtn');
+console.log(deletBtn);
 
 setInterval(updateDateTime, 1000);
 updateDateTime();
