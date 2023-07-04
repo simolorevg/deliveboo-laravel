@@ -66,6 +66,12 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
+        $restaurant= $dish->restaurant;
+
+        if ($restaurant->user_id !== Auth::id()) {
+            abort(404, '');
+        }
+
         return view('admin.dishes.show', compact('dish'));
     }
 
