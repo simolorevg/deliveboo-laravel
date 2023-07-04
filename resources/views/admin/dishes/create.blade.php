@@ -5,7 +5,8 @@
         <h2 class="mx-5">Crea il tuo piatto</h2>
         <div class="mx-5 mt-3">
 
-            <form class="d-flex flex-column form" action="{{ route('admin.dishes.store') }}" method="POST" enctype="multipart/form-data">
+            <form class="d-flex flex-column form" action="{{ route('admin.dishes.store') }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="my-3">
                     <label for="dish_name">Nome Piatto: </label>
@@ -21,9 +22,7 @@
 
                     <label for="description"
                         class="form-label @error('description') is-invalid @enderror">Descrizione</label>
-                    <textarea class="form-control" id="description" rows="3" name='description'>
-                        {{ old('description') }}
-                    </textarea>
+                    <textarea class="form-control" id="description" rows="3" name='description'>{{ old('description') }}</textarea>
                     @error('dish_name')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -35,10 +34,7 @@
 
                     <label for="ingredients"
                         class="form-label @error('ingredients') is-invalid @enderror">Ingredienti</label>
-                    <textarea class="form-control" id="ingredients" rows="2" name='ingredients'>
-                        {{ old('ingredients') }}
-
-                    </textarea>
+                    <textarea class="form-control" id="ingredients" rows="2" name='ingredients'>{{ old('ingredients') }}</textarea>
                     @error('ingredients')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -48,14 +44,14 @@
 
                 <label for="price">Prezzo: € </label>
                 <input class="mb-3 @error('price') is-invalid @enderror" type="number" name="price" id="price"
-                step="0.01">
+                    step="0.01">
                 @error('price')
                     <span class="invalid-feedback">
                         {{ $message }}
                     </span>
                 @enderror
 
-                <div class="form-check my-3"> 
+                <div class="form-check my-3">
                     <input class="form-check-input" type="checkbox" name="is_available" value="1" id="is_available">
                     <label class="form-check-label" for="is_available">
                         Terminato

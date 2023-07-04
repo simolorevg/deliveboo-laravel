@@ -7,6 +7,7 @@ use App\Http\Requests\StoreDishRequest;
 use App\Http\Requests\UpdateDishRequest;
 use Illuminate\Http\Request;
 use App\Models\Dish;
+use App\Models\Restaurant;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,9 +18,15 @@ class DishController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Restaurant $restaurant)
     {
         $dish = Dish::all();
+        foreach ($dish as $item) {
+            if ($restaurant->id !== $item->restaurant_id) {
+                abort(404, 'Unauthorized');
+                break;
+            }
+        }
         return view('admin.dishes.index', compact('dish'));
     }
 
@@ -79,7 +86,7 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
-        $data=$request->all();
+        $data = $request->all();
         $data['slug'] = Str::slug($data['dish_name']);
         $dish->update($data);
         return redirect()->route('admin.dishes.index');
