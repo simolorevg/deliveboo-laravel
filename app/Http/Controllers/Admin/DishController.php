@@ -28,9 +28,9 @@ class DishController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Dish $dish)
     {
-        return view('admin.dishes.create');
+        return view('admin.dishes.create', compact('dish'));
     }
 
     /**
@@ -44,6 +44,9 @@ class DishController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($data['dish_name']);
         $data['restaurant_id'] = Auth::user()->id;   //!in questo modo il campo user_id prende il valore dell'id dell'utente da rivedere
+
+        $isAvailable = $request->has('is_available') ? 0 : 1;
+        $data['is_available'] = $isAvailable;
         $dish = Dish::create($data);
         return redirect()->route('admin.dishes.index', compact('dish'))->with('message', 'Hai creato il tuo piatto.');
     }
@@ -79,8 +82,11 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
-        $data=$request->all();
+        $data = $request->all();
         $data['slug'] = Str::slug($data['dish_name']);
+        // Verifica se il checkbox è stato inviato e selezionato
+        $isAvailable = $request->has('is_available') ? 0 : 1;
+        $data['is_available'] = $isAvailable;
         $dish->update($data);
         return redirect()->route('admin.dishes.index');
     }

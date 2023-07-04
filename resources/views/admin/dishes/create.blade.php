@@ -56,7 +56,7 @@
                 @enderror
 
                 <div class="form-check my-3"> 
-                    <input class="form-check-input" type="checkbox" name="is_available" value="1" id="is_available">
+                    <input class="form-check-input" type="checkbox"  name="is_available" value="1" {{ $dish->is_available ? '' : 'checked' }} id="is_available">
                     <label class="form-check-label" for="is_available">
                         Terminato
                     </label>
