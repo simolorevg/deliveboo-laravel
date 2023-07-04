@@ -50,14 +50,34 @@ if (password && passwordConfirm && btn && errorFront) {
 
 //validazione client side create restaurant checkbox
 const btnCreate = document.getElementById('btn-create');
+const btnChange = document.getElementById('btn-change');
 let checkboxes = document.querySelectorAll('input[type="checkbox"]');
-let numChecked = 0;
 const errorCategory = document.querySelector('.error-category');
 
 
 if (btnCreate && checkboxes.length > 0) {
   btnCreate.addEventListener('click', function (event) {
+    console.log(window.location.href);
+    let numChecked = 0;
+    for (let i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i].checked) {
+        numChecked++;
+      }
+    }
 
+    if (numChecked === 0) {
+      event.preventDefault();
+      errorCategory.classList.remove('d-none');
+      errorCategory.classList.add('d-block');
+    }
+  });
+}
+//validazione client side edit ristorante
+if (btnChange && checkboxes.length > 0) {
+  btnChange.addEventListener('click', function (event) {
+    console.log(window.location.href);
+    let numChecked = 0;
+    console.log('Lunghezza checkboxes: ', checkboxes.length);
     for (let i = 0; i < checkboxes.length; i++) {
       if (checkboxes[i].checked) {
         numChecked++;
