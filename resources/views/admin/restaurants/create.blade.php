@@ -63,7 +63,7 @@
                     <div class="btn-group d-flex flex-wrap mb-4 gap-2" id="checkboxGroup" role="group"
                         aria-label="basic checkbox toggle button group">
                         @foreach ($categories as $category)
-                            <input type="checkbox" class="btn-check @error('category_id') is-invalid @enderror"
+                            <input type="checkbox" class="btn-check create @error('category_id') is-invalid @enderror"
                                 id="{{ $category->category_name }}" autocomplete="off" name="category_id[]"
                                 value="{{ $category->id }}" @checked(in_array($category->id, old('categories', [])))>
                             <label class="btn btn-outline-primary " for="{{ $category->category_name }}">

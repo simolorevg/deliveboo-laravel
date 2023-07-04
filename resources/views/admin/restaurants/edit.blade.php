@@ -64,7 +64,7 @@
             <p class="d-block">Seleziona categorie: <span class="need">*</span></p>
             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                 @foreach ($categories as $category)
-                    <input type="checkbox" class="btn-check  @error('category_id') is-invalid @enderror"
+                    <input type="checkbox" class="btn-check edit  @error('category_id') is-invalid @enderror"
                         id="{{ $category->category_name }}" autocomplete="off" name="category_id[]"
                         value="{{ $category->id }}" @checked(old('category_id') ? in_array($category->id, old('category_id', [])) : $restaurant->categories->contains($category))>
                     <label class="btn btn-outline-primary" for="{{ $category->category_name }}">
@@ -75,8 +75,8 @@
                         {{ $message }}
                     </div>
                 @enderror
-                <span class="error-category d-none">Selezione almeno una categoria </span>
             </div>
+            <p class="error-category d-none">Selezione almeno una categoria </p>
 
             <p>Foto:</p>
 
@@ -93,7 +93,7 @@
                 <img class="d-none" id="thumb-preview" src="" alt="">
             </div>
 
-            <button type="submit" class="btn mx-auto btn-warning btn-change">Modifica</button>
+            <button type="submit" class="btn mx-auto btn-warning " id="btn-change">Modifica</button>
         </form>
     </div>
 @endsection
