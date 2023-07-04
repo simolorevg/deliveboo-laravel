@@ -21,12 +21,6 @@ class DishController extends Controller
     public function index(Restaurant $restaurant)
     {
         $dish = Dish::all();
-        foreach ($dish as $item) {
-            if ($restaurant->id !== $item->restaurant_id) {
-                abort(404, 'Unauthorized');
-                break;
-            }
-        }
         return view('admin.dishes.index', compact('dish'));
     }
 
@@ -66,11 +60,8 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-        $restaurant= $dish->restaurant;
+        $restaurant = $dish->restaurant;
 
-        if ($restaurant->user_id !== Auth::id()) {
-            abort(404, '');
-        }
 
         return view('admin.dishes.show', compact('dish'));
     }
