@@ -3,6 +3,7 @@ import '~resources/scss/app.scss';
 import * as bootstrap from 'bootstrap';
 import '@fortawesome/fontawesome-free/css/all.css';
 import { DateTime, Settings } from 'luxon';
+import { Logger } from 'sass';
 
 import.meta.glob([
   '../img/**'
@@ -24,6 +25,29 @@ function updateDateTime() {
   let now = DateTime.local();
   datetimeElement.textContent = `${now.toFormat('EEEE dd LLL yyyy HH:mm:ss')}`;
 }
+
+
+
+//validazione registrazione utente
+
+let password = document.getElementById('password');
+let passwordConfirm = document.getElementById('password-confirm');
+let form = document.getElementById('registration-form');
+let btn = document.getElementById('prova');
+const errorFront = document.querySelector('.error-front');
+
+btn.addEventListener('click', function(e){
+  if(password.value !== passwordConfirm.value){
+    e.preventDefault();
+    errorFront.classList.remove('d-none');
+    errorFront.classList.add('d-block');
+    errorFront.style.color('red');
+    console.log('password non uguali');
+  }
+  console.log(password.value, passwordConfirm.value);
+
+})
+
 
 
 setInterval(updateDateTime, 1000);
