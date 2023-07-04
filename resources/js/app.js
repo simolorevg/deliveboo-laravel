@@ -25,5 +25,6 @@ function updateDateTime() {
   datetimeElement.textContent = `${now.toFormat('EEEE dd LLL yyyy HH:mm:ss')}`;
 }
 
+
 setInterval(updateDateTime, 1000);
 updateDateTime();

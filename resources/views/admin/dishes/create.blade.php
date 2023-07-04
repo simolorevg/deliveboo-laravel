@@ -51,8 +51,13 @@
                     </span>
                 @enderror
 
+<<<<<<< HEAD
                 <div class="form-check my-3">
                     <input class="form-check-input" type="checkbox" name="is_available" value="1" id="is_available">
+=======
+                <div class="form-check my-3"> 
+                    <input class="form-check-input" type="checkbox"  name="is_available" value="1" {{ $dish->is_available ? '' : 'checked' }} id="is_available">
+>>>>>>> b23b8deb7b1ce4fa374763349dff0600b22919fd
                     <label class="form-check-label" for="is_available">
                         Terminato
                     </label>

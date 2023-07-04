@@ -25,18 +25,19 @@
                 <input type="number" name="price" id="price" step="0.01" value="{{ old('price', $dish->price) }}">
 
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="1" id="is_available">
+                    <input class="form-check-input" type="checkbox" id="is_available" name="is_available" value="1" {{ $dish->is_available ? '' : 'checked' }}>
                     <label class="form-check-label" for="is_available">
                         Terminato
                     </label>
                 </div>
+                
                 <div class="mb-3">
                     <label for="img" class="form-label"></label>
                     <input class="form-control" type="file" id="img" value="{{ old('img', $dish->img) }}">
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn mx-auto btn-warning">Salva</button>
-                    <a href="{{ url()->previous() }}" class="btn btn-info">Torna indietro</a>
+                    <a href="{{ route('admin.dishes.index') }}" class="btn btn-info">Torna indietro</a>
                 </div>
 
             </form>
