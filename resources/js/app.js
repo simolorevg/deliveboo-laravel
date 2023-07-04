@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
 // Imposta la lingua su italiano
 Settings.defaultLocale = 'it';
 //funzione per visualizzare l'ora e data istantanea
@@ -26,6 +27,48 @@ function updateDateTime() {
   const datetimeElement = document.getElementById('datetime');
   let now = DateTime.local();
   datetimeElement.textContent = `${now.toFormat('EEEE dd LLL yyyy HH:mm:ss')}`;
+}
+
+// Modal per cancellare
+
+const deleteBtns = document.querySelectorAll(".btn-delete");
+
+if (deleteBtns.length > 0) {
+  deleteBtns.forEach((btn) => {
+    btn.addEventListener("click", function (event) {
+      event.preventDefault();
+      const dishName = btn.getAttribute("data-dish-name");
+
+      const deleteModal = new bootstrap.Modal(
+        document.getElementById("delete-modal")
+      );
+      document.getElementById("dish-name").innerText = dishName;
+
+      document
+        .getElementById("action-delete")
+        .addEventListener("click", function () {
+          btn.parentElement.submit();
+        });
+
+      deleteModal.show();
+    });
+  });
+}
+
+
+// funzione per far scomparire create/edit/delete il messaggio progressivamente
+
+const finalMessage = document.getElementById('final-message');
+if (finalMessage) {
+  console.log(finalMessage);
+  function disappear() {
+    finalMessage.classList.add('hide');
+    setTimeout(() => {
+      finalMessage.classList.add('d-none');
+    }, 4000);
+  }
+  disappear();
+
 }
 
 
@@ -84,66 +127,44 @@ if (btnCreate && checkboxes.length > 0) {
 let checkboxesEdit = document.querySelectorAll('input[type="checkbox"]');
 let numChecked;
 let nuovoarray = Array.from(document.querySelectorAll('input[type="checkbox"][checked]'));
-check();
 
-function check() {
-  checkboxesEdit.forEach((check) => {
-    check.addEventListener('change', function () {
-      numChecked = nuovoarray.length;
+if (checkboxesEdit) {
 
-      if (check.checked) {
-        nuovoarray.push(check);
+  function check() {
+    checkboxesEdit.forEach((check) => {
+      check.addEventListener('change', function () {
+        numChecked = nuovoarray.length;
 
-      }
-      else {
-        if (nuovoarray.includes(check)) {
-          let index = nuovoarray.indexOf(check)
-          nuovoarray.splice(index);
+        if (check.checked) {
+          nuovoarray.push(check);
 
         }
-      }
+        else {
+          if (nuovoarray.includes(check)) {
+            let index = nuovoarray.indexOf(check)
+            nuovoarray.splice(index);
+
+          }
+        }
+      })
     })
-  })
-}
-
-btnChange.addEventListener('click', function (event) {
-
-  if (nuovoarray.length === 0) {
-    event.preventDefault();
-    errorCategory.classList.remove('d-none');
-    errorCategory.classList.add('d-block');
   }
-});
 
+  btnChange.addEventListener('click', function (event) {
 
-
-
-
-// Modal per cancellare
-
-const deleteBtns = document.querySelectorAll(".btn-delete");
-
-if (deleteBtns.length > 0) {
-  deleteBtns.forEach((btn) => {
-    btn.addEventListener("click", function (event) {
+    if (nuovoarray.length === 0) {
       event.preventDefault();
-      const dishName = btn.getAttribute("data-dish-name");
+      errorCategory.classList.remove('d-none');
+      errorCategory.classList.add('d-block');
+    }
+  })
 
-      const deleteModal = new bootstrap.Modal(
-        document.getElementById("delete-modal")
-      );
-      document.getElementById("dish-name").innerText = dishName;
-
-      document
-        .getElementById("action-delete")
-        .addEventListener("click", function () {
-          btn.parentElement.submit();
-        });
-
-      deleteModal.show();
-    });
-  });
 }
+
+
+
+
+
 
 
 
@@ -152,4 +173,4 @@ if (deleteBtns.length > 0) {
 
 setInterval(updateDateTime, 1000);
 updateDateTime();
-
+check();

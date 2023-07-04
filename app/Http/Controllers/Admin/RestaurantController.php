@@ -65,7 +65,7 @@ class RestaurantController extends Controller
         if ($request->has('category_id')) {
             $restaurant->categories()->attach($request->category_id);
         }
-        return redirect()->route('admin.restaurants.index')->with('message', 'Hai creato il tuo ristorante.');
+        return redirect()->route('admin.restaurants.index')->with('message', 'Hai creato correttamente il tuo ristorante.' . $restaurant->restaurant_name);
     }
 
     /**
@@ -115,7 +115,7 @@ class RestaurantController extends Controller
         } else {
             $restaurant->categories()->detach();
         };
-        return redirect()->route('admin.restaurants.index');
+        return redirect()->route('admin.restaurants.index')->with('message', 'Hai modificato correttamente il tuo ristorante.' . $restaurant->restaurant_name);
     }
 
     /**

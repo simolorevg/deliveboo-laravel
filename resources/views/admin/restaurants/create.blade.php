@@ -8,6 +8,7 @@
     @endphp
 
     @if (count($restaurant) == 0)
+    
         <div class="container-create-restaurant">
 
             <h2 class="mx-5">Crea il tuo ristorante</h2>
@@ -92,15 +93,3 @@
 @endsection
 
 
-<style>
-    input[type=number] {
-        -moz-appearance: textfield;
-    }
-
-
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-</style>

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="edit mx-auto">
+    <div class="edit mx-auto container-create-dish">
 
         <h2 class="mx-5">Crea il tuo piatto</h2>
         <div class="mx-5 mt-3">

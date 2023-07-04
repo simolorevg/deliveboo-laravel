@@ -9,7 +9,7 @@
               <p>Sei sicuro di voler cancellare <span id="dish-name"></span>?</p>
           </div>
           <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
               <button id="action-delete" type="button" class="btn btn-danger">Cancella</button>
           </div>
       </div>

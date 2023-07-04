@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 @section('content')
+
+@include('admin.partials.messages')
+
     <div class="edit mx-auto">
 
         <h2 class="mx-5">Modifica il tuo piatto: <span class="info">{{$dish->dish_name}}</span></h2>
