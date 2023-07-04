@@ -60,7 +60,7 @@
                     <input type="text" name="closure_day" id="closure_day" value="{{ old('closure_day') }}">
                     <p class="info my-2">Categorie:</p>
                     <div class="btn-group d-flex flex-wrap mb-4 gap-2 " role="group"
-                        aria-label="Basic checkbox toggle button group">
+                        aria-label="basic checkbox toggle button group">
                         @foreach ($categories as $category)
                             <input type="checkbox" class="btn-check @error('category_id') is-invalid @enderror" id="{{ $category->category_name }}" autocomplete="off"
                                 name="category_id[]" value="{{ $category->id }}" @checked(in_array($category->id, old('categories', [])))>
@@ -68,6 +68,7 @@
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
+                                
                             @enderror
                             <label class="btn btn-outline-primary " for="{{ $category->category_name }}">
                                 {{ $category->category_name }}</label>

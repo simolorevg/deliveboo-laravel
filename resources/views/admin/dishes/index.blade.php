@@ -13,9 +13,9 @@
     <table class="table table-dark table-hover table-striped">
         <thead>
             <tr class="text-center">
-                <th scope="col">PIATTO ID</th>
+                {{-- <th scope="col">PIATTO ID</th> --}}
                 <th scope="col">NOME PIATTO</th>
-                <th scope="col">RISTORANTE ID</th>
+                <th scope="col">RISTORANTE </th>
                 <th scope="col">AZIONI</th>
             </tr>
         </thead>
@@ -24,9 +24,9 @@
             @foreach ($dish as $item)
                 @if ($item->restaurant_id == Auth::user()->id)
                     <tr class="text-center">
-                        <td scope="row">{{ $item->id }}</td>
+                        {{-- <td scope="row">{{ $item->id }}</td> --}}
                         <td scope="row">{{ $item->dish_name }}</td>
-                        <td scope="row">{{ $item->restaurant_id }}</td>
+                        <td scope="row">{{ $item->restaurant->restaurant_name }}</td>
                         <td scope="row" class="d-flex justify-content-center">
                             <a class="btn btn-primary mx-1" href="{{ route('admin.dishes.show', $item->slug) }}">Visualizza</a>
                             <a class="btn btn-warning mx-1" href="{{ route('admin.dishes.edit', $item->slug) }}">Modifica</a>
