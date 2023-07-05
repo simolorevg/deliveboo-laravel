@@ -49,7 +49,7 @@ class DishController extends Controller
         $isAvailable = $request->has('is_available') ? 0 : 1;
         $data['is_available'] = $isAvailable;
         $dish = Dish::create($data);
-        return redirect()->route('admin.dishes.index', compact('dish'))->with('message', 'Hai creato correttamente' . $dish->dish_name);
+        return redirect()->route('admin.dishes.index', compact('dish'))->with('message', 'Hai creato correttamente ' . $dish->dish_name);
     }
 
     /**
@@ -97,7 +97,7 @@ class DishController extends Controller
         $data['is_available'] = $isAvailable;
 
         $dish->update($data);
-        return redirect()->route('admin.dishes.index')->with('message', 'Hai modificato correttamente' . $dish->dish_name);
+        return redirect()->route('admin.dishes.index')->with('message', 'Hai modificato correttamente ' . $dish->dish_name);
     }
 
     /**
@@ -109,6 +109,6 @@ class DishController extends Controller
     public function destroy(Dish $dish)
     {
         $dish->delete();
-        return redirect()->route('admin.dishes.index')->with('message', 'Hai eliminato correttamente' . $dish->dish_name);;
+        return redirect()->route('admin.dishes.index')->with('message', 'Hai eliminato correttamente ' . $dish->dish_name);;
     }
 }
