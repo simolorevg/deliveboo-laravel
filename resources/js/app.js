@@ -10,6 +10,7 @@ import.meta.glob([
   '../img/**'
 ]);
 
+
 // Animazione homepage
 document.addEventListener("DOMContentLoaded", function () {
   setTimeout(function () {
@@ -29,6 +30,8 @@ function updateDateTime() {
   datetimeElement.textContent = `${now.toFormat('EEEE dd LLL yyyy HH:mm:ss')}`;
 }
 
+setInterval(updateDateTime, 1000);
+updateDateTime();
 
 
 // Modal per cancellare
@@ -253,5 +256,3 @@ if (imageInputCreateR && imagePreviewCreateR) {
 
 
 
-setInterval(updateDateTime, 1000);
-updateDateTime();

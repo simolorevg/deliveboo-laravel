@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Restaurant;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-use Faker\Generator as Faker;
+use Illuminate\Support\Facades\DB;
 
 class RestaurantSeeder extends Seeder
 {
@@ -15,18 +14,28 @@ class RestaurantSeeder extends Seeder
      *
      * @return void
      */
-    public function run(Faker $faker)
+    public function run()
     {
-       for ($i = 0 ; $i < 5 ; $i++){
-        $restaurant = new Restaurant();
-        $restaurant->restaurant_name = $faker->randomElement(['michele','napoli','zarrillo', 'sushilvio','simone']);
-        $restaurant->slug = Str::slug($restaurant->restaurant_name, '-');
-        $restaurant->address = $faker->address();
-        $restaurant->phone = $faker->phoneNumber();
-        $restaurant->vat_number = $faker->randomNumber(9, true);
-        $restaurant->thumb = $faker->imageUrl(640, 480, 'restaurant', true);
-        $restaurant->closure_day = $faker->dayOfWeek();
-        $restaurant->save();
-       }
+        $restaurantsCount = 20;
+        $usersCount = 20;
+
+        for ($i = 1; $i <= $restaurantsCount; $i++) {
+            // $userId = ($i <= $usersCount) ? $i : rand(1, $usersCount);
+            $userId = $i;
+
+            DB::table('restaurants')->insert([
+                'user_id' => $userId,
+                'restaurant_name' => 'Ristorante ' . $i,
+                'slug' => 'ristorante-' . $i,
+                'city' => 'Città ' . $i,
+                'address' => 'Indirizzo ' . $i,
+                'phone' => '12' . str_pad($i, 4, '0', STR_PAD_LEFT),
+                'vat_number' => str_pad(rand(0, 99999999999), 11, '0', STR_PAD_LEFT),
+                'thumb' => 'path/to/thumbnail-' . $i . '.jpg',
+                'closure_day' => 'Chiusura ' . $i,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }
