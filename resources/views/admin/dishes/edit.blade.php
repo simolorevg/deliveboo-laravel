@@ -60,6 +60,7 @@
                     <div class="d-flex justify-content-center my-3">
                         <img class="d-none" id="image-preview-dish" src="" alt="">
                     </div>
+                    <button type="submit" class="btn mx-auto btn-warning " id="btn-change">Modifica</button>
                 </div>
 
             </form>
