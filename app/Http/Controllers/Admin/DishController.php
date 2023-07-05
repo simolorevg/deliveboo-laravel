@@ -20,7 +20,8 @@ class DishController extends Controller
      */
     public function index(Restaurant $restaurant)
     {
-        $dish = Dish::all();
+        
+        $dish = Dish::all()->sortBy('dish_name');
         return view('admin.dishes.index', compact('dish'));
     }
 
