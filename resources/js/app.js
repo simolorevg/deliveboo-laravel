@@ -70,41 +70,41 @@ if (deleteBtns.length > 0) {
 }
 
 
-// funzione per far scomparire create/edit/delete il messaggio progressivamente
+// // funzione per far scomparire create/edit/delete il messaggio progressivamente
 
-const finalMessage = document.getElementById('final-message');
-if (finalMessage) {
-  console.log(finalMessage);
-  function disappear() {
-    finalMessage.classList.add('hide');
-    setTimeout(() => {
-      finalMessage.classList.add('d-none');
-    }, 4000);
-  }
-  disappear();
+// const finalMessage = document.getElementById('final-message');
+// if (finalMessage) {
+//   console.log(finalMessage);
+//   function disappear() {
+//     finalMessage.classList.add('hide');
+//     setTimeout(() => {
+//       finalMessage.classList.add('d-none');
+//     }, 4000);
+//   }
+//   disappear();
 
-}
+// }
 
 
-//validazione registrazione utente
+// //validazione registrazione utente
 
-let password = document.getElementById('password');
-let passwordConfirm = document.getElementById('password-confirm');
-let btn = document.getElementById('prova');
-const errorFront = document.querySelector('.error-front');
+// let password = document.getElementById('password');
+// let passwordConfirm = document.getElementById('password-confirm');
+// let btn = document.getElementById('prova');
+// const errorFront = document.querySelector('.error-front');
 
-if (password && passwordConfirm && btn && errorFront) {
-  btn.addEventListener('click', function (e) {
-    if (password.value !== passwordConfirm.value) {
-      e.preventDefault();
-      errorFront.classList.remove('d-none');
-      errorFront.classList.add('d-block');
-      console.log('password non uguali');
-    }
-    console.log(password.value, passwordConfirm.value);
+// if (password && passwordConfirm && btn && errorFront) {
+//   btn.addEventListener('click', function (e) {
+//     if (password.value !== passwordConfirm.value) {
+//       e.preventDefault();
+//       errorFront.classList.remove('d-none');
+//       errorFront.classList.add('d-block');
+//       console.log('password non uguali');
+//     }
+//     console.log(password.value, passwordConfirm.value);
 
-  })
-}
+//   })
+// }
 
 
 // //validazione client side create restaurant checkbox

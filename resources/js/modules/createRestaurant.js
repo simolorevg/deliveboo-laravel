@@ -40,6 +40,7 @@ if (btnCreate && checkboxes.length > 0) {
   }
 }
 
+
 // preview CREATE immagine restaurant
 let imageInputCreateR = document.getElementById("image-input-createR");
 let imagePreviewCreateR = document.getElementById("image-preview-createR");

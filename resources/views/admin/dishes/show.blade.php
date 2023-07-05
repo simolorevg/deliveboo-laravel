@@ -31,9 +31,13 @@
             {{-- Disponibilità --}}
             <li class="my-4"><span class="info">Disponibile: </span>
                 @if ($dish->is_available)
-                    <span>Si</span>
+                    <span>Si </span>
+                    <span> 😏</span>
+                    
                 @else
-                    <span>No</span>
+                    <span>No </span>
+                    <span> 😪</span>
+
                 @endif
             </li>
 

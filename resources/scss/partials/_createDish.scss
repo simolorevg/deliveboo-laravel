@@ -1,8 +1,7 @@
 @import './variables';
 
-.container-create-dish {
+.container-create-dish, .edit-dish {
     max-width: 700px;
-
     margin: 50px auto;
 
     .btn-group>.btn {
