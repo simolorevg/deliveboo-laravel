@@ -41,7 +41,7 @@
 
             <label for="phone">Telefono: <span class="need">*</span></label>
             <input class="mb-3 @error('phone') is-invalid @enderror" type="number" name="phone" id="phone"
-                value="{{ old('phone', $restaurant->phone) }}">
+                value="{{ old('phone', $restaurant->phone) }}" required>
             @error('phone')
                 <div class="invalid-feedback">
                     {{ $message }}
