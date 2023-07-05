@@ -53,3 +53,7 @@
     
     
 @endsection
+
+@section('script')
+    @vite(['resources/js/modules/indexRestaurant.js'])
+@endsection

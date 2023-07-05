@@ -1,3 +1,4 @@
+
 // Animazione homepage , non compare errore console log in altre rotte
 function initHomepageAnimation() {
     const h1 = document.getElementById('welcome');
@@ -12,5 +13,4 @@ document.addEventListener("DOMContentLoaded", function () {
     initHomepageAnimation();
 });
 initHomepageAnimation();
-
 

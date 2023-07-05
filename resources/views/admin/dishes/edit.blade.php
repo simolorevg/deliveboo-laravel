@@ -1,8 +1,9 @@
 @extends('layouts.admin')
+
 @section('content')
     @include('admin.partials.messages')
 
-    <div class="edit mx-auto">
+    <div class="edit mx-auto edit-dish">
 
         <h2 class="mx-5">Modifica il tuo piatto: <span class="info">{{ $dish->dish_name }}</span></h2>
         <div class="mx-5">
@@ -46,24 +47,29 @@
 
                 {{-- Foto --}}
                 <div class="my-5 w-50 mx-auto">
-                    <label for="image-input-dish" class="form-label">Logo</label>
-                    <input type="file" class="form-control" id="image-input-dish" name="img" value="daje">
+                    <label for="image-input" class="form-label">Logo</label>
+                    <input type="file" class="form-control" id="image-input" name="img" value="daje">
 
                     {{-- Se il post ha l'immagine, la visulizzo --}}
                     @if ($dish->img)
                         <div class="my-3 ">
-                            <img id="actual-image-dish" width="300" src="{{ asset('storage/' . $dish->img) }}"
+                            <img id="actual-image" width="300" src="{{ asset('storage/' . $dish->img) }}"
                                 alt="{{ $dish->dish_name }}">
                         </div>
                     @endif
                     {{-- preview --}}
                     <div class="d-flex justify-content-center my-3">
-                        <img class="d-none" id="image-preview-dish" src="" alt="">
+                        <img width="300" class="d-none" id="image-preview" src="" alt="">
                     </div>
-                    <button type="submit" class="btn mx-auto btn-warning " id="btn-change">Modifica</button>
                 </div>
+                <button type="submit" class="btn mx-auto btn-warning " id="btn-change">Modifica</button>
 
             </form>
         </div>
     </div>
+@endsection
+
+
+@section('script')
+    @vite(['resources/js/modules/editDishes.js'])
 @endsection

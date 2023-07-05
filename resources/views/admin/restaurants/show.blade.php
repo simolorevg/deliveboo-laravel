@@ -39,12 +39,15 @@
 
             {{-- Categorie --}}
             <li>
-                <div class="tecno d-flex my-5 gap-4">
+                <div class="tecno d-flex my-5 gap-4 align-items-center">
                     <span class="info">Cucine associate:</span>
 
                     @forelse ($restaurant->categories as $item)
-                        <span>{{ $item->category_name }}</span>
-                    @empty
+                    <div class="d-flex flex-column align-items-center gap-2">
+                        <img width="60px" src="{{ $item->icon }}" alt="">
+                        <p class="category-name">{{ $item->category_name }}</p>
+                    </div>
+                        @empty
                         Non ci sono categorie associate
                     @endforelse
                 </div>

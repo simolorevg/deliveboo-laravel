@@ -75,3 +75,8 @@
     </div>
 </div>
 @endsection
+
+@section('script')
+    @vite(['resources/js/modules/register.js'])
+@endsection
+

@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="edit mx-auto">
+    <div class="edit mx-auto edit-restaurant">
         <h2 class="mb-5">Modifica il tuo ristorante <span class="info">{{ $restaurant->restaurant_name }}</span> </h2>
         <div class="d-flex justify-content-end">
             <a href="{{ url()->previous() }}" class="btn btn-info">Torna indietro</a>
         </div>
 
 
-        <form method="POST" class="d-flex flex-column form"
+        <form method="POST" class="d-flex flex-column form "
             action="{{ route('admin.restaurants.update', $restaurant->slug) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -62,7 +62,7 @@
             @enderror
 
             <p class="d-block">Seleziona categorie: <span class="need">*</span></p>
-            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+            <div class="btn-group editR mx-auto d-flex flex-wrap gap-2" role="group" aria-label="Basic checkbox toggle button group">
                 @foreach ($categories as $category)
                     <input type="checkbox" class="btn-check edit  @error('category_id') is-invalid @enderror"
                         id="{{ $category->category_name }}" autocomplete="off" name="category_id[]"
@@ -81,12 +81,12 @@
 
             {{-- foto --}}
             <div class="my-5 w-50 mx-auto">
-                <label for="image-input-editR" class="form-label">Logo</label>
+                <label for="image-input-editR" class="form-label ">Logo</label>
                 <input type="file" class="form-control" id="image-input-editR" name="thumb" value="daje">
 
                 {{-- Se il post ha l'immagine, la visulizzo --}}
                 @if ($restaurant->thumb)
-                    <div class="my-3 ">
+                    <div class="my-3 text-center ">
                         <img id="actual-image-editR" width="300" src="{{ asset('storage/' . $restaurant->thumb) }}"
                             alt="{{ $restaurant->restaurant_name }}">
                     </div>
@@ -102,7 +102,11 @@
     </div>
 @endsection
 
-<style>
+@section('script')
+    @vite(['resources/js/modules/editRestaurant.js'])
+@endsection
+
+{{-- <style>
     input[type=number] {
         -moz-appearance: textfield;
     }
@@ -113,4 +117,4 @@
         -webkit-appearance: none;
         margin: 0;
     }
-</style>
+</style> --}}

@@ -84,3 +84,8 @@
         </div>
     </div>
 @endsection
+
+
+@section('script')
+    @vite(['resources/js/modules/createDishes.js'])
+@endsection
