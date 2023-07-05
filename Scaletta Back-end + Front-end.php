@@ -44,7 +44,9 @@
  
  *? 14 php artisan db:seed --class=HousesTableSeeder
  
- *? 15 runnare i server (php -S localhost:8000 -t public)
+ *? 15 runnare i server (php -S localhost:8000 -t public) 
+ 
+ *?  php artisan storage:link
 
  */
 
