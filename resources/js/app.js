@@ -11,27 +11,37 @@ import.meta.glob([
 ]);
 
 
-// Animazione homepage
-document.addEventListener("DOMContentLoaded", function () {
-  setTimeout(function () {
-    const welcome = document.querySelector("h1");
-    welcome.classList.add('welcome-2');
-  }, 2000);
-});
+// // Animazione homepage , non compare errore console log in altre rotte
+// function initHomepageAnimation() {
+//   const h1 = document.getElementById('welcome');
+//   if( h1 && h1.innerHTML === 'Benvenuto nel gestionale Ristoratori!'){
+//     setTimeout(function () {
+//       const welcome = document.querySelector("h1");
+//       welcome.classList.add('welcome-2');
+//     }, 2000);
+//   }
+// }
+//   document.addEventListener("DOMContentLoaded", function () {
+//     initHomepageAnimation();
+// });
+// initHomepageAnimation();
 
+// -------------------------------------------------------------------------------------
 
+// // Imposta la lingua su italiano
+// Settings.defaultLocale = 'it';
+// //funzione per visualizzare l'ora e data istantanea
+// function updateDateTime() {
+//   const datetimeElement = document.getElementById('datetime');
+//   let now = DateTime.local();
+//   if (datetimeElement){
+//     datetimeElement
+//     datetimeElement.textContent = `${now.toFormat('EEEE dd LLL yyyy HH:mm:ss')}`;
+//   }
+// }
 
-// Imposta la lingua su italiano
-Settings.defaultLocale = 'it';
-//funzione per visualizzare l'ora e data istantanea
-function updateDateTime() {
-  const datetimeElement = document.getElementById('datetime');
-  let now = DateTime.local();
-  datetimeElement.textContent = `${now.toFormat('EEEE dd LLL yyyy HH:mm:ss')}`;
-}
-
-setInterval(updateDateTime, 1000);
-updateDateTime();
+// setInterval(updateDateTime, 1000);
+// updateDateTime();
 
 
 // Modal per cancellare

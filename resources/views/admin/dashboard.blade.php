@@ -5,3 +5,8 @@
 
     <div id="datetime" class=" text-end"></div>
 @endsection
+
+
+@section('script')
+    @vite(['resources/js/modules/dashboard.js'])
+@endsection
