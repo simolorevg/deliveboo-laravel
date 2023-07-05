@@ -526,6 +526,9 @@
 
 //in provider/AppService provider aggiungere la funzione boot
 
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
+
                         Paginator::useBootstrapFive();                  
                         
                         
