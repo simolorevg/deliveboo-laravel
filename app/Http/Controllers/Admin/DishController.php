@@ -91,9 +91,11 @@ class DishController extends Controller
     {
         $data = $request->all();
         $data['slug'] = Str::slug($data['dish_name']);
+        
         // Verifica se il checkbox è stato inviato e selezionato
         $isAvailable = $request->has('is_available') ? 0 : 1;
         $data['is_available'] = $isAvailable;
+
         $dish->update($data);
         return redirect()->route('admin.dishes.index')->with('message', 'Hai modificato correttamente' . $dish->dish_name);
     }

@@ -159,6 +159,7 @@ if (checkboxesEdit) {
     }
   })
 
+  check();
 }
 
 
@@ -173,4 +174,3 @@ if (checkboxesEdit) {
 
 setInterval(updateDateTime, 1000);
 updateDateTime();
-check();
