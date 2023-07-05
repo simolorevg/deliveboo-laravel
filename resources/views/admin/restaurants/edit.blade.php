@@ -23,9 +23,9 @@
 
             <label class="info my-2" for="city">Città: <span class="need">*</span></label>
             <input class="mb-3 @error('city') is-invalid @enderror" type="text" name="city" id="city"
-                value="{{ old('city', $restaurant->city) }}">
+                value="{{ old('city', $restaurant->city) }}" required>
             @error('city')
-                <div class="invalid-feedback" required>
+                <div class="invalid-feedback">
                     {{ $message }}
                 </div>
             @enderror
