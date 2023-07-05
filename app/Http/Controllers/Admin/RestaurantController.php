@@ -21,10 +21,11 @@ class RestaurantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    {   
+        // creazione ristorante
         $data = $request->all();
         $categories = Category::all();
-        $restaurant = Restaurant::where("user_id", Auth::user()->id)->get();
+        $restaurants = Restaurant::where("user_id", Auth::user()->id)->get();
 
         if ($request->has('category_id') && !is_null($data['category_id'])) {
             $restaurant = Restaurant::where('category_id', $data['category_id']);
@@ -32,7 +33,7 @@ class RestaurantController extends Controller
 
         // dd($restaurant);
         $count = Auth::user()->restaurant->count();
-        return view('admin.restaurants.index', compact('restaurant', 'count', 'categories'));
+        return view('admin.restaurants.index', compact('restaurants', 'count', 'categories'));
     }
 
     /**

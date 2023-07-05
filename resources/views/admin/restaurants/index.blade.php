@@ -16,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($restaurant as $item)
+                @foreach ($restaurants as $item)
                     @if ($item->user_id == Auth::user()->id)
                         <tr>
                             {{-- <td scope="row">{{ $item->id }}</td> --}}
@@ -50,4 +50,6 @@
         </table>
         <a href="{{ route('admin.categories.index') }}" class="btn btn-info">Vai alle categorie</a>
     </div>
+    
+    
 @endsection

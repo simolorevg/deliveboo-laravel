@@ -29,8 +29,9 @@ function updateDateTime() {
   datetimeElement.textContent = `${now.toFormat('EEEE dd LLL yyyy HH:mm:ss')}`;
 }
 
-// Modal per cancellare
 
+
+// Modal per cancellare
 const deleteBtns = document.querySelectorAll(".btn-delete");
 
 if (deleteBtns.length > 0) {
@@ -161,6 +162,86 @@ if (checkboxesEdit) {
 
   check();
 }
+
+
+// preview EDIT immagine restaurant
+
+let imageInputEditR = document.getElementById("image-input-editR");
+let imagePreviewEditR = document.getElementById("image-preview-editR");
+let imageActualEditR = document.getElementById("actual-image-editR");
+
+if (imageInputEditR && imagePreviewEditR) {
+
+imageInputEditR.addEventListener("change", function () {
+    
+    let selectedFile = this.files[0]; //files è un array di file, prendo il primo
+    let reader = new FileReader();
+    console.log("prova");
+    
+    reader.addEventListener("load", function () {
+      console.log("prova");
+      imagePreviewEditR.src = reader.result;
+      imagePreviewEditR.classList.remove("d-none");
+      imagePreviewEditR.classList.add("d-block");
+      imageActualEditR.classList.add("d-none");
+    })
+    
+    reader.readAsDataURL(selectedFile);//converte il file in una stringa di testo
+  })
+
+}
+
+
+// preview CREATE immagine restaurant
+let imageInputCreateR = document.getElementById("image-input-createR");
+let imagePreviewCreateR = document.getElementById("image-preview-createR");
+
+if (imageInputCreateR && imagePreviewCreateR) {
+  imageInputCreateR.addEventListener("change", function (event) {
+    let selectedFile = event.target.files[0]; // Ottieni il file selezionato
+    let reader = new FileReader();
+
+    reader.addEventListener("load", function () {
+      imagePreviewCreateR.src = reader.result;
+      imagePreviewCreateR.classList.remove("d-none");
+    });
+
+    if (selectedFile) {
+      reader.readAsDataURL(selectedFile);
+    }
+  });
+}
+
+
+
+
+
+
+// let imageInputDish = document.getElementById("image-input-dish");
+// let imagePreviewDish = document.getElementById("image-preview-dish");
+// let imageActualDish = document.getElementById("actual-image-dish");
+
+
+// if (imageInputDish && imagePreviewDish) {
+
+//   imageInputDish.addEventListener("change", function () {
+    
+//     let selectedFile = this.files[0]; //files è un array di file, prendo il primo
+//     let reader = new FileReader();
+//     console.log("prova");
+    
+//     reader.addEventListener("load", function () {
+//       imagePreviewDish.src = reader.result;
+//       imagePreviewDish.classList.remove("d-none");
+//       imagePreviewDish.classList.add("d-block");
+//       imageActualDish.classList.add("d-none");
+//     })
+    
+//     reader.readAsDataURL(selectedFile);//converte il file in una stringa di testo
+//   })
+
+// }
+
 
 
 
