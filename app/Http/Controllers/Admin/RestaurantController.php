@@ -10,6 +10,7 @@ use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
 {
@@ -20,10 +21,11 @@ class RestaurantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
+    {   
+        // creazione ristorante
         $data = $request->all();
         $categories = Category::all();
-        $restaurant = Restaurant::where("user_id", Auth::user()->id)->get();
+        $restaurants = Restaurant::where("user_id", Auth::user()->id)->get();
 
         if ($request->has('category_id') && !is_null($data['category_id'])) {
             $restaurant = Restaurant::where('category_id', $data['category_id']);
@@ -31,7 +33,7 @@ class RestaurantController extends Controller
 
         // dd($restaurant);
         $count = Auth::user()->restaurant->count();
-        return view('admin.restaurants.index', compact('restaurant', 'count', 'categories'));
+        return view('admin.restaurants.index', compact('restaurants', 'count', 'categories'));
     }
 
     /**
@@ -57,6 +59,12 @@ class RestaurantController extends Controller
         $data = $request->validated();
         $data['slug'] = Str::slug($data['restaurant_name']);
         $data['user_id'] = Auth::user()->id; //in questo modo il campo user_id prende il valore dell'id dell'utente
+
+        //Salvataggio file/thumb
+        if ($request->hasFile('thumb')){
+            $path = Storage::disk('public')->put('restaurant_images', $request->thumb);
+            $data['thumb']= $path;
+        }
 
         // salvataggio in DB
         $restaurant = Restaurant::create($data);
@@ -107,8 +115,20 @@ class RestaurantController extends Controller
      */
     public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
     {
+        //aggiornamento dati
         $data = $request->validated();
         $data['slug'] = Str::slug($data['restaurant_name']);
+
+        // update immagine
+        if ($request->hasFile('thumb')) {
+            if ($restaurant->thumb) {
+                Storage::delete($restaurant->thumb);
+            }
+            $path = Storage::disk('public')->put('restaurant_images', $request->thumb);
+            $data['thumb'] = $path;
+        }
+
+        // aggiornamento
         $restaurant->update($data);
         if ($request->has('category_id')) {
             $restaurant->categories()->sync($data['category_id']);

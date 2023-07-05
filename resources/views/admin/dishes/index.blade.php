@@ -22,7 +22,7 @@
             </thead>
             <tbody>
 
-                @foreach ($dish as $item)
+                @foreach ($dishes as $item)
                     @if ($item->restaurant_id == Auth::user()->id)
                         <tr class="text-center">
                             {{-- <td scope="row">{{ $item->id }}</td> --}}
