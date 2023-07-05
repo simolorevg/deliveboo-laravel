@@ -115,3 +115,6 @@
     </div>
 @endsection
 
+@section('script')
+    @vite(['resources/js/modules/createRestaurant.js'])
+@endsection

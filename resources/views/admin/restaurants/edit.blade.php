@@ -102,7 +102,11 @@
     </div>
 @endsection
 
-<style>
+@section('script')
+    @vite(['resources/js/modules/editRestaurant.js'])
+@endsection
+
+{{-- <style>
     input[type=number] {
         -moz-appearance: textfield;
     }
@@ -113,4 +117,4 @@
         -webkit-appearance: none;
         margin: 0;
     }
-</style>
+</style> --}}

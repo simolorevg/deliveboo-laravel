@@ -50,3 +50,8 @@
         @include('admin.partials.modal_delete')
     </div>
 @endsection
+
+
+@section('script')
+    @vite(['resources/js/modules/indexDishes.js'])
+@endsection
