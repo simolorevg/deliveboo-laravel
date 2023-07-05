@@ -78,19 +78,22 @@
             </div>
             <p class="error-category d-none">Selezione almeno una categoria </p>
 
-            <p>Foto:</p>
+            {{-- foto --}}
+            <div class="my-5 w-50 mx-auto">
+                <label for="image-input" class="form-label">Logo</label>
+                <input type="file" class="form-control" id="image-input" name="thumb" value="daje">
 
-            {{-- Se il post ha l'immagine, la visulizzo --}}
-            @if ($restaurant->thumb)
-                <div class="my-3 ">
-                    <img id="actual-thumb" width="300" src="{{ asset('storage/' . $restaurant->thumb) }}"
-                        alt="{{ $restaurant->name }}">
+                {{-- Se il post ha l'immagine, la visulizzo --}}
+                @if ($restaurant->thumb)
+                    <div class="my-3 ">
+                        <img id="actual-image" width="300" src="{{ asset('storage/' . $restaurant->thumb) }}"
+                            alt="{{ $restaurant->restaurant_name }}">
+                    </div>
+                @endif
+                {{-- preview --}}
+                <div class="d-flex justify-content-center my-3">
+                    <img class="d-none" id="image-preview" src="" alt="">
                 </div>
-            @endif
-
-            {{-- preview --}}
-            <div class="d-flex justify-content-center my-3">
-                <img class="d-none" id="thumb-preview" src="" alt="">
             </div>
 
             <button type="submit" class="btn mx-auto btn-warning " id="btn-change">Modifica</button>

@@ -10,6 +10,7 @@ use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends Controller
 {
@@ -57,6 +58,12 @@ class RestaurantController extends Controller
         $data = $request->validated();
         $data['slug'] = Str::slug($data['restaurant_name']);
         $data['user_id'] = Auth::user()->id; //in questo modo il campo user_id prende il valore dell'id dell'utente
+
+        //Salvataggio file/thumb
+        if ($request->hasFile('thumb')){
+            $path = Storage::disk('public')->put('restaurant_images', $request->thumb);
+            $data['thumb']= $path;
+        }
 
         // salvataggio in DB
         $restaurant = Restaurant::create($data);
@@ -107,8 +114,20 @@ class RestaurantController extends Controller
      */
     public function update(UpdateRestaurantRequest $request, Restaurant $restaurant)
     {
+        //aggiornamento dati
         $data = $request->validated();
         $data['slug'] = Str::slug($data['restaurant_name']);
+
+        // update immagine
+        if ($request->hasFile('thumb')) {
+            if ($restaurant->thumb) {
+                Storage::delete($restaurant->thumb);
+            }
+            $path = Storage::disk('public')->put('restaurant_images', $request->thumb);
+            $data['thumb'] = $path;
+        }
+
+        // aggiornamento
         $restaurant->update($data);
         if ($request->has('category_id')) {
             $restaurant->categories()->sync($data['category_id']);
