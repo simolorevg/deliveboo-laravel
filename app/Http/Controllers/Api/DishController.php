@@ -16,4 +16,5 @@ class DishController extends Controller
             'results' => $dishes
         ]);
     }
+
 }
