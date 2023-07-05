@@ -40,3 +40,22 @@ if (btnCreate && checkboxes.length > 0) {
   }
 }
 
+// preview CREATE immagine restaurant
+let imageInputCreateR = document.getElementById("image-input-createR");
+let imagePreviewCreateR = document.getElementById("image-preview-createR");
+
+if (imageInputCreateR && imagePreviewCreateR) {
+  imageInputCreateR.addEventListener("change", function (event) {
+    let selectedFile = event.target.files[0]; // Ottieni il file selezionato
+    let reader = new FileReader();
+
+    reader.addEventListener("load", function () {
+      imagePreviewCreateR.src = reader.result;
+      imagePreviewCreateR.classList.remove("d-none");
+    });
+
+    if (selectedFile) {
+      reader.readAsDataURL(selectedFile);
+    }
+  });
+}

@@ -55,3 +55,31 @@ if (checkboxesEdit) {
 
   check();
 }
+
+
+// preview EDIT immagine restaurant
+
+let imageInputEditR = document.getElementById("image-input-editR");
+let imagePreviewEditR = document.getElementById("image-preview-editR");
+let imageActualEditR = document.getElementById("actual-image-editR");
+
+if (imageInputEditR && imagePreviewEditR) {
+
+imageInputEditR.addEventListener("change", function () {
+    
+    let selectedFile = this.files[0]; //files è un array di file, prendo il primo
+    let reader = new FileReader();
+    console.log("prova");
+    
+    reader.addEventListener("load", function () {
+      console.log("prova");
+      imagePreviewEditR.src = reader.result;
+      imagePreviewEditR.classList.remove("d-none");
+      imagePreviewEditR.classList.add("d-block");
+      imageActualEditR.classList.add("d-none");
+    })
+    
+    reader.readAsDataURL(selectedFile);//converte il file in una stringa di testo
+  })
+
+}

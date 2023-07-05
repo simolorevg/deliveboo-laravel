@@ -98,7 +98,7 @@
                         <input type="file" class="form-control" id="image-input-createR" name="thumb">
                         {{-- preview --}}
                         <div class="d-flex justify-content-center my-3">
-                            <img class="d-none" id="image-preview-createR" src="" alt="">
+                            <img class="d-none" width="300" id="image-preview-createR" src="" alt="">
                         </div>
                     </div>
 
