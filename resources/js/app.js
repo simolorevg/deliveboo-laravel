@@ -107,74 +107,74 @@ if (password && passwordConfirm && btn && errorFront) {
 }
 
 
-//validazione client side create restaurant checkbox
-const btnCreate = document.getElementById('btn-create');
-const btnChange = document.getElementById('btn-change');
-let checkboxes = document.querySelectorAll('input[type="checkbox"].create');
-const errorCategory = document.querySelector('.error-category');
-let url = window.location.href;
+// //validazione client side create restaurant checkbox
+// const btnCreate = document.getElementById('btn-create');
+// const btnChange = document.getElementById('btn-change');
+// let checkboxes = document.querySelectorAll('input[type="checkbox"].create');
+// const errorCategory = document.querySelector('.error-category');
+// let url = window.location.href;
 
-if (btnCreate && checkboxes.length > 0) {
-  if (url.includes('/admin')) {
+// if (btnCreate && checkboxes.length > 0) {
+//   if (url.includes('/admin')) {
 
-    btnCreate.addEventListener('click', function (event) {
-      console.log(url);
-      let numChecked = 0;
-      for (let i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked) {
-          numChecked++;
-        }
-      }
+//     btnCreate.addEventListener('click', function (event) {
+//       console.log(url);
+//       let numChecked = 0;
+//       for (let i = 0; i < checkboxes.length; i++) {
+//         if (checkboxes[i].checked) {
+//           numChecked++;
+//         }
+//       }
 
-      if (numChecked === 0) {
-        event.preventDefault();
-        errorCategory.classList.remove('d-none');
-        errorCategory.classList.add('d-block');
-      }
-    });
-  }
-}
+//       if (numChecked === 0) {
+//         event.preventDefault();
+//         errorCategory.classList.remove('d-none');
+//         errorCategory.classList.add('d-block');
+//       }
+//     });
+//   }
+// }
 
 
 
-//validazione client side edit ristorante
-let checkboxesEdit = document.querySelectorAll('input[type="checkbox"]');
-let numChecked;
-let nuovoarray = Array.from(document.querySelectorAll('input[type="checkbox"][checked]'));
+// //validazione client side edit ristorante
+// let checkboxesEdit = document.querySelectorAll('input[type="checkbox"]');
+// let numChecked;
+// let nuovoarray = Array.from(document.querySelectorAll('input[type="checkbox"][checked]'));
 
-if (checkboxesEdit) {
+// if (checkboxesEdit) {
 
-  function check() {
-    checkboxesEdit.forEach((check) => {
-      check.addEventListener('change', function () {
-        numChecked = nuovoarray.length;
+//   function check() {
+//     checkboxesEdit.forEach((check) => {
+//       check.addEventListener('change', function () {
+//         numChecked = nuovoarray.length;
 
-        if (check.checked) {
-          nuovoarray.push(check);
+//         if (check.checked) {
+//           nuovoarray.push(check);
 
-        }
-        else {
-          if (nuovoarray.includes(check)) {
-            let index = nuovoarray.indexOf(check)
-            nuovoarray.splice(index);
+//         }
+//         else {
+//           if (nuovoarray.includes(check)) {
+//             let index = nuovoarray.indexOf(check)
+//             nuovoarray.splice(index);
 
-          }
-        }
-      })
-    })
-  }
+//           }
+//         }
+//       })
+//     })
+//   }
 
-  btnChange.addEventListener('click', function (event) {
+//   btnChange.addEventListener('click', function (event) {
 
-    if (nuovoarray.length === 0) {
-      event.preventDefault();
-      errorCategory.classList.remove('d-none');
-      errorCategory.classList.add('d-block');
-    }
-  })
+//     if (nuovoarray.length === 0) {
+//       event.preventDefault();
+//       errorCategory.classList.remove('d-none');
+//       errorCategory.classList.add('d-block');
+//     }
+//   })
 
-  check();
-}
+//   check();
+// }
 
 
 // preview EDIT immagine restaurant

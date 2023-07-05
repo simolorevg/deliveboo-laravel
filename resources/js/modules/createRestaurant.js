@@ -15,7 +15,6 @@ if (finalMessage) {
 
 //validazione client side create restaurant checkbox
 const btnCreate = document.getElementById('btn-create');
-const btnChange = document.getElementById('btn-change');
 let checkboxes = document.querySelectorAll('input[type="checkbox"].create');
 const errorCategory = document.querySelector('.error-category');
 let url = window.location.href;
