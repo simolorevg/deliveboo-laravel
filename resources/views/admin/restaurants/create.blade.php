@@ -20,7 +20,7 @@
                     {{-- nome ristorante --}}
                     <label class="info my-2" for="restaurant_name">Nome Ristorante: <span class="need">*</span></label>
                     <input class="@error('restaurant_name') is-invalid @enderror" type="text" name="restaurant_name"
-                        id="restaurant_name" value="{{ old('restaurant_name') }}" required>
+                        id="restaurant_name" value="{{ old('restaurant_name') }}" required minlength="3" maxlength="20">
                     @error('restaurant_name')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -30,7 +30,7 @@
                     {{-- città --}}
                     <label class="info my-2 @error('city') is-invalid @enderror" for="city">Città: <span
                             class="need">*</span></label>
-                    <input type="text" name="city" id="city" value="{{ old('city') }}" required>
+                    <input type="text" name="city" id="city" value="{{ old('city') }}" required minlength="3" maxlength="20">
                     @error('city')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -40,7 +40,7 @@
                     {{-- indirizzo --}}
                     <label class="info my-2 @error('address') is-invalid @enderror" for="address">Indirizzo: <span
                             class="need">*</span></label>
-                    <input type="text" name="address" id="address" value="{{ old('address') }}" required>
+                    <input type="text" name="address" id="address" value="{{ old('address') }}" required minlength="3" maxlength="20">
                     @error('address')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -50,7 +50,7 @@
                     {{-- telefono --}}
                     <label class="info my-2 @error('phone') is-invalid @enderror" for="phone">Telefono: <span
                             class="need">*</span></label>
-                    <input type="number" name="phone" id="phone" value="{{ old('phone') }}" required>
+                    <input type="number" name="phone" id="phone" value="{{ old('phone') }}" required minlength="9" maxlength="11">
                     @error('phone')
                         <div class="invalid-feedback">
                             {{ $message }}

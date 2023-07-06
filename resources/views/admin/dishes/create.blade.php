@@ -13,7 +13,7 @@
                     {{-- Nome --}}
                     <label for="dish_name">Nome Piatto: <span class="need">*</span></label>
                     <input class="mb-2 d-block @error('dish_name') is-invalid @enderror" type="text" name="dish_name"
-                        id="dish_name" required>
+                        id="dish_name" required minlength="3" maxlength="20">
                     @error('dish_name')
                         <div class="invalid-feedback">
                             {{ $message }}

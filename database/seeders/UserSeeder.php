@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
         for ($i = 1; $i <= $usersCount; $i++) {
             DB::table('users')->insert([
                 'name' => 'prova ' . $i,
-                'email' => 'a' . $i . '@a.com',
+                'email' => 'a' . $i . '@a.it',
                 'email_verified_at' => now(),
                 'password' => Hash::make('ciaociao'),
                 'remember_token' => Str::random(10),

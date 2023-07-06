@@ -14,7 +14,7 @@
 
             <label for="restaurant_name">Nome Ristorante: <span class="need">*</span></label>
             <input class="mb-3 @error('restaurant_name') is-invalid @enderror" type="text" name="restaurant_name"
-                id="restaurant_name" value="{{ old('restaurant_name', $restaurant->restaurant_name) }}" required>
+                id="restaurant_name" value="{{ old('restaurant_name', $restaurant->restaurant_name) }}" required minlength="3" maxlength="20">
             @error('restaurant_name')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -23,7 +23,7 @@
 
             <label class="info my-2" for="city">Città: <span class="need">*</span></label>
             <input class="mb-3 @error('city') is-invalid @enderror" type="text" name="city" id="city"
-                value="{{ old('city', $restaurant->city) }}" required>
+                value="{{ old('city', $restaurant->city) }}" required minlength="3" maxlength="20">
             @error('city')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -32,7 +32,7 @@
 
             <label for="address">Indirizzo: <span class="need">*</span></label>
             <input class="mb-3 @error('address') is-invalid @enderror" type="text" name="address" id="address"
-                value="{{ old('address', $restaurant->address) }}" required>
+                value="{{ old('address', $restaurant->address) }}" required minlength="3" maxlength="20">
             @error('address')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -41,7 +41,7 @@
 
             <label for="phone">Telefono: <span class="need">*</span></label>
             <input class="mb-3 @error('phone') is-invalid @enderror" type="number" name="phone" id="phone"
-                value="{{ old('phone', $restaurant->phone) }}" required>
+                value="{{ old('phone', $restaurant->phone) }}" required minlength="9" maxlength="11">
             @error('phone')
                 <div class="invalid-feedback">
                     {{ $message }}
