@@ -12,12 +12,12 @@ class RestaurantController extends Controller
     {
         $restaurants = Restaurant::with(['categories' , 'dishes']);
 
-        // if ($request->has('categories')) {
-        //     $categories = explode(',', trim($request->input('categories')));
-        //     $restaurants = $restaurants->whereHas('categories', function ($query) use ($categories) {
-        //         $query->whereIn('categories.id', $categories);
-        //     });
-        // }
+        if ($request->has('categories')) {
+            $categories = explode(',', trim($request->input('categories')));
+            $restaurants = $restaurants->whereHas('categories', function ($query) use ($categories) {
+                $query->whereIn('categories.id', $categories);
+            });
+        }
         
         $restaurants  = $restaurants ->paginate(5);
 
