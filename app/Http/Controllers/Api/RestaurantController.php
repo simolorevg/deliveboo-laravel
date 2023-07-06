@@ -10,22 +10,20 @@ class RestaurantController extends Controller
 {
     public function index(Request $request)
     {
-        $restaurants = Restaurant::with(['categories' , 'dishes']);
-
-        if ($request->has('categories')) {
-            $categories = explode(',', trim($request->input('categories')));
-            $restaurants = $restaurants->whereHas('categories', function ($query) use ($categories) {
-                $query->whereIn('categories.id', $categories);
-            });
-        }
+        $data = $request->input('categories'); // Supponiamo che tu stia inviando un array di categorie come input
         
-        $restaurants  = $restaurants ->paginate(5);
-
+        $restaurants = Restaurant::with(['categories', 'dishes'])->whereHas('categories', function ($query) use ($data) {
+            $query->whereIn('category_id', $data);
+        });
+    
+        $restaurants = $restaurants->paginate(5);
+    
         return response()->json([
             'success' => true,
             'results' => $restaurants
         ]);
     }
+    
 
     public function show($slug)
     {
