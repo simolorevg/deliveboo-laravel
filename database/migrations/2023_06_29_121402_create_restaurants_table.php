@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->on('users')->references('id')->onDelete('cascade');
-            $table->string('restaurant_name', 40);
-            $table->string('slug', 30);
+            $table->string('restaurant_name', 40)->unique();
+            $table->string('slug', 30)->unique();
             $table->string('city', 20);
             $table->text('address', 255);
             $table->string('phone', 20);

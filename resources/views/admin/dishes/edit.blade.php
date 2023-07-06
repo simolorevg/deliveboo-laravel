@@ -16,7 +16,7 @@
                 {{-- Nome --}}
                 <label for="dish_name">Nome Piatto: <span class="need">*</span></label>
                 <input type="text" name="dish_name" id="dish_name" value="{{ old('dish_name', $dish->dish_name) }}"
-                    required>
+                    required minlength="3" maxlength="20">
 
                 {{-- Descrizione --}}
                 <div class="mb-3">

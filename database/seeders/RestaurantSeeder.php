@@ -6,7 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\Restaurant;
+use App\Models\Category;
 class RestaurantSeeder extends Seeder
 {
     /**
@@ -17,12 +18,8 @@ class RestaurantSeeder extends Seeder
     public function run()
     {
         $restaurantsCount = 20;
-        $usersCount = 20;
-
         for ($i = 1; $i <= $restaurantsCount; $i++) {
-            // $userId = ($i <= $usersCount) ? $i : rand(1, $usersCount);
             $userId = $i;
-
             DB::table('restaurants')->insert([
                 'user_id' => $userId,
                 'restaurant_name' => 'Ristorante ' . $i,

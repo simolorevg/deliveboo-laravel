@@ -17,27 +17,23 @@ if (finalMessage) {
 const btnCreate = document.getElementById('btn-create');
 let checkboxes = document.querySelectorAll('input[type="checkbox"].create');
 const errorCategory = document.querySelector('.error-category');
-let url = window.location.href;
 
 if (btnCreate && checkboxes.length > 0) {
-  if (url.includes('/admin')) {
 
-    btnCreate.addEventListener('click', function (event) {
-      console.log(url);
-      let numChecked = 0;
-      for (let i = 0; i < checkboxes.length; i++) {
-        if (checkboxes[i].checked) {
-          numChecked++;
-        }
+  btnCreate.addEventListener('click', function (event) {
+    let numChecked = 0;
+    for (let i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i].checked) {
+        numChecked++;
       }
+    }
 
-      if (numChecked === 0) {
-        event.preventDefault();
-        errorCategory.classList.remove('d-none');
-        errorCategory.classList.add('d-block');
-      }
-    });
-  }
+    if (numChecked === 0) {
+      event.preventDefault();
+      errorCategory.classList.remove('d-none');
+      errorCategory.classList.add('d-block');
+    }
+  });
 }
 
 

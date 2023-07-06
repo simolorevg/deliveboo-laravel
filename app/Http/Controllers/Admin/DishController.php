@@ -48,9 +48,45 @@ class DishController extends Controller
     public function store(Request $request)
     {
         // creazione piatto
+        // $data = $request->all();
+        // $data['dish_name'] = ($data['dish_name'] . '-' . Auth::user()->id . '-' . ?);
+        // $data['slug'] = Str::slug(($data['dish_name']) . '-' . Auth::user()->id); 
+        // $data['restaurant_id'] = Auth::user()->id;   //!in questo modo il campo user_id prende il valore dell'id dell'utente da rivedere
+
+        // creazione piatto
         $data = $request->all();
-        $data['slug'] = Str::slug($data['dish_name']);
-        $data['restaurant_id'] = Auth::user()->id;   //!in questo modo il campo user_id prende il valore dell'id dell'utente da rivedere
+        $dishName = $data['dish_name'];
+        $restaurantId = Auth::user()->restaurant->id;
+
+        // Controlla se esiste già un piatto con lo stesso nome nel ristorante corrente
+        $existingDish = Dish::where('dish_name', $dishName)->where('restaurant_id', $restaurantId)->first();
+
+        if ($existingDish) {
+            // Piatto duplicato trovato
+            return redirect()->route('admin.dishes.index')->with('message', 'Un piatto con lo stesso nome esiste già nel ristorante.');
+        }
+
+        // Genera lo slug unico
+        // $data['slug'] = Str::slug($dishName . '-' . Auth::user()->id);
+
+        
+        // Controlla se esiste un piatto con lo stesso nome in altri ristoranti
+        $existingDishInOtherRestaurants = Dish::where('dish_name', $dishName)
+            ->where('restaurant_id', '<>', $restaurantId)
+            ->first();
+
+        if ($existingDishInOtherRestaurants) {
+            // Piatto duplicato trovato in altri ristoranti
+            // Genera lo slug unico basato sull'ID del ristorante corrente
+            $data['slug'] = Str::slug($dishName . '-' . $restaurantId . '-' . Auth::user()->id);
+        } else {
+            // Genera lo slug unico senza l'ID del ristorante corrente
+            $data['slug'] = Str::slug($dishName . '-' . Auth::user()->id);
+        }
+
+        // Imposta l'ID del ristorante corrente
+        $data['restaurant_id'] = $restaurantId;
+
 
         // check di disponibilità
         $isAvailable = $request->has('is_available') ? 0 : 1;
