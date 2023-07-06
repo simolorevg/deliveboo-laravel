@@ -10,23 +10,40 @@ class RestaurantController extends Controller
 {
     public function index(Request $request)
     {
-        $data = $request->input('categories'); // Supponiamo che tu stia inviando un array di categorie come input
-        
-        $restaurants = Restaurant::with(['categories', 'dishes'])->whereHas('categories', function ($query) use ($data) {
-            $query->whereIn('category_id', $data);
+        // Ottieni l'array di categorie inviato come input dalla richiesta
+        $data = $request->input('categories');
+
+        // Recupera i ristoranti con le relazioni "categories" e "dishes" || with = join
+        $restaurants = Restaurant::with(['categories', 'dishes']);
+
+        // Se l'array di categorie non è fornito, ottieni tutti i ristoranti senza filtri
+        if (empty($data)) {
+            $restaurants = $restaurants->paginate(5);
+
+            return response()->json([
+                'success' => true,
+                'results' => $restaurants
+            ]);
+        }
+
+        // Filtra i ristoranti che hanno almeno una categoria con ID presente nell'array di categorie
+        $restaurants->whereHas('categories', function ($query) use ($data) {
+            $query->whereIn('categories.id', $data);
         });
-    
+
         $restaurants = $restaurants->paginate(5);
-    
+
         return response()->json([
             'success' => true,
             'results' => $restaurants
         ]);
     }
-    
+
+
 
     public function show($slug)
     {
+        // dd('ciao');
         $restaurant = Restaurant::with('categories', 'dishes', 'user')->where('slug', $slug)->first();
         if ($restaurant) {
             return response()->json([
