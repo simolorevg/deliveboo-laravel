@@ -8,9 +8,19 @@ use App\Models\Restaurant;
 
 class RestaurantController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $restaurants = Restaurant::paginate(5); //pagina di 5 risultati per pagina
+        $restaurants = Restaurant::with(['categories' , 'dishes']);
+
+        // if ($request->has('categories')) {
+        //     $categories = explode(',', trim($request->input('categories')));
+        //     $restaurants = $restaurants->whereHas('categories', function ($query) use ($categories) {
+        //         $query->whereIn('categories.id', $categories);
+        //     });
+        // }
+        
+        $restaurants  = $restaurants ->paginate(5);
+
         return response()->json([
             'success' => true,
             'results' => $restaurants
