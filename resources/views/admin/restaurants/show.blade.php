@@ -57,14 +57,10 @@
             <li class="my-4 d-flex gap-3 align-items-center">
                 <span class="info">Logo:</span>
                 @if ($restaurant->thumb)
-                    <div class="w-50 mt-4 d-inline-block">
-                        <img src="{{ asset('storage/' . $restaurant->thumb) }}" alt="{{ $restaurant->restaurant_name }}"
-                            class="img-fluid w-50 ml-4">
-                    </div>
+                        <img width="150px" src="{{ asset('storage/' . $restaurant->thumb) }}" alt="{{ $restaurant->restaurant_name }}"
+                            class="img-fluid  ml-4">
                 @else
-                    <div class="p-5 w-50 bg-secondary text-white">
-                        IMMAGINE NON PRESENTE
-                    </div>
+                        <img width="150px" src="https://cdn3.vectorstock.com/i/1000x1000/31/47/404-error-page-not-found-design-template-vector-21393147.jpg" alt="">
                 @endif
             </li>
         </ul>

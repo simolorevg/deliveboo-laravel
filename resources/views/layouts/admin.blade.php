@@ -88,26 +88,24 @@
                                          <i class="fa-regular fa-folder-open mx-2" style="color: rgb(255, 71, 71);"></i>
                                          IL TUO MENU
                                      </a>
-                                     {{-- <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.projects.create' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.projects.create') }}">
-                                    <i class="fa-solid fa-circle-plus mx-2"  style="color: rgb(5, 225, 240);"></i> Crea uno nuovo Progetto
-                                </a> --}}
+                                    
                                  </li>
                                  <li class="nav-item text-white">
                                      <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.categories.create' ? 'bg-secondary' : '' }}"
-                                         href="{{ route('admin.categories.index') }}">
-                                         <i class="fa-regular fa-folder-open mx-2" style="color: rgb(5, 225, 240);"></i>
-                                         CATEGORIE
+                                     href="{{ route('admin.categories.index') }}">
+                                     <i class="fa-regular fa-folder-open mx-2" style="color: rgb(240, 150, 5);"></i>
+                                     ORDINI
+                                     
+                                    </a>
+                                </li>
+                                <li class="nav-item text-white">
+                                    <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.categories.create' ? 'bg-secondary' : '' }}"
+                                        href="{{ route('admin.categories.index') }}">
+                                        <i class="fa-regular fa-folder-open mx-2" style="color: rgb(5, 225, 240);"></i>
+                                        CATEGORIE
 
-                                     </a>
-                                 </li>
-                                 <li class="nav-item text-white">
-                                     - Controlla gli ordini dei clienti
-                                     {{-- <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.types.index' ? 'bg-secondary' : '' }}"
-                                    href="{{ route('admin.types.index') }}">
-                                    <i class="fa-regular fa-folder-open mx-2"  style="color:  rgb(151, 71, 255);"></i> Lista dei TIPI
-                                </a> --}}
-                                 </li>
+                                    </a>
+                                </li>
                              @elseif (count($restaurant) == 0)
                                  <li class="nav-item text-white">
                                      {{-- <a href="{{ route('admin.restaurants.create') }}"> CREA NUOVO RISTORANTE </a> --}}

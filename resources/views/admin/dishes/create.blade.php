@@ -47,7 +47,7 @@
                     {{-- Ingredienti --}}
                     <label class="info col-md-4 col-form-label" for="ingredients"
                         class="form-label @error('ingredients') is-invalid @enderror">Ingredienti:
-                        <span class="need">*</span></label>
+                        <span class="need"> *</span></label>
                     <textarea class="form-control" id="ingredients" rows="2" name='ingredients' required>{{ old('ingredients') }}</textarea>
                     @error('ingredients')
                         <div class="invalid-feedback">
@@ -75,7 +75,7 @@
                         {{ $dish->is_available ? '' : 'checked' }} id="is_available">
                 </div>
 
-                {{-- immagine --}}
+                {{-- Foto --}}
                 <label class="info form-label" for="image-input" class="form-label">Carica immagine</label>
                 <input type="file" class="form-control" id="image-input" name="img">
                 {{-- preview --}}

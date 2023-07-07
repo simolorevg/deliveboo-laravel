@@ -106,7 +106,8 @@ class DishController extends Controller
     {
         // se l'utente cerca di loggare verso altri url
         if ($dish->restaurant->user_id !== Auth::user()->id) {
-            abort(404, '');
+            return view('errors.403');
+
         }
 
         return view('admin.dishes.show', compact('dish'));
@@ -122,7 +123,8 @@ class DishController extends Controller
     {
         // se l'utente cerca di loggare verso altri url
         if ($dish->restaurant->user_id !== Auth::user()->id) {
-            abort(404, '');
+            return view('errors.403');
+
         }
 
         return view('admin.dishes.edit', compact('dish'));
@@ -155,7 +157,7 @@ class DishController extends Controller
 
         if ($existingDish) {
             // Piatto duplicato trovato
-            return redirect()->route('admin.dishes.edit', $dish->slug)->with('error', 'Un piatto con lo stesso nome esiste già nel ristorante.');
+            return redirect()->route('admin.dishes.edit', $dish->slug)->with('message', 'Un piatto con lo stesso nome esiste già nel ristorante.');
         }
 
         // update immagine

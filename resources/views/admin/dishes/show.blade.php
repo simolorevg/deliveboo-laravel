@@ -17,7 +17,7 @@
                         {{ $dish->description }}
                     </span>
                 @else
-                    <span>Descrizione non disponibile
+                    <span class="text-muted">Descrizione non disponibile
                     </span>
                 @endif
             </li>
@@ -31,12 +31,10 @@
             {{-- Disponibilità --}}
             <li class="my-4"><span class="info">Disponibile: </span>
                 @if ($dish->is_available)
-                    <span>Si </span>
-                    <span> 😏</span>
+                    <span>Si 😏</span>
                     
                 @else
-                    <span>No </span>
-                    <span> 😪</span>
+                    <span>No 😪</span>
 
                 @endif
             </li>
@@ -46,14 +44,10 @@
             <li class="my-4 d-flex gap-3 align-items-center">
                 <span class="info">Immagine piatto:</span>
                 @if ($dish->img)
-                    <div class="w-50 mt-4 d-inline-block">
-                        <img src="{{ asset('storage/' . $dish->img) }}" alt="{{ $dish->dish_name }}"
-                            class="img-fluid w-50 ml-4">
-                    </div>
+                        <img width="150px" src="{{ asset('storage/' . $dish->img) }}" alt="{{ $dish->dish_name }}"
+                            class="img-fluid ml-4">
                 @else
-                    <div class="image-not-found">
-                        <img width="200px" src="{{ Vite::asset('resources/img/image_not_found.jpg')}}" alt="">
-                    </div>
+                        <img width="150px" src="{{ Vite::asset('resources/img/image_not_found.jpg')}}" alt="">
                 @endif
             </li>
         </ul>

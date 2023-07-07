@@ -85,7 +85,7 @@ class RestaurantController extends Controller
     public function show(Restaurant $restaurant)
     {
         if ($restaurant->user_id !== Auth::id()) {
-            abort(404, '');
+            return view('errors.403');
         }
         $categories = Category::all();
         return view('admin.restaurants.show', compact('restaurant', 'categories'));
@@ -100,7 +100,8 @@ class RestaurantController extends Controller
     public function edit(Restaurant $restaurant)
     {
         if ($restaurant->user_id !== Auth::id()) {
-            abort(404, 'Unauthorized');
+            return view('errors.403');
+
         }
         $categories = Category::all();
         return view('admin.restaurants.edit', compact('restaurant', 'categories'));
