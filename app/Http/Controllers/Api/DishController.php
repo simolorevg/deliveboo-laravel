@@ -14,19 +14,19 @@ class DishController extends Controller
         $restaurantId = $request->query('restaurant_id');
 
         if ($restaurantId) {
-            $restaurant = Restaurant::findOrFail($restaurantId);
-            if ($restaurant) {
-                $dishes = $restaurant->dishes;
-                if ($dishes->isEmpty()) {
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'Il ristorante non ha piatti disponibili.'
-                    ], 404);
-                }
-            } else {
+            $restaurant = Restaurant::find($restaurantId);
+            if (!$restaurant) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Ristorante non trovato.'
+                ], 404);
+            }
+            
+            $dishes = $restaurant->dishes;
+            if ($dishes->isEmpty()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Piatti non trovati per questo ristorante.'
                 ], 404);
             }
         } else {
@@ -38,6 +38,7 @@ class DishController extends Controller
             'results' => $dishes
         ]);
     }
+
 
 
 
