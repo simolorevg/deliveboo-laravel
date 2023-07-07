@@ -9,9 +9,10 @@
 
     @if (count($restaurant) == 0)
         <div class="container-create-restaurant card">
-            <div class="card-header">
-                <h4 class="text-center">Crea il tuo ristorante</h4>
+            <div class="card-header text-center" >
+                <h4>Crea il tuo ristorante</h4>
             </div>
+            
             <div class="mx-5 card-body">
 
                 <form class="form d-flex flex-column" action="{{ route('admin.restaurants.store') }}" method="POST" id="create-restaurant"
@@ -117,7 +118,7 @@
                     </div>
 
                     {{-- immagine --}}
-                    <label for="image-input-createR" class="info form-label">Carica immagine:</label>                    <div class="col-md-6 div-input">
+                    <label for="image-input-createR" class="info form-label">Carica logo:</label>                    <div class="col-md-6 div-input">
                         <input type="file" class="form-control" id="image-input-createR" name="thumb">
                         {{-- preview --}}
                         <div class="d-flex justify-content-center my-3">

@@ -1,28 +1,34 @@
 @import './variables';
 
 
-.container-create-restaurant {
+.container-create-restaurant,
+.container-edit-restaurant,
+.container-create-dish,
+.container-edit-dish {
     max-width: 800px;
     margin: 10px auto;
     background-color: $my-card-bg;
-    h4{
+
+    h4 {
         color: $boss-color;
     }
-    form{
+
+    form {
 
         .btn-group>.btn {
             --bs-btn-border-color: white;
             --bs-btn-color: white;
         }
-        .div-input{
+
+        .div-input {
             width: 100%;
         }
-        
+
         input[type=number] {
             -moz-appearance: textfield;
         }
-        
-        
+
+
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button {
             -webkit-appearance: none;

@@ -1,18 +1,23 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="edit mx-auto container-create-dish">
+    <div class="edit card container-create-dish">
+        <div class="card-header text-center">
+            <h4>Crea il tuo piatto</h4>
+        </div>
 
-        <h2 class="mx-5">Crea il tuo piatto</h2>
-        <div class="mx-5 mt-3">
+        <div class="mx-5 card-body">
 
-            <form class="d-flex flex-column form" action="{{ route('admin.dishes.store') }}" method="POST"
+            <form class="form d-flex flex-column" action="{{ route('admin.dishes.store') }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
-                <div class="my-3">
+                <div class="d-flex mt-3 justify-content-end">
+                    <a href="{{ route('admin.dishes.index') }}" class="btn btn-info">Torna indietro</a>
+                </div>
+                {{-- Nome --}}
 
-                    {{-- Nome --}}
-                    <label for="dish_name">Nome Piatto: <span class="need">*</span></label>
-                    <input class="mb-2 d-block @error('dish_name') is-invalid @enderror" type="text" name="dish_name"
+                <label class="info col-md-4 col-form-label" for="dish_name">Nome Piatto: <span class="need">*</span></label>
+                <div class="col-md-6 div-input">
+                    <input class="form-control @error('dish_name') is-invalid @enderror" type="text" name="dish_name"
                         id="dish_name" required minlength="3" maxlength="20">
                     @error('dish_name')
                         <div class="invalid-feedback">
@@ -20,23 +25,24 @@
                         </div>
                     @enderror
                 </div>
-                <div class="my-3">
 
-                    {{-- Descrizione --}}
-                    <label for="description" class="form-label @error('description') is-invalid @enderror">Descrizione:
-                    </label>
-                    <textarea class="form-control" id="description" rows="3" name='description'>{{ old('description') }}</textarea>
-                    @error('dish_name')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
+                {{-- Descrizione --}}
+                <label class="info col-md-4 col-form-label" for="description"
+                    class="form-label @error('description') is-invalid @enderror">Descrizione:
+                </label>
 
-                <div class="my-3">
+                <textarea class="form-control" id="description" rows="3" name='description'>{{ old('description') }}</textarea>
+                @error('dish_name')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+
+                <div class="col-md-6 div-input">
 
                     {{-- Ingredienti --}}
-                    <label for="ingredients" class="form-label @error('ingredients') is-invalid @enderror">Ingredienti:
+                    <label class="info col-md-4 col-form-label" for="ingredients"
+                        class="form-label @error('ingredients') is-invalid @enderror">Ingredienti:
                         <span class="need">*</span></label>
                     <textarea class="form-control" id="ingredients" rows="2" name='ingredients' required>{{ old('ingredients') }}</textarea>
                     @error('ingredients')
@@ -47,9 +53,9 @@
                 </div>
 
                 {{-- Prezzo --}}
-                <label for="price">Prezzo: € <span class="need">*</span></label>
-                <input class="mb-3 @error('price') is-invalid @enderror" type="number" name="price" id="price"
-                    min="0" step="0.1" required>
+                <label class="info col-md-4 col-form-label" for="price">Prezzo: € <span class="need">*</span></label>
+                <input class="form-control @error('price') is-invalid @enderror" type="number" name="price"
+                    id="price" min="0" step="0.1" required>
                 @error('price')
                     <span class="invalid-feedback">
                         {{ $message }}
@@ -58,22 +64,20 @@
 
                 {{-- Disponibilità --}}
                 <div class="form-check my-3">
+                    <label class="form-check-label info" for="is_available">
+                        Visibile
+                    </label>
                     <input class="form-check-input" type="checkbox" name="is_available" value="1"
                         {{ $dish->is_available ? '' : 'checked' }} id="is_available">
-                    <label class="form-check-label" for="is_available">
-                        Terminato
-                    </label>
                 </div>
 
                 {{-- immagine --}}
-                <div class="my-3 w-50 mx-auto">
-                    <label for="image-input" class="form-label">Carica immagine</label>
+                    <label class="info form-label" for="image-input" class="form-label">Carica immagine</label>
                     <input type="file" class="form-control" id="image-input" name="img">
                     {{-- preview --}}
                     <div class="d-flex justify-content-center my-3">
                         <img class="d-none" width="300" id="image-preview" src="" alt="">
                     </div>
-                </div>
 
                 <div class="button d-flex justify-content-center gap-3">
                     <button type="submit" class="btn btn-primary">Crea</button>
