@@ -3,10 +3,12 @@
 @section('content')
     @include('admin.partials.messages')
 
-    <div class="edit mx-auto edit-dish">
+    <div class="card container-edit-dish">
+        <div class="card-header text-center">
+            <h4 class="mx-5">Modifica il tuo piatto: <span class="info">{{ $dish->dish_name }}</span></h4>
+        </div>
 
-        <h2 class="mx-5">Modifica il tuo piatto: <span class="info">{{ $dish->dish_name }}</span></h2>
-        <div class="mx-5">
+        <div class="mx-5 card-body">
 
             <form class="d-flex flex-column form" action="{{ route('admin.dishes.update', $dish->slug) }}" method="POST"
                 enctype="multipart/form-data">
@@ -14,25 +16,35 @@
                 @method('PUT')
 
                 {{-- Nome --}}
-                <label for="dish_name">Nome Piatto: <span class="need">*</span></label>
-                <input type="text" name="dish_name" id="dish_name" value="{{ old('dish_name', $dish->dish_name) }}"
-                    required minlength="3" maxlength="20">
+                <label class="info col-md-4 col-form-label" for="dish_name">Nome Piatto: <span
+                        class="need">*</span></label>
+                <div class="col-md-6 div-input">
+                    <input class="form-label @error('dish_name') is-invalid @enderror" type="text" name="dish_name"
+                        id="dish_name" value="{{ old('dish_name', $dish->dish_name) }}" required minlength="3"
+                        maxlength="20">
+                    @error('dish_name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
 
                 {{-- Descrizione --}}
                 <div class="mb-3">
-                    <label for="description" class="form-label">Descrizione</label>
+                    <label for="description" class="info col-md-4 col-form-label">Descrizione</label>
                     <textarea class="form-control" id="description" rows="3" name='description'>{{ old('description', $dish->description) }}</textarea>
                 </div>
 
                 {{-- Ingredienti --}}
                 <div class="mb-3">
-                    <label for="ingredients" class="form-label">Ingredienti<span class="need">*</span></label>
+                    <label for="ingredients" class="info col-md-4 col-form-label">Ingredienti<span
+                            class="need">*</span></label>
                     <textarea class="form-control" id="ingredients" rows="2" name='ingredients' required>{{ old('ingredients', $dish->ingredients) }}</textarea>
                 </div>
 
                 {{-- Prezzo --}}
-                <label for="price">Prezzo: € <span class="need">*</span></label>
-                <input type="number" name="price" id="price" step="0.1" min="0"
+                <label class="info col-md-4 col-form-label" for="price">Prezzo: € <span class="need">*</span></label>
+                <input class="form-label" type="number" name="price" id="price" step="0.1" min="0"
                     value="{{ old('price', $dish->price) }}" required>
 
                 {{-- Disponibilità --}}

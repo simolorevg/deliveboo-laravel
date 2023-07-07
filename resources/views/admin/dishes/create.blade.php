@@ -1,5 +1,8 @@
 @extends('layouts.admin')
+
 @section('content')
+    @include('admin.partials.messages')
+
     <div class="edit card container-create-dish">
         <div class="card-header text-center">
             <h4>Crea il tuo piatto</h4>
@@ -13,12 +16,13 @@
                 <div class="d-flex mt-3 justify-content-end">
                     <a href="{{ route('admin.dishes.index') }}" class="btn btn-info">Torna indietro</a>
                 </div>
-                {{-- Nome --}}
 
-                <label class="info col-md-4 col-form-label" for="dish_name">Nome Piatto: <span class="need">*</span></label>
+                {{-- Nome --}}
+                <label class="info col-md-4 col-form-label" for="dish_name">Nome Piatto: <span
+                        class="need">*</span></label>
                 <div class="col-md-6 div-input">
                     <input class="form-control @error('dish_name') is-invalid @enderror" type="text" name="dish_name"
-                        id="dish_name" required minlength="3" maxlength="20">
+                        id="dish_name" required minlength="3" maxlength="20" value="{{ old('dish_name') }}">
                     @error('dish_name')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -72,12 +76,12 @@
                 </div>
 
                 {{-- immagine --}}
-                    <label class="info form-label" for="image-input" class="form-label">Carica immagine</label>
-                    <input type="file" class="form-control" id="image-input" name="img">
-                    {{-- preview --}}
-                    <div class="d-flex justify-content-center my-3">
-                        <img class="d-none" width="300" id="image-preview" src="" alt="">
-                    </div>
+                <label class="info form-label" for="image-input" class="form-label">Carica immagine</label>
+                <input type="file" class="form-control" id="image-input" name="img">
+                {{-- preview --}}
+                <div class="d-flex justify-content-center my-3">
+                    <img class="d-none" width="300" id="image-preview" src="" alt="">
+                </div>
 
                 <div class="button d-flex justify-content-center gap-3">
                     <button type="submit" class="btn btn-primary">Crea</button>

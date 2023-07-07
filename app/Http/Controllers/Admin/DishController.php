@@ -47,11 +47,6 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        // creazione piatto
-        // $data = $request->all();
-        // $data['dish_name'] = ($data['dish_name'] . '-' . Auth::user()->id . '-' . ?);
-        // $data['slug'] = Str::slug(($data['dish_name']) . '-' . Auth::user()->id); 
-        // $data['restaurant_id'] = Auth::user()->id;   //!in questo modo il campo user_id prende il valore dell'id dell'utente da rivedere
 
         // creazione piatto
         $data = $request->all();
@@ -63,13 +58,10 @@ class DishController extends Controller
 
         if ($existingDish) {
             // Piatto duplicato trovato
-            return redirect()->route('admin.dishes.index')->with('message', 'Un piatto con lo stesso nome esiste già nel ristorante.');
+            return redirect()->route('admin.dishes.create')->with('message', 'Un piatto con lo stesso nome esiste già nel ristorante.');
         }
 
-        // Genera lo slug unico
-        // $data['slug'] = Str::slug($dishName . '-' . Auth::user()->id);
 
-        
         // Controlla se esiste un piatto con lo stesso nome in altri ristoranti
         $existingDishInOtherRestaurants = Dish::where('dish_name', $dishName)
             ->where('restaurant_id', '<>', $restaurantId)
@@ -154,6 +146,17 @@ class DishController extends Controller
         $isAvailable = $request->has('is_available') ? 0 : 1;
         $data['is_available'] = $isAvailable;
 
+
+        // Controlla se esiste già un piatto con lo stesso nome nel ristorante corrente, escludendo il piatto attuale
+        $existingDish = Dish::where('dish_name', $data['dish_name'])
+            ->where('restaurant_id', $dish->restaurant_id)
+            ->where('id', '!=', $dish->id)
+            ->exists();
+
+        if ($existingDish) {
+            // Piatto duplicato trovato
+            return redirect()->route('admin.dishes.edit', $dish->slug)->with('error', 'Un piatto con lo stesso nome esiste già nel ristorante.');
+        }
 
         // update immagine
         if ($request->hasFile('img')) {
