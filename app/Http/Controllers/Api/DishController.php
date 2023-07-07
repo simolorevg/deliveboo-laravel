@@ -14,9 +14,15 @@ class DishController extends Controller
         $restaurantId = $request->query('restaurant_id');
 
         if ($restaurantId) {
-            $restaurant = Restaurant::find($restaurantId);
+            $restaurant = Restaurant::findOrFail($restaurantId);
             if ($restaurant) {
                 $dishes = $restaurant->dishes;
+                if ($dishes->isEmpty()) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Il ristorante non ha piatti disponibili.'
+                    ], 404);
+                }
             } else {
                 return response()->json([
                     'success' => false,
