@@ -2,24 +2,31 @@
 
 
 .container-create-restaurant {
-    max-width: 700px;
-
-    margin: 50px auto;
-
-    .btn-group>.btn {
-        flex: none;
-        --bs-btn-border-color: white;
-        --bs-btn-color: white;
+    max-width: 800px;
+    margin: 10px auto;
+    background-color: $my-card-bg;
+    h4{
+        color: $boss-color;
     }
-    
-    input[type=number] {
-        -moz-appearance: textfield;
-    }
+    form{
 
-
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
+        .btn-group>.btn {
+            --bs-btn-border-color: white;
+            --bs-btn-color: white;
+        }
+        .div-input{
+            width: 100%;
+        }
+        
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+        
+        
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
     }
 }
