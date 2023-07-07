@@ -7,7 +7,7 @@ if (finalMessage) {
     finalMessage.classList.add('hide');
     setTimeout(() => {
       finalMessage.classList.add('d-none');
-    }, 4000);
+    }, 8000);
   }
   disappear();
 

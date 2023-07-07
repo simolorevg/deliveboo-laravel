@@ -1,29 +1,33 @@
 @import './variables';
 
-#boss {
-    color: $boss-color;
-}
+#app {
+    height: 100vh;
+    overflow-y: hidden;
 
-#datetime{
-    color: rgb(17, 205, 17);
-}
+    #boss {
+        color: $boss-color;
+    }
 
-.navbar-toggler {
-    margin-right: 90%;
-}
+    #datetime {
+        color: rgb(17, 205, 17);
+    }
 
-#sidebarMenu {
-    position: fixed;
-    height: 100%;
-}
-
-.container-dashboard {
-    border: 1px solid red;
-
-    .content-main {
+    #sidebarMenu {
         height: calc(100vh - $header-h);
-        overflow-y: auto;
-        overflow-x: hidden;
+        position: fixed;
+        z-index: 2;
+        top: $header-h;
+        padding-top: 60px;
+    }
 
+    .container-dashboard {
+        // border: 3px solid red;
+        height: calc(100vh - $header-h);
+        max-width: 100%;
+
+        .content-main {
+            overflow-y: auto;
+
+        }
     }
 }

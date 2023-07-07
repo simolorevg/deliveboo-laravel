@@ -51,8 +51,8 @@
                             class="img-fluid w-50 ml-4">
                     </div>
                 @else
-                    <div class="p-5 w-50 bg-secondary text-white">
-                        IMMAGINE NON PRESENTE
+                    <div class="image-not-found">
+                        <img width="200px" src="{{ Vite::asset('resources/img/image_not_found.jpg')}}" alt="">
                     </div>
                 @endif
             </li>
