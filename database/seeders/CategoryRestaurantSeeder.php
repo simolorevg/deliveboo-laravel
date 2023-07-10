@@ -8,7 +8,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class CategoryRestaurantTableSeeder extends Seeder
+class CategoryRestaurantSeeder extends Seeder
 {
     public function run()
     {
