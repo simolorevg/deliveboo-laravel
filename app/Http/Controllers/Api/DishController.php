@@ -21,8 +21,8 @@ class DishController extends Controller
                     'message' => 'Ristorante non trovato.'
                 ], 404);
             }
-            
-            $dishes = $restaurant->dishes;
+
+            $dishes = $restaurant->dishes()->paginate(5); // Modifica qui per paginare per 5 elementi
             if ($dishes->isEmpty()) {
                 return response()->json([
                     'success' => false,
@@ -30,7 +30,7 @@ class DishController extends Controller
                 ], 404);
             }
         } else {
-            $dishes = Dish::paginate(10);
+            $dishes = Dish::paginate(5); // Modifica qui per paginare per 5 elementi
         }
 
         return response()->json([
@@ -38,7 +38,6 @@ class DishController extends Controller
             'results' => $dishes
         ]);
     }
-
 
 
 
