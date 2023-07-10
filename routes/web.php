@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DishController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\RestaurantController;
 
 /*
@@ -23,11 +24,15 @@ Route::get('/', function () {
     return view('home');
 });
 
-
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('restaurants', RestaurantController::class)->parameters(['restaurants' => 'restaurant:slug']);
     Route::resource('dishes', DishController::class)->parameters(['dishes' => 'dish:slug']);
     Route::resource('categories', CategoryController::class)->parameters(['categories' => 'category:slug']);
+    Route::resource('orders', OrderController::class)->only(['index', 'show', 'destroy']);
 });
+
 require __DIR__ . '/auth.php';
+// Route::get('orders/stat', function (){return view ('orders.stat');} )->name('stat');
+
+// Route::resource('orders', OrderController::class)->names('orders');
