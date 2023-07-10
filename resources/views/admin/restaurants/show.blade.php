@@ -43,11 +43,11 @@
                     <span class="info">Cucine associate:</span>
 
                     @forelse ($restaurant->categories as $item)
-                    <div class="d-flex flex-column align-items-center gap-2">
-                        <img width="60px" src="{{ $item->icon }}" alt="">
-                        <p class="category-name">{{ $item->category_name }}</p>
-                    </div>
-                        @empty
+                        <div class="d-flex flex-column align-items-center gap-2">
+                            <img width="60px" src="{{ $item->icon }}" alt="">
+                            <p class="category-name">{{ $item->category_name }}</p>
+                        </div>
+                    @empty
                         Non ci sono categorie associate
                     @endforelse
                 </div>
@@ -57,10 +57,14 @@
             <li class="my-4 d-flex gap-3 align-items-center">
                 <span class="info">Logo:</span>
                 @if ($restaurant->thumb)
-                        <img width="150px" src="{{ asset('storage/' . $restaurant->thumb) }}" alt="{{ $restaurant->restaurant_name }}"
-                            class="img-fluid  ml-4">
+                    <img width="150px" src="{{ asset('storage/' . $restaurant->thumb) }}"
+                        alt="{{ $restaurant->restaurant_name }}" class="img-fluid  ml-4">
+                    {{-- <img width="150px" src="{{ $restaurant->thumb}}" alt="{{ $restaurant->restaurant_name }}" class="img-fluid  ml-4"> --}}
+
                 @else
-                        <img width="150px" src="https://cdn3.vectorstock.com/i/1000x1000/31/47/404-error-page-not-found-design-template-vector-21393147.jpg" alt="">
+                    <img width="150px"
+                        src="https://cdn3.vectorstock.com/i/1000x1000/31/47/404-error-page-not-found-design-template-vector-21393147.jpg"
+                        alt="">
                 @endif
             </li>
         </ul>

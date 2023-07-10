@@ -18,7 +18,6 @@ class UserSeeder extends Seeder
     public function run()
     {
         $usersCount = 20;
-        
         for ($i = 1; $i <= $usersCount; $i++) {
             DB::table('users')->insert([
                 'name' => 'prova ' . $i,

@@ -30,7 +30,7 @@ class DishController extends Controller
                 ], 404);
             }
         } else {
-            $dishes = Dish::all();
+            $dishes = Dish::paginate(10);
         }
 
         return response()->json([

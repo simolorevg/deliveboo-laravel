@@ -22,12 +22,12 @@ class DishController extends Controller
      */
     public function index(Restaurant $restaurant)
     {
-
-        // $dish = Dish::all()->sortBy('dish_name');
-        $dishes = Dish::orderBy('dish_name')->paginate(10);
+        $dishes = Dish::all();
 
         return view('admin.dishes.index', compact('dishes'));
+
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -56,8 +56,8 @@ class DishController extends Controller
         // Controlla se esiste già un piatto con lo stesso nome nel ristorante corrente
         $existingDish = Dish::where('dish_name', $dishName)->where('restaurant_id', $restaurantId)->first();
 
+        // Piatto duplicato trovato
         if ($existingDish) {
-            // Piatto duplicato trovato
             return redirect()->route('admin.dishes.create')->with('message', 'Un piatto con lo stesso nome esiste già nel ristorante.');
         }
 
@@ -107,7 +107,6 @@ class DishController extends Controller
         // se l'utente cerca di loggare verso altri url
         if ($dish->restaurant->user_id !== Auth::user()->id) {
             return view('errors.403');
-
         }
 
         return view('admin.dishes.show', compact('dish'));
@@ -124,7 +123,6 @@ class DishController extends Controller
         // se l'utente cerca di loggare verso altri url
         if ($dish->restaurant->user_id !== Auth::user()->id) {
             return view('errors.403');
-
         }
 
         return view('admin.dishes.edit', compact('dish'));
