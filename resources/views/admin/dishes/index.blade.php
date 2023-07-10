@@ -46,7 +46,7 @@
                 @endforeach
             </tbody>
         </table>
-
+        {{ $dishes->links() }}
         @include('admin.partials.modal_delete')
     </div>
 @endsection

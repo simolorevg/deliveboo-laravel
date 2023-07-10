@@ -13,7 +13,7 @@ class RestaurantController extends Controller
         // Ottieni l'array di categorie inviato come input dalla richiesta
         $data = $request->input('categories');
 
-        // Recupera i ristoranti con le relazioni "categories" e "dishes" || with = join
+        // Recupera i ristoranti con le relazioni "categories" e "dishes" 
         $restaurants = Restaurant::with(['categories', 'dishes']);
 
         // Se l'array di categorie non è fornito, ottieni tutti i ristoranti senza filtri
