@@ -38,10 +38,6 @@ class CategoriesSeeder extends Seeder
             'category_name'=>'Hawaiano',
             'icon'=>'https://img.icons8.com/?size=512&id=yoflzK7JQMwS&format=png'
             ],
-            // [
-            // 'category_name'=>'Ittico',
-            // 'icon'=>'https://img.icons8.com/?size=512&id=59n5849FEYbs&format=png'
-            // ],
             [
             'category_name'=>'Medio-orientale',
             'icon'=>'https://img.icons8.com/?size=512&id=lCbXCZey2Wkp&format=png'
@@ -50,10 +46,6 @@ class CategoriesSeeder extends Seeder
             'category_name'=>'Vegetariano',
             'icon'=>'https://img.icons8.com/?size=512&id=MFBPHPkOvwSg&format=png'
             ],
-            // [
-            // 'category_name'=>'Friggitoria',
-            // 'icon'=>'https://img.icons8.com/?size=512&id=bcb11mkMayyc&format=png'
-            // ],
             [
             'category_name'=>'Dessert',
             'icon'=>'https://img.icons8.com/?size=512&id=2san48WPZRBS&format=png'
