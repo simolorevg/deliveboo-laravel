@@ -67,7 +67,7 @@
 
                 {{-- Se il post ha l'immagine, la visulizzo --}}
                 @if ($dish->img)
-                    <div class="my-3 ">
+                    <div class="d-flex justify-content-center my-3">
                         <img id="actual-image" width="300" src="{{ asset('storage/' . $dish->img) }}"
                             alt="{{ $dish->dish_name }}">
                     </div>

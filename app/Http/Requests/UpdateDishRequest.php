@@ -27,7 +27,7 @@ class UpdateDishRequest extends FormRequest
         return [
             'dish_name' => ['required','min:3','max:150', Rule::unique('dishes')->ignore($this->dish)],
             'ingredients' => 'required|text',
-            'price' => 'required|float'
+            'price' => 'required|float' , 
         ];
     }
 

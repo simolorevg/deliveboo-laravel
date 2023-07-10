@@ -21,7 +21,7 @@ class DishController extends Controller
                     'message' => 'Ristorante non trovato.'
                 ], 404);
             }
-
+            
             $dishes = $restaurant->dishes()->paginate(5); // Modifica qui per paginare per 5 elementi
             if ($dishes->isEmpty()) {
                 return response()->json([
