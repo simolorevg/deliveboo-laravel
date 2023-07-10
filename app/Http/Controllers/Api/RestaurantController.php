@@ -18,7 +18,7 @@ class RestaurantController extends Controller
 
         // Se l'array di categorie non è fornito, ottieni tutti i ristoranti senza filtri
         if (empty($data)) {
-            $restaurants = $restaurants->paginate(5);
+            $restaurants = $restaurants->paginate(10);
 
             return response()->json([
                 'success' => true,
@@ -31,7 +31,7 @@ class RestaurantController extends Controller
             $query->whereIn('categories.id', $data);
         });
 
-        $restaurants = $restaurants->paginate(5);
+        $restaurants = $restaurants->paginate(10);
 
         return response()->json([
             'success' => true,
