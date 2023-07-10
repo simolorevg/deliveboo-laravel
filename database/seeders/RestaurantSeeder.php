@@ -41,7 +41,7 @@ class RestaurantSeeder extends Seeder
                 'address' => 'Indirizzo ' . $i,
                 'phone' => '12' . str_pad($i, 4, '0', STR_PAD_LEFT),
                 'vat_number' => str_pad(rand(0, 99999999999), 11, '0', STR_PAD_LEFT),
-                'thumb' => $thumbs[array_rand($thumbs)],
+                // 'thumb' => $thumbs[array_rand($thumbs)],
                 'closure_day' => 'Chiusura ' . $i,
                 'created_at' => now(),
                 'updated_at' => now()
