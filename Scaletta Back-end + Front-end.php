@@ -885,6 +885,24 @@ composer i
 
 // chiudere e riaprire vs per bug
 
+//in appserviceprovider
+
+public function boot()
+{
+    Paginator::useBootstrapFive();
+    $this->app->singleton(Gateway::class, function($app){
+        return new Gateway([
+            'environment' => 'sandbox',
+            'merchantId' => 'tfrvnyfh3xsz95xv',
+            'publicKey'=> 'ny5hbf8ggmgbqcsh',
+            'privateKey'=>'cbf63464e790adef49943d1efa26f178'
+        ]);
+    });
+}
+
+
+//creare controllore
+
 php artisan make:controller api/PaymentController
 
 class PaymentController extends Controller
