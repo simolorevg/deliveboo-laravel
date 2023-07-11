@@ -53,7 +53,7 @@
                          {{ Auth::user()->name }}</p>
                      <a class="nav-link d-inline-block" href="{{ route('logout') }}"
                          onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                    document.getElementById('logout-form').submit();">{{ __('Esci') }}</a>
                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                          @csrf
                      </form>
