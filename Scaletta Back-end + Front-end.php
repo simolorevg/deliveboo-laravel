@@ -877,9 +877,60 @@ public function store(Request $request)
 
 
 
-// accesso SSH - ssh 'user'@'nome_dominio' , poi inserire password
-//              se non sei root lanciare: sudo su
-//              imparare apache & nginx, guida come configurare virtual host ( 1 virtual host 1 progetto)
+// !  PAGAMENTI BRAINTREE
+
+composer require braintree/braintree_php
+
+composer i 
+
+// chiudere e riaprire vs per bug
+
+php artisan make:controller api/PaymentController
+
+class PaymentController extends Controller
+{
+    public function tokenGenerate(Gateway $gateway)
+    {
+        $token = $gateway->clientToken()->generate();
+        $data = [
+            "token" => $token,
+            "success" => true
+        ];
+
+        return response()->json($data, 200);
+    }
 
 
+    public function makePayment(Request $request, Gateway $gateway)
+    {
+
+        $result = $gateway->transaction()->sale([
+            "amount" => $request->amount,
+            "paymentMethodNonce" => $request->token,
+            "options" => [
+                'submitForSettlement' => true
+            ],
+        ]);
+
+        if ($result->success) {
+            $data = [
+                'message' => 'transizione effettevata',
+                'success' => true,
+                'data_confirm' => 'data has benn saved'
+            ];
+        } else {
+            $data = [
+                'message' => 'transizione rifiutata',
+                'success' => false,
+                'data_confirm' => 'data has benn saved'
+            ];
+        }
+        return response()->json($data);
+    }
+}
+
+
+//? NELLE ROTTE API
+Route::get('generate/token', [PaymentController::class, 'tokenGenerate']);
+Route::post('make/payment', [PaymentController::class, 'makePayment']);
 ?>

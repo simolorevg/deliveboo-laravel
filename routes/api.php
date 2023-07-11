@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\DishController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\api\PaymentController;
 use App\Http\Controllers\Api\RestaurantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,4 +27,5 @@ Route::get('categories', [CategoryController::class, 'index']);
 Route::post('orders', [OrderController::class, 'store']);
 Route::get('orders/{id}', [OrderController::class, 'show']);
 
-// Route::post('orders', [OrderController::class, 'store']);
+Route::get('generate/token', [PaymentController::class, 'tokenGenerate']);
+Route::post('make/payment', [PaymentController::class, 'makePayment']);
