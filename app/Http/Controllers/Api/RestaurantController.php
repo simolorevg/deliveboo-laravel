@@ -30,6 +30,7 @@ class RestaurantController extends Controller
         $restaurants->whereHas('categories', function ($query) use ($data) {
             $query->whereIn('categories.id', $data);
         });
+        // es array con 3 elementi , es id 1 3 e 5 
 
         $restaurants = $restaurants->paginate(10);
 

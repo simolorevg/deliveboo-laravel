@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dish;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
+use PhpParser\Node\Expr\Cast\Array_;
 
 class OrderController extends Controller
 {
@@ -18,8 +20,21 @@ class OrderController extends Controller
     {
 
         // Recupera tutti gli ordini
-        $orders = Order::all();
+        $orders = Dish::where('restaurant_id', Auth::user()->restaurant->id)->get();
+        $dishes = Dish::with(['orders']);
 
+        $dishes->whereHas('orders', function ($query) use ($orders) {
+            $query->whereIn('order_id', $orders);
+        });
+
+        dd($dishes);
+        $array_vuoto = Array();
+        // dd($orders);
+        foreach ($orders as $pippo) {
+            
+        }
+
+       
         // Passa i dati degli ordini alla vista
         return view('admin.orders.index', compact('orders'));
     }
@@ -44,7 +59,7 @@ class OrderController extends Controller
     {
         //
     }
-    
+
     /**
      * Display the specified resource.
      *
@@ -90,5 +105,4 @@ class OrderController extends Controller
         $order->delete();
         return redirect()->route('admin.orders.index')->with('success', 'Ordine eliminato con successo!');
     }
-    
 }
