@@ -79,7 +79,6 @@ class PaymentController extends Controller
 
             // Aggiunta dei piatti all'ordine
             $dishes = $request->products;
-            // dd($dishes);
             foreach ($dishes as $dish) {
                 $dishId = $dish['dish_id'];
                 $quantity = $dish['quantity'];
