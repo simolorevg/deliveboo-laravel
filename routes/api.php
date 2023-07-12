@@ -29,3 +29,5 @@ Route::get('orders/{id}', [OrderController::class, 'show']);
 
 Route::get('generate/token', [PaymentController::class, 'tokenGenerate']);
 Route::post('make/payment', [PaymentController::class, 'makePayment']);
+// PaymentController genera un token di autenticazione per Braintree
+// make/payment gestisce la creazione del pagamento utilizzando il token e i dettagli dell'ordine.

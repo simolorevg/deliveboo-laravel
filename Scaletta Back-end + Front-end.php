@@ -884,16 +884,22 @@ composer require braintree/braintree_php
 composer i 
 
 // chiudere e riaprire vs per bug
+//in ENV
+BRAINTREE_ENV=sandbox  # Se stai utilizzando l'ambiente di sandbox di Braintree
+BRAINTREE_MERCHANT_ID=your_merchant_id
+BRAINTREE_PUBLIC_KEY=your_public_key
+BRAINTREE_PRIVATE_KEY=your_private_key
 
-//in appserviceprovider
+//configurare credenziali API in appserviceprovider
 
 public function boot()
 {
     Paginator::useBootstrapFive();
+
     $this->app->singleton(Gateway::class, function($app){
         return new Gateway([
             'environment' => 'sandbox',
-            'merchantId' => 'tfrvnyfh3xsz95xv',
+            'merchantId' => 'tfrvnyfh3xsz95xv', //'merchant_id'
             'publicKey'=> 'ny5hbf8ggmgbqcsh',
             'privateKey'=>'cbf63464e790adef49943d1efa26f178'
         ]);
@@ -946,6 +952,9 @@ class PaymentController extends Controller
         return response()->json($data);
     }
 }
+
+//creare il request
+php artisan make:request OrderRequest            
 
 
 //? NELLE ROTTE API

@@ -47,6 +47,7 @@
         </tbody>
     </table>
     {{-- <a href="{{ route('admin.stat')}}">Guarda le stat</a> --}}
+    {{ $orders->links() }}
 
     @include('admin.partials.modal_delete')
 </div>
