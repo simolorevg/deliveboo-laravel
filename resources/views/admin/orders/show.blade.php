@@ -5,44 +5,37 @@
 
         <div class="container p-3">
 
-            <h2 class="text-center">Info ordine: <span class="info">{{ $order->slug }}</span></h2>
+            <h2 class="text-center info">Info ordine: </h2>
             <div class="d-flex justify-content-end">
-                <a href="{{ route('admin.orders.index') }}" class="btn btn-info">Torna indietro</a>
+                <a href="{{ route('admin.orders.index') }}" class="btn mb-5 btn-info">Torna indietro</a>
             </div>
 
-            <ul class="list-unstyled my-5">
 
-                {{-- Cliente  --}}
-                <li class="my-4"><span class="info">Cliente: </span>
-                    {{ $order->guest_name }} {{ $order->guest_lastname }}
-                </li>
+            <table class="table table-dark table-hover table-striped">
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col">N. </th>
+                        <th scope="col">Nome Piatto </th>
+                        <th scope="col">Quantità </th>
+                        <th scope="col">Prezzo unitario €</th>
+                        <th scope="col">Totale €</th>
 
-                {{-- Indirizzo --}}
-                <li class="my-4"><span class="info">Indirizzo: </span>{{ $order->guest_address }}</li>
+                    </tr>
+                </thead>
 
-                {{-- Telefono --}}
-                <li class="my-4"><span class="info">Telefono: </span>{{ $order->guest_phone }}</li>
+                <tbody>
 
-                {{-- Email --}}
-                <li class="my-4"><span class="info">Email: </span>{{ $order->guest_mail }}</li>
+                    @foreach ($order->dishes as $dish)
+                        <tr class="text-center">
+                            <td scope="row">{{ $dish->id }}</td>
+                            <td scope="row">{{ $dish->dish_name }}</td>
+                            <td scope="row">{{ $dish->pivot->quantity }}</td>
+                            <td scope="row"> {{ $dish->price }}</td>
+                            <td scope="row">{{($dish->pivot->quantity * $dish->price )}}</td>
+                    @endforeach
 
-                {{-- Totale piatti --}}
-                <li class="my-4"><span class="info">Totale piatti: </span>{{ $order->total_goods }}</li>
+                </tbody>
+            </table>
 
-                {{-- Totale € --}}
-                <li class="my-4"><span class="info">Totale: </span>{{ number_format($order->total, 2, '.', '') }} €
-                </li>
-
-                {{-- Saldato  --}}
-                    {{-- <li class="my-4"><span class="info">Pagamento: </span>
-                        @if ($order->is_paid)
-                            <span>Il cliente ha saldato il conto</span>
-                        @else
-                        <span>Il cliente non ha saldato il conto</span>
-        
-                        @endif
-                    </li> --}}
-
-            </ul>
         </div>
     @endsection

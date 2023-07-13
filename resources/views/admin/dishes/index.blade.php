@@ -5,7 +5,7 @@
     <div class="wrapper p-5">
 
         <h2>I Piatti del tuo ristorante: <span class="info">{{ Auth::user()->name }}</span></h2>
-        <h3>Piatti totali: <span class="info">{{$dishes->count()}}</span></h3>
+        {{-- <h3>Piatti totali: <span class="info">{{$dishes->count()}}</span></h3> --}}
 
 
         <div class="d-flex justify-content-end">

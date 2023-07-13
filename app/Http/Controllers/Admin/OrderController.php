@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 use App\Models\Restaurant;
+use Illuminate\Pagination\Paginator;
 use PhpParser\Node\Expr\Cast\Array_;
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class OrderController extends Controller
 {
@@ -17,29 +20,48 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $dishes = Dish::where('restaurant_id', Auth::user()->restaurant->id)->get();
-        $orders = [];
-
+        $orders = collect();
 
         foreach ($dishes as $dish) {
             $dish_orders = $dish->orders;
-            // dd($dish_orders);
 
             foreach ($dish_orders as $order) {
                 $orderId = $order->id;
-                $existingOrder = collect($orders)->first(function ($item) use ($orderId) {
+                $existingOrder = $orders->first(function ($item) use ($orderId) {
                     return $item->id === $orderId;
                 });
 
                 if (!$existingOrder) {
-                    $orders[] = $order;
+                    $orders->push($order);
                 }
             }
         }
-        return view('admin.orders.index', compact('orders'));
+        $orderedOrders = $orders->sortByDesc('created_at');
+        $paginatedOrders = $this->paginateCollection($orderedOrders, 5);
+
+
+        return view('admin.orders.index', compact('paginatedOrders'));
     }
+
+    private function paginateCollection($collection, $perPage)
+    {
+        $currentPage = Paginator::resolveCurrentPage() ?: 1;
+        $currentPageItems = $collection->slice(($currentPage - 1) * $perPage, $perPage);
+        $paginatedItems = new LengthAwarePaginator(
+            $currentPageItems,
+            $collection->count(),
+            $perPage,
+            $currentPage,
+            ['path' => Paginator::resolveCurrentPath()]
+        );
+
+        return $paginatedItems;
+    }
+
 
 
     /**
@@ -69,9 +91,21 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show($id)
     {
-        return view('admin.orders.show', compact('order'));
+        $order = Order::find($id);
+        $dishes_price = collect();
+
+        if ($order->dishes[0]->restaurant->id == Auth::user()->restaurant->id) {
+            foreach ($order->dishes as $dish) {
+                $single_price = $dish->price;
+                $dishes_price->push($single_price);
+            }
+            // dd($dishes_price);
+            return view('admin.orders.show', compact('order', 'dishes_price'));
+        } else {
+            return view('errors.403');
+        }
     }
 
     /**

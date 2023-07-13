@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-
-@include('admin.partials.messages')
+    @include('admin.partials.messages')
 
     <div class="wrapper p-5">
 
@@ -23,7 +22,7 @@
                             <td scope="row">{{ $item->restaurant_name }}</td>
                             <td scope="row">
                                 @foreach ($item->categories as $category)
-                                    {{ $category->category_name }} {{ ($loop->last? '' : ',') }}
+                                    {{ $category->category_name }} {{ $loop->last ? '' : ',' }}
                                 @endforeach
                             </td>
                             <td scope="row" class="d-flex justify-content-center">
@@ -33,14 +32,6 @@
                                 <a class="btn btn-warning mx-1" href="{{ route('admin.restaurants.edit', $item->slug) }}">
                                     Modifica
                                 </a>
-                                {{-- <form action="{{ route('admin.restaurants.destroy', $item->slug) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('Vuoi cancellare il ristorante? Sei sicuro?')">
-                                    Elimina
-                                </button>
-                            </form> --}}
                             </td>
                         </tr>
                     @endif
@@ -50,8 +41,6 @@
         </table>
         <a href="{{ route('admin.categories.index') }}" class="btn btn-info">Vai alle categorie</a>
     </div>
-    
-    
 @endsection
 
 @section('script')
