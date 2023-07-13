@@ -7,6 +7,7 @@ use App\Models\Dish;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
+use App\Models\Restaurant;
 use PhpParser\Node\Expr\Cast\Array_;
 
 class OrderController extends Controller
@@ -18,26 +19,28 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $dishes = Dish::where('restaurant_id', Auth::user()->restaurant->id)->get();
+        $orders = [];
 
-        // Recupera tutti gli ordini
-        $orders = Dish::where('restaurant_id', Auth::user()->restaurant->id)->get();
-        $dishes = Dish::with(['orders']);
 
-        $dishes->whereHas('orders', function ($query) use ($orders) {
-            $query->whereIn('order_id', $orders);
-        });
+        foreach ($dishes as $dish) {
+            $dish_orders = $dish->orders;
+            // dd($dish_orders);
 
-        dd($dishes);
-        $array_vuoto = Array();
-        // dd($orders);
-        foreach ($orders as $pippo) {
-            
+            foreach ($dish_orders as $order) {
+                $orderId = $order->id;
+                $existingOrder = collect($orders)->first(function ($item) use ($orderId) {
+                    return $item->id === $orderId;
+                });
+    
+                if (!$existingOrder) {
+                    $orders[] = $order;
+                }
+            }
         }
-
-       
-        // Passa i dati degli ordini alla vista
         return view('admin.orders.index', compact('orders'));
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -24,8 +24,6 @@ Route::get('restaurants/{slug}', [RestaurantController::class, 'show']);
 Route::get('dishes', [DishController::class, 'index']);
 Route::get('dishes/{slug}', [DishController::class, 'show']);
 Route::get('categories', [CategoryController::class, 'index']);
-Route::post('orders', [OrderController::class, 'store']);
-Route::get('orders/{id}', [OrderController::class, 'show']);
 
 Route::get('generate/token', [PaymentController::class, 'tokenGenerate']);
 Route::post('make/payment', [PaymentController::class, 'makePayment']);

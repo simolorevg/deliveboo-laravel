@@ -33,6 +33,11 @@
                 <label for="description" class="info col-md-4 col-form-label">Descrizione </label>
                 <div class="col-md-6 div-input">
                     <textarea class="form-control" id="description" rows="3" name='description'>{{ old('description', $dish->description) }}</textarea>
+                    @error('description')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 {{-- Ingredienti --}}
@@ -40,7 +45,11 @@
                         *</span></label>
                 <div class="col-md-6 div-input">
                     <textarea class="form-control" id="ingredients" rows="2" name='ingredients' required>{{ old('ingredients', $dish->ingredients) }}</textarea>
-
+                    @error('ingredients')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 {{-- Prezzo --}}
@@ -48,6 +57,11 @@
                 <div class="col-md-6 div-input">
                     <input class="form-control" type="number" name="price" id="price" step="0.1" min="0"
                         value="{{ old('price', $dish->price) }}" required>
+                    @error('price')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 {{-- Disponibilità --}}
@@ -58,6 +72,11 @@
                     </label>
                     <input class="form-check-input" type="checkbox" id="is_available" name="is_available" value="1"
                         {{ $dish->is_available ? '' : 'checked' }}>
+                    @error('is_available')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
 

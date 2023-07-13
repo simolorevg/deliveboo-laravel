@@ -28,18 +28,17 @@ class PaymentController extends Controller
     public function makePayment(OrderRequest $request, Gateway $gateway)
     {
 
-        // dd($request);
         $total = 0;
-
         $idArray = collect($request->products)->pluck('dish_id')->toArray();
         $quantityArray = collect($request->products)->pluck('quantity')->toArray();
         $dishesArray = Dish::whereIn('id', $idArray)->get();
 
-        foreach($dishesArray as $key => $carlo ){
-            $total += $carlo->price * $quantityArray[$key] ;
+        foreach ($dishesArray as $key => $dish) {
+            $total += $dish->price * $quantityArray[$key];
         }
 
         
+        // dd($request->token);
         $result = $gateway->transaction()->sale([
             "amount" => $total,
             "paymentMethodNonce" => $request->token, //token che genererà il front con js
@@ -47,25 +46,6 @@ class PaymentController extends Controller
                 'submitForSettlement' => true
             ],
         ]);
-
-        //ESEMPIO
-        // if ($result->success) { 
-        //     $data = [
-        //         'success' => true,
-        //         'message' => 'Transazione completata',
-        //         'order_details' => 'I dettagli dell\'ordine che hai salvato nel database',
-        //         'transaction_id' => $result->transaction->id,
-        //     ];
-        //     return response()->json($data, 200);
-
-        // } else {
-        //     $data = [
-        //         'success' => false,
-        //         'message' => 'Transazione rifiutata',
-        //     ];
-        //     return response()->json($data, 40);
-        // }
-
 
         if ($result->success) {
             // Creazione di un nuovo ordine
@@ -79,13 +59,13 @@ class PaymentController extends Controller
 
             // Aggiunta dei piatti all'ordine
             $dishes = $request->products;
+            // dd($dishes);
+
             foreach ($dishes as $dish) {
                 $dishId = $dish['dish_id'];
                 $quantity = $dish['quantity'];
 
-                $order->dishes()->attach($dishId, [
-                    'quantity' => $quantity,
-                ]);
+                $order->dishes()->attach($dishId, ['quantity' => $quantity   ]);
             }
 
             $data = [

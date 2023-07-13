@@ -29,10 +29,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('restaurants', RestaurantController::class)->parameters(['restaurants' => 'restaurant:slug']);
     Route::resource('dishes', DishController::class)->parameters(['dishes' => 'dish:slug']);
     Route::resource('categories', CategoryController::class)->parameters(['categories' => 'category:slug']);
-    Route::resource('orders', OrderController::class)->only(['index', 'show', 'destroy']);
+    Route::resource('orders', OrderController::class)->parameters(['orders' => 'order'])->only(['index', 'show', 'destroy']);
+
 });
 
 require __DIR__ . '/auth.php';
-// Route::get('orders/stat', function (){return view ('orders.stat');} )->name('stat');
-
-// Route::resource('orders', OrderController::class)->names('orders');

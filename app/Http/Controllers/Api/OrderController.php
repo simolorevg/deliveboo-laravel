@@ -27,7 +27,6 @@ class OrderController extends Controller
 
         // Crea un nuovo ordine
         $order = new Order();
-        $order->slug = 'jhoff-ff';
         $order->guest_name = $validatedData['guest_name'];
         $order->guest_lastname = $validatedData['guest_lastname'];
         $order->guest_address = $validatedData['guest_address'];
