@@ -881,7 +881,10 @@ public function store(Request $request)
 
 composer require braintree/braintree_php
 
-composer i 
+composer i
+
+npm install --save braintree-web
+//sul front end
 
 // chiudere e riaprire vs per bug
 //in ENV
