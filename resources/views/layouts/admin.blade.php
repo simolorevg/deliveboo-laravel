@@ -93,7 +93,7 @@
                                  <li class="nav-item text-white">
                                      <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.orders.create' ? 'bg-secondary' : '' }}"
                                      href="{{ route('admin.orders.index') }}">
-                                     <i class="fa-regular fa-folder-open mx-2" style="color: rgb(240, 150, 5);"></i>
+                                     <i class="fa-regular fa-folder-open mx-2" style="color: rgb(240, 150, 5);"></i> I TUOI
                                      ORDINI
                                      
                                     </a>

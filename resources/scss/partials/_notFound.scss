@@ -2,289 +2,142 @@ $p: 12px;
 $easeOutCubic: cubic-bezier(0.215, 0.610, 0.355, 1.000);
 $easeOutExpo: cubic-bezier(0.190, 1.000, 0.220, 1.000);
 
+.bl_wrapper {
+    margin: 0 auto;
+    max-width: 60vw;
 
-#notfound {
-    display: flex;
-    background-color: black;
-    flex-flow: row wrap;
-    align-items: center;
-    align-content: center;
-    width: 100%;
-    height: 100vh;
-    padding: $p;
-    perspective: 1000px;
-
-    >div {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-
-        svg {
-            height: 100%;
-        }
-
-        &:nth-child(1) {
-            opacity: 0;
-            transform: translateZ(1000px);
-            animation: zoomFadeIn 5000ms $easeOutCubic forwards;
-            transform-origin: center center;
-
-            .error-1-e {
-                transform: translateX(-50%);
-                animation: slideRight 3000ms $easeOutCubic -500ms forwards;
-            }
-
-            .error-2-r {
-                transform: translateY(-20%);
-                animation: slideDown 5000ms $easeOutCubic -500ms forwards;
-            }
-
-            .error-4-o {
-                transform: translateX(10%);
-                animation: slideLeftSmall 3000ms $easeOutCubic -300ms forwards;
-            }
-
-            .error-5-r {
-                transform: translateX(50%);
-                animation: slideLeft 3000ms $easeOutCubic -500ms forwards;
-            }
-
-            .error-2-0 {
-                transform: translateY(20%);
-                animation: slideUp 5000ms $easeOutCubic -500ms forwards;
-            }
-
-            .error-top {
-                transform: scaleX(0);
-                // transform-origin: center center;
-                transform-origin: 163px 3px;
-
-                // Extending time: 4.5s - Delay: 1.5s
-                animation: scaleXIn 4500ms $easeOutExpo 1500ms forwards;
-            }
-
-            .error-left {
-                transform: scaleX(0);
-                // transform-origin: right center;
-                transform-origin: 75px 3px;
-
-                // Extending time: 4.5s - Delay: 1.5s
-                animation: scaleXIn 4500ms $easeOutExpo 1500ms forwards;
-            }
-
-            .error-right {
-                transform: scaleX(0);
-                // transform-origin: left center;
-                transform-origin: 250px 3px;
-
-                // Extending time: 4.5s - Delay: 4.5s
-                animation: scaleXIn 4500ms $easeOutExpo 1500ms forwards;
-            }
-        }
-
-        &:nth-child(2) {
-
-            .quote-top,
-            .quote-bottom {
-                opacity: 0;
-
-                // Extending time: 1.5s - Delay: 4.75s
-                animation: slideUpFadeIn 1500ms $easeOutCubic 4750ms forwards;
-            }
-
-            .quote-bottom {
-                animation-delay: 5750ms;
-            }
-        }
-
-        &:nth-child(3) {
-
-            .link-phrase,
-            .link-mark {
-                opacity: 0;
-                animation: slideUpFadeIn 1000ms $easeOutCubic 6250ms forwards;
-            }
-
-            .link-mark {
-                opacity: 0;
-                animation: fadeIn 1000ms $easeOutCubic 6750ms forwards;
-            }
-
-            a {
-                cursor: pointer;
-                transition: all 500ms ease-out;
-
-                .top use {
-                    transition: all 150ms ease-out;
-                }
-
-                &:hover,
-                &:focus {
-                    animation: jitter 225ms ease-in-out 2 forwards;
-
-                    .top use {
-                        fill: white;
-                    }
-                }
-
-                &:active {
-                    .top use {
-                        fill: darken(#FF0000, 15%);
-                    }
-                }
-            }
-        }
-    }
-}
-
-@-moz-document url-prefix() {
-    main {
-        >div {
-            &:nth-child(3) {
-                a {
-
-                    &:hover,
-                    &:focus {
-                        animation: none;
-                    }
-                }
-            }
-        }
-    }
-}
-
-@keyframes slideDown {
-    0% {
-        transform: translateY(-20%);
+    #svg_tramp {
+        display: block;
+        height: 90vh;
+        margin: -30px auto 0;
     }
 
-    100% {
-        transform: none;
-    }
-}
-
-@keyframes slideUp {
-    0% {
-        transform: translateY(20%);
-    }
-
-    100% {
-        transform: none;
-    }
-}
-
-@keyframes slideRight {
-    0% {
-        transform: translateX(-50%);
+    .btn_home {
+        position: relative;
+        display: block;
+        width: 120px;
+        color: #fff;
+        font-weight: 700;
+        text-align: center;
+        margin: 0 auto;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #be6440;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: 0.2s all;
+        z-index: 3;
     }
 
-    100% {
-        transform: none;
-    }
-}
-
-@keyframes slideLeft {
-    0% {
-        transform: translateX(50%);
+    .btn_home:hover,
+    .btn_home:focus {
+        transition: 0.2s all;
+        color: #fff;
+        background-color: #f00;
     }
 
-    100% {
-        transform: none;
-    }
-}
-
-@keyframes slideLeftSmall {
-    0% {
-        transform: translateX(10%);
+    .text_forgiveness {
+        font-size: 20px;
+        font-family: "Permanent Marker", cursive;
+        stroke: #525250;
+        stroke-miterlimit: 10;
     }
 
-    100% {
-        transform: none;
-    }
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
+    .st2 {
+        fill: #be6440;
     }
 
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes slideUpFadeIn {
-    0% {
-        transform: translateY(50%);
-        opacity: 0;
+    .st4 {
+        fill: #4a687d;
     }
 
-    100% {
-        transform: none;
-        opacity: 1;
-    }
-}
-
-@keyframes scaleXIn {
-    0% {
-        transform: scaleX(0);
+    .st6 {
+        fill: #b0b0b0;
     }
 
-    100% {
-        transform: none;
-    }
-}
-
-@keyframes zoomFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateZ(1000px);
+    .st7 {
+        fill: #ecba9d;
     }
 
-    100% {
-        opacity: 1;
-        transform: none;
-    }
-}
-
-@keyframes jitter {
-    0% {
-        transform: translateX(0px) translateY(0px);
-        opacity: 1;
+    .st10 {
+        fill: #a34426;
     }
 
-    10% {
-        transform: translateX(2px) translateY(2px);
-        opacity: 0.8;
+    .st13 {
+        fill: #eceaea;
     }
 
-    20% {
-        transform: translateX(0px) translateY(0px);
-        opacity: 0.47;
+    .st15 {
+        fill: #384f64;
     }
 
-    30% {
-        transform: translateX(0px) translateY(2px);
-        opacity: 0.3;
+    .st24 {
+        fill: #a74929;
     }
 
-    70% {
-        transform: translateX(-1px) translateY(1px);
-        opacity: 0.96;
+    .st25 {
+        fill: #903820;
     }
 
-    80% {
-        transform: translateX(0px) translateY(-2px);
-        opacity: 0.9;
+    .st34 {
+        fill: #545454;
     }
 
-    90% {
-        transform: translateX(1px) translateY(-2px);
-        opacity: 0.81;
+    .st35 {
+        fill: #8d361f;
     }
 
-    100% {
-        transform: translateX(0) translateY(0);
-        opacity: 1;
+    .st38 {
+        fill: #ccd0d3;
+    }
+
+    .st39 {
+        fill: #cacfd1;
+    }
+
+    .st40 {
+        fill: #caced1;
+    }
+
+    .st43 {
+        fill: #b8c0c4;
+    }
+
+    .st44 {
+        fill: #b9c0c5;
+    }
+
+    .st49 {
+        fill: #b9c0c4;
+    }
+
+    .st55 {
+        fill: #b8c0c3;
+    }
+
+    .st60 {
+        fill: #2e3192;
+    }
+
+    .st61 {
+        fill: none;
+        stroke: #c1bfc0;
+        stroke-miterlimit: 10;
+    }
+
+    .st62 {
+        fill: #525250;
+    }
+
+    .aboutMe a {
+        display: block;
+        width: 30%;
+        position: fixed;
+        bottom: 0.1%;
+        left: 20px;
+        color: rgba(0, 0, 0, 0.8);
+        font-size: 1.5em;
+        font-family: "Roboto", sans-serif;
+        text-decoration: none;
     }
 }

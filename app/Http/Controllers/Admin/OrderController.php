@@ -32,7 +32,7 @@ class OrderController extends Controller
                 $existingOrder = collect($orders)->first(function ($item) use ($orderId) {
                     return $item->id === $orderId;
                 });
-    
+
                 if (!$existingOrder) {
                     $orders[] = $order;
                 }

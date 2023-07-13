@@ -21,7 +21,7 @@
         <tbody>
 
             @foreach ($orders as $item)
-                @if ($item->restaurant_id == Auth::user()->id)
+                {{-- @if ($item->restaurant_id == Auth::user()->id) --}}
                     <tr class="text-center">
                         <td scope="row">{{ $item->guest_name }}</td>
                         <td scope="row">{{ $item->guest_lastname }}</td>
@@ -31,18 +31,18 @@
                         <td scope="row">{{ $item->total_goods }}</td>
                         <td scope="row">{{ $item->total }}</td>
                         <td scope="row" class="d-flex justify-content-center">
-                            <a class="btn btn-primary mx-1"
+                            {{-- <a class="btn btn-primary mx-1"
                                 href="{{ route('admin.orders.show', $item->slug) }}">Visualizza</a>
                             <form class="d-inline-block" action="{{ route('admin.orders.destroy', $item->slug) }}"
                                 method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-delete"
-                                    data-dish-name="{{ $item->dish_name }}">Elimina</button>
+                                    data-dish-name="{{ $item->dish_name }}">Elimina</button> --}}
                             </form>
                         </td>
                     </tr>
-                @endif
+                {{-- @endif --}}
             @endforeach
         </tbody>
     </table>
