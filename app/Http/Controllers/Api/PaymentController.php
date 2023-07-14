@@ -4,11 +4,13 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
+use App\Mail\NewOrderMail;
 use App\Models\Dish;
 use App\Models\Order;
 use Braintree\Collection;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PaymentController extends Controller
 {
@@ -60,28 +62,31 @@ class PaymentController extends Controller
             // Aggiunta dei piatti all'ordine
             $dishes = $request->products;
             // dd($dishes);
-
+            
             foreach ($dishes as $dish) {
                 $dishId = $dish['dish_id'];
                 $quantity = $dish['quantity'];
-
-                $order->dishes()->attach($dishId, ['quantity' => $quantity   ]);
+                
+                $order->dishes()->attach($dishId, ['quantity' => $quantity]);
             }
-
+            
             $data = [
                 'message' => 'transizione effettuata',
                 'success' => true,
                 'data_confirm' => 'I dati sono stati salvati nel database.'
             ];
-        } else {
 
+            Mail::to('fedede@dsdf.it')->send(new NewOrderMail($order));
+
+        } else {
+            
             $data = [
                 'message' => 'transizione rifiutata',
                 'success' => false,
                 'data_confirm' => 'I dati non sono stati salvati nel database.'
             ];
         }
-
+        
         return response()->json($data);
     }
 }

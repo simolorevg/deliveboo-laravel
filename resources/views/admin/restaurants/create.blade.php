@@ -135,7 +135,7 @@
                 </form>
             </div>
         @else
-            <h5>Hai già un ristorante associato al tuo account</h5>
+            <h5 class="my-5 none">Hai già un ristorante associato al tuo account</h5>
     @endif
     </div>
 @endsection
