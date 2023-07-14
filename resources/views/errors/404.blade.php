@@ -180,10 +180,10 @@
     
     
     
-                <text transform="matrix(1 0 0 1 354 346)" class="text_forgiveness">Will</text>
+                <text transform="matrix(1 0 0 1 354 346)" class="text_forgiveness">Pagina</text>
                 <text transform="matrix(1 0 0 1 351 372)">
-                    <tspan x="0" y="0" class="text_forgiveness">code site</tspan>
-                    <tspan x="0" y="31" class="text_forgiveness">for food</tspan>
+                    <tspan x="0" y="0" class="text_forgiveness">non</tspan>
+                    <tspan x="0" y="31" class="text_forgiveness">trovata</tspan>
                 </text>
             </svg>
         </div>

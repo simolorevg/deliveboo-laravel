@@ -5,7 +5,15 @@
 
         <h2 class="mb-3">I tuoi ordini <span class="info">{{ Auth::user()->name }}</span></h2>
 
+        @if (count($paginatedOrders) === 0)
+            <h3 class="my-5 none">Spiacenti non hai ricevuto ancora nessun ordine, abbi fiducia, arriveranno...</h3>
+            
+        @else
+        <div class="my-4 d-flex justify-content-end">
 
+            <a class="btn btn-primary mx-1" href="{{ route('admin.orders.index') }}">Guarda le stats</a>
+        </div>
+            
         <table class="table table-dark table-hover table-striped">
             <thead>
                 <tr class="text-center">
@@ -45,8 +53,10 @@
             </tbody>
         </table>
         {{ $paginatedOrders->links() }}
+        @endif
 
 
-        @include('admin.partials.modal_delete')
+        
+        {{-- @include('admin.partials.modal_delete') --}}
     </div>
 @endsection

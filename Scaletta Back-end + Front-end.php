@@ -777,7 +777,7 @@ con questi router link una navbar diventa cosi:
         MAIL_USERNAME=d62614577a9ae7
         MAIL_PASSWORD=4a2e57b3df48b7
         MAIL_ENCRYPTION=null
-        MAIL_FROM_ADDRESS=federicocet@gmail.com 
+        MAIL_FROM_ADDRESS="federicocet@gmail.com "
         MAIL_FROM_NAME="${APP_NAME}"
 
        // occorre creare un oggetto mailable cosi:
@@ -785,7 +785,7 @@ con questi router link una navbar diventa cosi:
        
        php artisan make:mail NewPost
         
-       creare cartella emails in views e new-post-email.lade.php
+       creare cartella emails in views e new-post-email.blade.php
 
 
          //nel file NewPost.php inserire il metodo build cosi:

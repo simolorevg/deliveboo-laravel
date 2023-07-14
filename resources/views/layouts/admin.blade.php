@@ -4,6 +4,7 @@
      
      $restaurant = Restaurant::where('user_id', Auth::user()->id)->get();
      //    dd($restaurant);
+     
  @endphp
 
 
