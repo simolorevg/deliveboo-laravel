@@ -40,7 +40,7 @@
 
             </tbody>
         </table>
-        <a href="{{ route('admin.categories.index') }}" class="btn btn-info">Vai alle categorie</a>
+        {{-- <a href="{{ route('admin.categories.index') }}" class="btn btn-info">Vai alle categorie</a> --}}
     </div>
 @endsection
 

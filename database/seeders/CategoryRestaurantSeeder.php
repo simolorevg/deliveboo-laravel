@@ -16,7 +16,7 @@ class CategoryRestaurantSeeder extends Seeder
         $categories = Category::all();
 
         foreach ($restaurants as $restaurant) {
-            $categoryCount = rand(1, 4);
+            $categoryCount = rand(1, 2);
             $selectedCategories = $categories->random($categoryCount);
 
             $restaurant->categories()->attach($selectedCategories);

@@ -33,7 +33,7 @@ class NewOrderMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Nuovo ordine creato',
+            subject: 'Nuovo ordine',
         );
     }
 
@@ -47,7 +47,6 @@ class NewOrderMail extends Mailable
         return new Content(
             view: 'emails.new-order',
         );
-
     }
 
     /**
