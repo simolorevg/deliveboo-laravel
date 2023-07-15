@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class NewOrderMail extends Mailable
+class NewOrderRestaurant extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,13 +18,13 @@ class NewOrderMail extends Mailable
     /**
      * Create a new message instance.
      *
+     * @param  \App\Order  $order
      * @return void
      */
-    public function __construct($_order)
+    public function __construct($order)
     {
-        $this->order = $_order;
+        $this->order = $order;
     }
-
     /**
      * Get the message envelope.
      *
@@ -33,7 +33,7 @@ class NewOrderMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Nuovo ordine inviato',
+            subject: 'Nuovo ordine ricevuto',
         );
     }
 
@@ -45,10 +45,9 @@ class NewOrderMail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'emails.new-order-email',
+            view: 'emails.new-order-email-restaurant',
         );
     }
-    
 
     /**
      * Get the attachments for the message.

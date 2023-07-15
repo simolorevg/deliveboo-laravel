@@ -24,15 +24,12 @@
                     <th scope="col">Indirizzo</th>
                     <th scope="col">Telefono</th>
                     <th scope="col">Email</th>
-                    {{-- <th scope="col">Totale piatti</th> --}}
-                    {{-- <th scope="col">Totale €</th> --}}
                     <th scope="col">Azioni</th>
                 </tr>
             </thead>
             <tbody>
 
                 @foreach ($paginatedOrders as $item)
-                    {{-- @if ($item->restaurant_id == Auth::user()->id) --}}
                     <tr class="text-center">
                         <td scope="row">{{ $item->id }}</td>
                         <td scope="row">{{ $item->guest_name }}</td>
@@ -41,14 +38,10 @@
                         <td scope="row">{{ $item->guest_address }}</td>
                         <td scope="row">{{ $item->guest_phone }}</td>
                         <td scope="row">{{ $item->guest_mail }}</td>
-                        {{-- <td scope="row">{{ $item->total_goods }}</td> --}}
-                        {{-- <td scope="row">{{ $item->total }}</td> --}}
-                        {{-- <td scope="row">{{ $item->total }}</td> --}}
                         <td scope="row" class="d-flex justify-content-center">
                             <a class="btn btn-primary mx-1" href="{{ route('admin.orders.show', $item) }}">Visualizza</a>
                         </td>
                     </tr>
-                    {{-- @endif --}}
                 @endforeach
             </tbody>
         </table>

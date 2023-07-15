@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Mail\NewOrderMail;
+use App\Mail\NewOrderRestaurant;
 use App\Models\Dish;
 use App\Models\Order;
 use Braintree\Collection;
 use Braintree\Gateway;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+
 
 class PaymentController extends Controller
 {
@@ -39,7 +42,7 @@ class PaymentController extends Controller
             $total += $dish->price * $quantityArray[$key];
         }
 
-        
+
         // dd($request->token);
         $result = $gateway->transaction()->sale([
             "amount" => $total,
@@ -61,30 +64,42 @@ class PaymentController extends Controller
 
             // Aggiunta dei piatti all'ordine
             $dishes = $request->products;
-            
+
             foreach ($dishes as $dish) {
                 $dishId = $dish['dish_id'];
                 $quantity = $dish['quantity'];
-                
                 $order->dishes()->attach($dishId, ['quantity' => $quantity]);
             }
-            
+
             $data = [
                 "message" => "transizione effettuata",
                 "success" => true,
                 "data_confirm" => "I dati sono stati salvati nel database."
             ];
 
+
+            // Recupera l'indirizzo email del ristoratore
+
+            // Invia email di conferma al ristoratore
             Mail::to($request->guest_mail)->send(new NewOrderMail($order));
+
+            // Recupera il ristorante associato all'ordine
+            $restaurant = $order->dishes()->first()->restaurant;
+
+            // Recupera l'indirizzo email del ristoratore
+            $restaurantEmail = $restaurant->user->email;
+
+            // Invia email di conferma al ristoratore
+            Mail::to($restaurantEmail)->send(new NewOrderRestaurant($order));
         } else {
-            
+
             $data = [
                 "message"  => "transizione rifiutata",
                 "success" => false,
                 "data_confirm" =>  "I dati NON sono stati salvati nel database."
             ];
         }
-        
+
         return response()->json($data);
     }
 }

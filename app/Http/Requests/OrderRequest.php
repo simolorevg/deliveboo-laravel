@@ -25,7 +25,6 @@ class OrderRequest extends FormRequest
     {
         return [
             "token" => "required", //token che genera il frontend ma braintree ci simula il token con fake-valid-nonce
-            // "amount" => "required", //'prezzo, passare id del prodotto'
             "products" => "required",
             "guest_name" => "required",
             "guest_lastname" => "required",
