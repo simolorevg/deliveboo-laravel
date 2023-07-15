@@ -28,13 +28,13 @@
             {{-- Prezzo --}}
             <li class="my-4"><span class="info">Prezzo: </span>{{ number_format($dish->price, 2, '.', '') }} €</li>
 
-            {{-- Disponibilità --}}
-            <li class="my-4"><span class="info">Disponibile: </span>
+            {{-- Visibilità --}}
+            <li class="my-4"><span class="info">Disponibilità: </span>
                 @if ($dish->is_available)
-                    <span>Si 😏</span>
+                    <span> disponibile</span>
                     
                 @else
-                    <span>No 😪</span>
+                    <span>Non disponibile</span>
 
                 @endif
             </li>

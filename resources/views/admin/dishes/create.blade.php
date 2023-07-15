@@ -69,7 +69,7 @@
                 {{-- Disponibilità --}}
                 <div class="form-check my-3">
                     <label class="form-check-label info" for="is_available">
-                        Visibile
+                        Non disponibile
                     </label>
                     <input class="form-check-input" type="checkbox" name="is_available" value="1"
                         {{ $dish->is_available ? '' : 'checked' }} id="is_available">

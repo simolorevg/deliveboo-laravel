@@ -10,8 +10,8 @@
             
         @else
         <div class="my-4 d-flex justify-content-end">
+            <a class="btn btn-primary mx-1" href="{{ route('admin.order.stats', ['restaurant_id' => Auth::user()->restaurant->id]) }}">Vai alle statistiche degli ordini</a>
 
-            <a class="btn btn-primary mx-1" href="{{ route('admin.orders.index') }}">Guarda le stats</a>
         </div>
             
         <table class="table table-dark table-hover table-striped">

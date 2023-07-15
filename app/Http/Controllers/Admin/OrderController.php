@@ -12,6 +12,8 @@ use Illuminate\Pagination\Paginator;
 use PhpParser\Node\Expr\Cast\Array_;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -63,6 +65,62 @@ class OrderController extends Controller
     }
 
 
+    public function stats()
+    {
+        App::setLocale('it');
+        // Ottieni l'ID del ristorante autenticato
+        $restaurantId = Auth::user()->restaurant->id;
+
+        // Calcola le statistiche degli ordini per mese e anno del ristorante autenticato
+        $orderStats = DB::table('orders')
+            ->join('dish_order', 'orders.id', '=', 'dish_order.order_id')
+            ->join('dishes', 'dish_order.dish_id', '=', 'dishes.id')
+            ->where('dishes.restaurant_id', $restaurantId)
+            ->select(
+                DB::raw('YEAR(orders.created_at) as year'),
+                DB::raw('MONTH(orders.created_at) as month'),
+                DB::raw('COUNT(DISTINCT orders.id) as order_count'),
+                DB::raw('SUM(dish_order.quantity * dishes.price) as total_sales')
+            )
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'desc')
+            ->orderBy('month', 'desc')
+            ->get();
+
+        // Calcola il totale degli ordini e il totale delle vendite per mese e anno
+        $monthlyStats = [];
+        $yearlyStats = [];
+
+        foreach ($orderStats as $stat) {
+            $month = $stat->month;
+            $year = $stat->year;
+            $orderCount = $stat->order_count;
+            $totalSales = $stat->total_sales;
+
+            // Statistiche mensili
+            if (!isset($monthlyStats[$month])) {
+                $monthlyStats[$month] = [
+                    'order_count' => 0,
+                    'total_sales' => 0
+                ];
+            }
+            $monthlyStats[$month]['order_count'] += $orderCount;
+            $monthlyStats[$month]['total_sales'] += $totalSales;
+
+            // Statistiche annuali
+            if (!isset($yearlyStats[$year])) {
+                $yearlyStats[$year] = [
+                    'order_count' => 0,
+                    'total_sales' => 0
+                ];
+            }
+            $yearlyStats[$year]['order_count'] += $orderCount;
+            $yearlyStats[$year]['total_sales'] += $totalSales;
+        }
+
+        return view('admin.orders.stats', compact('monthlyStats', 'yearlyStats'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -71,7 +129,6 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -130,6 +187,7 @@ class OrderController extends Controller
     {
         //
     }
+
 
     /**
      * Remove the specified resource from storage.

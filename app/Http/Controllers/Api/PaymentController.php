@@ -52,16 +52,15 @@ class PaymentController extends Controller
         if ($result->success) {
             // Creazione di un nuovo ordine
             $order = Order::create([
-                'guest_name' => $request->guest_name,
-                'guest_lastname' => $request->guest_lastname,
-                'guest_address' => $request->guest_address,
-                'guest_phone' => $request->guest_phone,
-                'guest_mail' => $request->guest_mail,
+                "guest_name" => $request->guest_name,
+                "guest_lastname" => $request->guest_lastname,
+                "guest_address" => $request->guest_address,
+                "guest_phone" => $request->guest_phone,
+                "guest_mail" => $request->guest_mail,
             ]);
 
             // Aggiunta dei piatti all'ordine
             $dishes = $request->products;
-            // dd($dishes);
             
             foreach ($dishes as $dish) {
                 $dishId = $dish['dish_id'];
@@ -71,19 +70,18 @@ class PaymentController extends Controller
             }
             
             $data = [
-                'message' => 'transizione effettuata',
-                'success' => true,
-                'data_confirm' => 'I dati sono stati salvati nel database.'
+                "message" => "transizione effettuata",
+                "success" => true,
+                "data_confirm" => "I dati sono stati salvati nel database."
             ];
 
-            Mail::to('fedede@dsdf.it')->send(new NewOrderMail($order));
-
+            Mail::to($request->guest_mail)->send(new NewOrderMail($order));
         } else {
             
             $data = [
-                'message' => 'transizione rifiutata',
-                'success' => false,
-                'data_confirm' => 'I dati non sono stati salvati nel database.'
+                "message"  => "transizione rifiutata",
+                "success" => false,
+                "data_confirm" =>  "I dati NON sono stati salvati nel database."
             ];
         }
         

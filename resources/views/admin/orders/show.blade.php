@@ -14,7 +14,7 @@
             <table class="table table-dark table-hover table-striped">
                 <thead>
                     <tr class="text-center">
-                        <th scope="col">N. </th>
+                        <th scope="col">Id piatto </th>
                         <th scope="col">Nome Piatto </th>
                         <th scope="col">Quantità </th>
                         <th scope="col">Prezzo unitario €</th>
