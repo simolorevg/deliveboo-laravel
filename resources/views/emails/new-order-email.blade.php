@@ -27,12 +27,19 @@
             <th scope="col">Nome </th>
             <th scope="col">Quantità </th>
             <th scope="col">Prezzo unitario €</th>
-            <th scope="col">Totale €</th>
+            <th scope="col">Pariale €</th>
         </tr>
     </thead>
     <tbody>
+        @php
+            $totalParziale = 0;
+        @endphp
 
         @foreach ($order->dishes as $item)
+            @php
+                $parziale = $item->pivot->quantity * $item->price;
+                $totalParziale += $parziale;
+            @endphp
             <tr class="text-center">
                 <td class="text-center" scope="row">{{ $item->dish_name }}</td>
                 <td class="text-center" scope="row">{{ $item->pivot->quantity }}</td>
@@ -40,6 +47,10 @@
                 <td class="text-center" scope="row">{{ $item->pivot->quantity * $item->price }}</td>
             </tr>
         @endforeach
+        <tr class="text-center">
+            <td colspan="3"><strong class="total ">Totale €</strong></td>
+            <td class="text-center"><strong>{{ $totalParziale }}</strong></td>
+        </tr>
     </tbody>
 </table>
 
@@ -62,5 +73,10 @@
     td {
         border: 1px solid black;
         padding: 8px;
+    }
+
+    .total {
+        display: flex;
+        justify-content: center;
     }
 </style>
