@@ -68,6 +68,13 @@ class OrderController extends Controller
 
     public function stats(Request $request, $restaurant_id)
     {
+
+        // Verifica se l'utente autenticato è il proprietario del ristorante
+        $restaurant = Restaurant::findOrFail($restaurant_id);
+        if (Auth::user()->id !== $restaurant->user_id) {
+            return view('errors.403');
+        }
+
         // Ottieni l'ID del ristorante autenticato
         $restaurantId = Auth::user()->restaurant->id;
 
