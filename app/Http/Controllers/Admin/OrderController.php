@@ -65,14 +65,19 @@ class OrderController extends Controller
     }
 
 
-    public function stats()
+
+    public function stats(Request $request, $restaurant_id)
     {
-        App::setLocale('it');
         // Ottieni l'ID del ristorante autenticato
         $restaurantId = Auth::user()->restaurant->id;
 
-        // Calcola le statistiche degli ordini per mese e anno del ristorante autenticato
-        $orderStats = DB::table('orders')
+        // Ottenere il mese selezionato dall'utente
+        $selectedMonth = $request->input('month');
+        $selectedYear = $request->input('year');
+
+
+        // Costruire la query per le statistiche degli ordini
+        $query = DB::table('orders')
             ->join('dish_order', 'orders.id', '=', 'dish_order.order_id')
             ->join('dishes', 'dish_order.dish_id', '=', 'dishes.id')
             ->where('dishes.restaurant_id', $restaurantId)
@@ -84,10 +89,21 @@ class OrderController extends Controller
             )
             ->groupBy('year', 'month')
             ->orderBy('year', 'desc')
-            ->orderBy('month', 'desc')
-            ->get();
+            ->orderBy('month', 'desc');
 
-        // Calcola il totale degli ordini e il totale delle vendite per mese e anno
+        // Applicare il filtro per il mese se è stato selezionato
+        if ($selectedMonth) {
+            $query->whereMonth('orders.created_at', $selectedMonth);
+        }
+
+        if ($selectedYear) {
+            $query->whereYear('orders.created_at', $selectedYear);
+        }
+
+        // Eseguire la query per ottenere le statistiche degli ordini
+        $orderStats = $query->get();
+
+        // Calcolare il totale degli ordini e il totale delle vendite per mese e anno
         $monthlyStats = [];
         $yearlyStats = [];
 
@@ -118,7 +134,7 @@ class OrderController extends Controller
             $yearlyStats[$year]['total_sales'] += $totalSales;
         }
 
-        return view('admin.orders.stats', compact('monthlyStats', 'yearlyStats'));
+        return view('admin.orders.stats', compact('monthlyStats', 'yearlyStats', 'selectedMonth', 'selectedYear', 'restaurant_id'));
     }
 
 

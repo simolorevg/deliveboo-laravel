@@ -30,7 +30,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('dishes', DishController::class)->parameters(['dishes' => 'dish:slug']);
     Route::resource('categories', CategoryController::class)->parameters(['categories' => 'category:slug']);
     Route::resource('orders', OrderController::class)->parameters(['orders' => 'order']);
-    Route::get('order/stats/{restaurant_id}', [OrderController::class, 'stats'])->name('order.stats');
+    Route::get('orders/stats/{restaurant_id}', [OrderController::class, 'stats'])->name('order.stats');
+
 
 
 
