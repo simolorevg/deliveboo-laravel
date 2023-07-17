@@ -31,9 +31,9 @@ class UpdateRestaurantRequest extends FormRequest
                 'max:40',
                 Rule::unique('restaurants')->ignore($this->restaurant->id)
             ],
-            'city' => 'required|string',
-            'address' => 'required|string',
-            'phone' => 'required|string',
+            'city' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
             'category_id' => ['required', 'exists:categories,id'],
             'thumb' => 'nullable',
             'closure_day'=> 'nullable'

@@ -1,8 +1,11 @@
  {{-- Gestiamo il blocco dashboard per la creazione del ristorante e lo facciamo apparire solo se l'utente non ha ancora creato un ristorante  --}}
  @php
- $restaurant = optional(Auth::user()->restaurant);
-@endphp
-
+     use App\Models\Restaurant;
+     
+     $restaurant = Restaurant::where('user_id', Auth::user()->id)->get();
+     //    dd($restaurant);
+     
+ @endphp
 
 
  <!doctype html>
@@ -72,7 +75,7 @@
                                  </a>
                              </li>
 
-                             @if ($restaurant)
+                             @if (count($restaurant) != 0)
                                  <li class="nav-item text-white">
                                      <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.restaurants.index' ? 'bg-secondary' : '' }}"
                                          href="{{ route('admin.restaurants.index') }}">
