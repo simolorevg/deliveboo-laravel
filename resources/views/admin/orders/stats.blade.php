@@ -140,7 +140,7 @@
                         let month = index + 1;
                         return monthlyStats[month] ? monthlyStats[month].order_count : 0;
                     });
-                    let totalSalesData = Array.from({
+                    totalSalesData = Array.from({
                         length: 12
                     }, function(_, index) {
                         let month = index + 1;

@@ -25,7 +25,7 @@
                 <tbody>
 
                     @foreach ($dishes as $item)
-                        @if ($item->restaurant_id == Auth::user()->id)
+                        @if ($item->restaurant_id == Auth::user()->restaurant->id)
                             <tr class="text-center">
                                 {{-- <td scope="row">{{ $item->id }}</td> --}}
                                 <td scope="row">{{ $item->dish_name }}</td>
