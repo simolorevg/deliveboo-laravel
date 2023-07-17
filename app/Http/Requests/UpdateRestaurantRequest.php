@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRestaurantRequest extends FormRequest
 {
@@ -24,7 +25,12 @@ class UpdateRestaurantRequest extends FormRequest
     public function rules()
     {
         return [
-            'restaurant_name' => ['required', 'min:5', 'max:40'],
+            'restaurant_name' => [
+                'required',
+                'min:5',
+                'max:40',
+                Rule::unique('restaurants')->ignore($this->restaurant->id)
+            ],
             'city' => 'required|string',
             'address' => 'required|string',
             'phone' => 'required|string',
@@ -39,7 +45,7 @@ class UpdateRestaurantRequest extends FormRequest
             'restaurant_name.required' => 'Il nome del ristorante è richiesto',
             'restaurant_name.min' => 'Il nome del ristorante deve avere un minimo di :min caratteri',
             'restaurant_name.max' => 'Il nome del ristorante non può avere più di :max caratteri',
-            'restaurant_name.unique' => 'Nome ristorante già utilizzato.',
+            'restaurant_name.unique' => 'Il nome del ristorante è già stato utilizzato',
             'city.required' => 'La città è richiesta',
             'address.required' => 'Indirizzo obbligatorio',
             'phone.required' => 'Il numero di telefono è richiesto'

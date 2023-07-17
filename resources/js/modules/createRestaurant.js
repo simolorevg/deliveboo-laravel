@@ -1,6 +1,7 @@
 // funzione per far scomparire create/edit/delete il messaggio progressivamente
 
 const finalMessage = document.getElementById('final-message');
+console.log(finalMessage);
 if (finalMessage) {
   console.log(finalMessage);
   function disappear() {

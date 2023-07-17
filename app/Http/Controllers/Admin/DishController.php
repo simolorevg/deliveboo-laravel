@@ -26,7 +26,6 @@ class DishController extends Controller
         // dd($dishes);
 
         return view('admin.dishes.index', compact('dishes'));
-
     }
 
 
@@ -46,11 +45,11 @@ class DishController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDishRequest $request)
     {
 
         // creazione piatto
-        $data = $request->all();
+        $data = $request->validated();
         $dishName = $data['dish_name'];
         $restaurantId = Auth::user()->restaurant->id;
 
@@ -136,11 +135,11 @@ class DishController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dish $dish)
+    public function update(UpdateDishRequest $request, Dish $dish)
     {
         //aggiornamento dati
 
-        $data = $request->all();
+        $data = $request->validated();
         $data['slug'] = Str::slug($data['dish_name']);
 
         // Verifica se il checkbox è stato inviato e selezionato

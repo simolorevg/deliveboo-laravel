@@ -3,7 +3,6 @@
     @include('admin.partials.messages')
 
     <div class="wrapper p-5">
-
         <h2 class="mb-5">Il ristorante di {{ Auth::user()->name }}</h2>
         
         <table class="table table-dark table-hover table-striped text-center">
