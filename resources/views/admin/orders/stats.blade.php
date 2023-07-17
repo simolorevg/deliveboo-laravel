@@ -127,29 +127,29 @@
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    var monthlyStats = @json($monthlyStats);
-                    var italianMonths = @json($italianMonths);
-                    var totalSalesData = Object.values(monthlyStats).map(function(monthData) {
+                    let monthlyStats = @json($monthlyStats);
+                    let italianMonths = @json($italianMonths);
+                    let totalSalesData = Object.values(monthlyStats).map(function(monthData) {
                         return monthData.total_sales;
                     });
 
-                    var monthLabels = Object.values(italianMonths);
-                    var orderCountData = Array.from({
+                    let monthLabels = Object.values(italianMonths);
+                    let orderCountData = Array.from({
                         length: 12
                     }, function(_, index) {
-                        var month = index + 1;
+                        let month = index + 1;
                         return monthlyStats[month] ? monthlyStats[month].order_count : 0;
                     });
-                    var totalSalesData = Array.from({
+                    let totalSalesData = Array.from({
                         length: 12
                     }, function(_, index) {
-                        var month = index + 1;
+                        let month = index + 1;
                         return monthlyStats[month] ? monthlyStats[month].total_sales : 0;
                     });
 
 
-                    var ctx = document.getElementById('monthlyChart').getContext('2d');
-                    var chart = new Chart(ctx, {
+                    let ctx = document.getElementById('monthlyChart').getContext('2d');
+                    let chart = new Chart(ctx, {
                         type: 'bar',
                         data: {
                             labels: monthLabels,
