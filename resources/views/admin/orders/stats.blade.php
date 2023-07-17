@@ -44,7 +44,7 @@
                 <div class="form-group">
                     <label class="info col-md-4 col-form-label" for="year">Anno:</label>
                     <select name="year" id="year" class="form-control col-md-4">
-                        <option value="">Tutti</option>
+                        <option value="">-</option>
                         @php
                             $currentYear = date('Y');
                             $startYear = 2023;

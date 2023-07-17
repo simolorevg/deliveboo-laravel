@@ -9,14 +9,14 @@
 
     @if (count($restaurant) == 0)
         <div class="container-create-restaurant card">
-            <div class="card-header text-center" >
+            <div class="card-header text-center">
                 <h4>Crea il tuo ristorante</h4>
             </div>
-            
+
             <div class="mx-5 card-body">
 
-                <form class="form d-flex flex-column" action="{{ route('admin.restaurants.store') }}" method="POST" id="create-restaurant"
-                    enctype="multipart/form-data">
+                <form class="form d-flex flex-column" action="{{ route('admin.restaurants.store') }}" method="POST"
+                    id="create-restaurant" enctype="multipart/form-data">
                     @csrf
 
                     {{-- nome ristorante --}}
@@ -34,8 +34,7 @@
                     </div>
 
                     {{-- città --}}
-                    <label class="info col-md-4 col-form-label" for="city">Città: <span
-                            class="need">*</span></label>
+                    <label class="info col-md-4 col-form-label" for="city">Città: <span class="need">*</span></label>
                     <div class="col-md-6 div-input">
 
                         <input type="text" class="form-control @error('city') is-invalid @enderror" name="city"
@@ -99,15 +98,19 @@
                     {{-- categorie --}}
                     <p class="info col-md-4 col-form-label">Categorie: <span class="need">*</span></p>
                     <div class="col-md-6 div-input">
-                        <span class="error-category my-2 d-none">Selezione almeno una categoria </span>
+                        <span class="error-category my-2 d-none">Selezione almeno una categoria</span>
                         <div class="btn-group d-flex flex-wrap mb-4 gap-2" id="checkboxGroup" role="group"
                             aria-label="basic checkbox toggle button group">
                             @foreach ($categories as $category)
+                                @php
+                                    $isChecked = in_array($category->id, old('category_id', []));
+                                @endphp
                                 <input type="checkbox" class="btn-check create @error('category_id') is-invalid @enderror"
                                     id="{{ $category->category_name }}" autocomplete="off" name="category_id[]"
-                                    value="{{ $category->id }}" @checked(in_array($category->id, old('categories', [])))>
-                                <label class="btn btn-outline-primary " for="{{ $category->category_name }}">
-                                    {{ $category->category_name }}</label>
+                                    value="{{ $category->id }}" {{ $isChecked ? 'checked' : '' }}>
+                                <label class="btn btn-outline-primary" for="{{ $category->category_name }}">
+                                    {{ $category->category_name }}
+                                </label>
                             @endforeach
                             @error('category_id')
                                 <div class="invalid-feedback">
@@ -117,8 +120,10 @@
                         </div>
                     </div>
 
+
                     {{-- immagine --}}
-                    <label for="image-input-createR" class="info form-label">Carica logo:</label>                    <div class="col-md-6 div-input">
+                    <label for="image-input-createR" class="info form-label">Carica logo:</label>
+                    <div class="col-md-6 div-input">
                         <input type="file" class="form-control" id="image-input-createR" name="thumb">
                         {{-- preview --}}
                         <div class="d-flex justify-content-center my-3">
@@ -127,10 +132,10 @@
                         </div>
                     </div>
 
-                        <div class="d-flex justify-content-center gap-2 ">
-                            <button type="submit" id="btn-create" class="btn btn-primary">Crea</button>
-                            <a href="{{ route('admin.dashboard') }}" class="btn btn-warning">Annulla</a>
-                        </div>
+                    <div class="d-flex justify-content-center gap-2 ">
+                        <button type="submit" id="btn-create" class="btn btn-primary">Crea</button>
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-warning">Annulla</a>
+                    </div>
 
                 </form>
             </div>
