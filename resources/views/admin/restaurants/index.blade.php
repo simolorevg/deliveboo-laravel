@@ -26,12 +26,12 @@
                                     {{ $category->category_name }} {{ $loop->last ? '' : ',' }}
                                 @endforeach
                             </td>
-                            <td scope="row" class="d-flex justify-content-center">
-                                <a class="btn btn-success mx-1" href="{{ route('admin.restaurants.show', $item->slug) }}">
-                                    Dettagli
+                            <td scope="row" class="align-middle">
+                                <a class="btn btn-success m-1" href="{{ route('admin.restaurants.show', $item->slug) }}">
+                                    &#128065;
                                 </a>
-                                <a class="btn btn-warning mx-1" href="{{ route('admin.restaurants.edit', $item->slug) }}">
-                                    Modifica
+                                <a class="btn btn-warning m-1" href="{{ route('admin.restaurants.edit', $item->slug) }}">
+                                    &#9881;
                                 </a>
                             </td>
                         </tr>

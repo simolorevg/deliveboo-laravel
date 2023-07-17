@@ -103,9 +103,9 @@ class OrderController extends Controller
             $query->whereMonth('orders.created_at', $selectedMonth);
         }
 
-        // if ($selectedYear) {
-        //     $query->whereYear('orders.created_at', $selectedYear);
-        // }
+        if ($selectedYear) {
+            $query->whereYear('orders.created_at', $selectedYear);
+        }
 
         // Eseguire la query per ottenere le statistiche degli ordini
         $orderStats = $query->get();
@@ -137,6 +137,8 @@ class OrderController extends Controller
                     'total_sales' => 0
                 ];
             }
+
+
             $yearlyStats[$year]['order_count'] += $orderCount;
             $yearlyStats[$year]['total_sales'] += $totalSales;
         }

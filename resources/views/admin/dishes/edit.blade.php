@@ -109,3 +109,4 @@
 @section('script')
     @vite(['resources/js/modules/editDishes.js'])
 @endsection
+

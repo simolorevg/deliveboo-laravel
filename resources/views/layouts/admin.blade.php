@@ -63,7 +63,7 @@
          </header>
 
          <div class="container-dashboard">
-             <div class="d-flex ">
+             <div class="d-lg-flex ">
                  <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse">
                      <div class="pt-3">
                          <ul class="nav flex-column">

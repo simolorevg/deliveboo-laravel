@@ -18,7 +18,7 @@
         ];
     @endphp
 
-    <div class="mx-5 card-body">
+    <div class="mx-5 card-body card-stats">
         @if (!$selectedYear)
             <h3 class="info my-2">Seleziona un anno</h3>
             <form class="form d-flex flex-column w-50 mx-auto" method="GET"
@@ -57,21 +57,42 @@
                     </select>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class=" my-3 btn btn-primary">Filtra</button>
+                    <button id="stat" type="submit" class=" my-3 btn btn-primary">Filtra</button>
                 </div>
-            </form>
-        @else
-            <div class="d-flex justify-content-evenly my-4">
+                <div id="hiden" class="d-none modal text-black">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="-title">ATTENZIONE</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>Inserisci un anno</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="action" type="button" class="btn btn-danger">Ok</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <h2 class="info">Statistiche per l'anno {{ $selectedYear }}</h2>
-                <a class="btn btn-info" href="{{ route('admin.order.stats', ['restaurant_id' => $restaurant_id]) }}">Torna
-                    indietro</a>
-            </div>
+    </div>
+    </form>
+@else
+    <div class="d-flex justify-content-evenly my-4">
+
+        <h2 class="info">Statistiche per l'anno {{ $selectedYear }}</h2>
+        <button class="btn btn-info">
+            <a class="text-decoration-none text-white"
+                href="{{ route('admin.order.stats', ['restaurant_id' => $restaurant_id]) }}">Torna
+                indietro</a>
+
+        </button>
+    </div>
 
 
 
-            {{-- Statistiche tabellari --}}
-            {{-- <section>
+    {{-- Statistiche tabellari --}}
+    {{-- <section>
 
         @if (!empty($monthlyStats))
             <h2 class="info my-4">Statistiche mensili</h2>
@@ -123,115 +144,119 @@
         @endif
     </section> --}}
 
-            <canvas id="monthlyChart"></canvas>
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    let monthlyStats = @json($monthlyStats);
-                    let italianMonths = @json($italianMonths);
-                    let totalSalesData = Object.values(monthlyStats).map(function(monthData) {
-                        return monthData.total_sales;
-                    });
+    <canvas id="monthlyChart"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let monthlyStats = @json($monthlyStats);
+            let italianMonths = @json($italianMonths);
+            let totalSalesData = Object.values(monthlyStats).map(function(monthData) {
+                return monthData.total_sales;
+            });
 
-                    let monthLabels = Object.values(italianMonths);
-                    let orderCountData = Array.from({
-                        length: 12
-                    }, function(_, index) {
-                        let month = index + 1;
-                        return monthlyStats[month] ? monthlyStats[month].order_count : 0;
-                    });
-                    totalSalesData = Array.from({
-                        length: 12
-                    }, function(_, index) {
-                        let month = index + 1;
-                        return monthlyStats[month] ? monthlyStats[month].total_sales : 0;
-                    });
+            let monthLabels = Object.values(italianMonths);
+            let orderCountData = Array.from({
+                length: 12
+            }, function(_, index) {
+                let month = index + 1;
+                return monthlyStats[month] ? monthlyStats[month].order_count : 0;
+            });
+            totalSalesData = Array.from({
+                length: 12
+            }, function(_, index) {
+                let month = index + 1;
+                return monthlyStats[month] ? monthlyStats[month].total_sales : 0;
+            });
 
 
-                    let ctx = document.getElementById('monthlyChart').getContext('2d');
-                    let chart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: monthLabels,
-                            datasets: [{
-                                    label: 'Ricavi €',
-                                    data: totalSalesData,
-                                    // type: 'line',
-                                    fill: false,
-                                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                                    borderColor: 'rgba(255, 99, 132, 1)',
-                                    borderWidth: 1,
-                                    yAxisID: 'y-axis-revenue'
-                                },
-                                {
-                                    label: 'Numero di ordini',
-                                    data: orderCountData,
-                                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                                    borderColor: 'rgba(75, 192, 192, 1)',
-                                    borderWidth: 1,
-                                    yAxisID: 'y-axis-orders'
-                                }
-                            ]
+            let ctx = document.getElementById('monthlyChart').getContext('2d');
+            let chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: monthLabels,
+                    datasets: [{
+                            label: 'Ricavi €',
+                            data: totalSalesData,
+                            // type: 'line',
+                            fill: false,
+                            backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1,
+                            yAxisID: 'y-axis-revenue'
                         },
-                        options: {
-                            scales: {
-                                x: {
-                                    type: 'category',
-                                    title: {
-                                        display: true,
-                                        text: 'Mese',
-                                        color: 'white'
-                                    },
-                                    ticks: {
-                                        color: 'white'
-                                    }
-                                },
-                                'y-axis-orders': {
-                                    beginAtZero: true,
-                                    position: 'right',
-                                    title: {
-                                        display: true,
-                                        text: 'Numero di ordini',
-                                        color: 'white'
-                                    },
-                                    ticks: {
-                                        color: 'white'
-                                    }
-                                },
-                                'y-axis-revenue': {
-                                    beginAtZero: true,
-                                    position: 'left',
-                                    title: {
-                                        display: true,
-                                        text: 'Ricavi (€)',
-                                        color: 'white'
-                                    },
-                                    ticks: {
-                                        color: 'white',
-                                        callback: function(value, index, values) {
-                                            return value.toFixed(2) + ' €';
-                                        }
-                                    }
-                                }
+                        {
+                            label: 'Numero di ordini',
+                            data: orderCountData,
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1,
+                            yAxisID: 'y-axis-orders'
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            type: 'category',
+                            title: {
+                                display: true,
+                                text: 'Mese',
+                                color: 'white'
                             },
-                            plugins: {
-                                legend: {
-                                    labels: {
-                                        color: 'white'
-                                    }
+                            ticks: {
+                                color: 'white'
+                            }
+                        },
+                        'y-axis-orders': {
+                            beginAtZero: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: 'Numero di ordini',
+                                color: 'white'
+                            },
+                            ticks: {
+                                color: 'white'
+                            }
+                        },
+                        'y-axis-revenue': {
+                            beginAtZero: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: 'Ricavi (€)',
+                                color: 'white'
+                            },
+                            ticks: {
+                                color: 'white',
+                                callback: function(value, index, values) {
+                                    return value.toFixed(2) + ' €';
                                 }
                             }
                         }
-                    });
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: 'white'
+                            }
+                        }
+                    }
+                }
+            });
 
 
-                });
-            </script>
-        @endif
+        });
+    </script>
+    @endif
 
 
     </div>
     <div class="my-5">
 
     </div>
+@endsection
+
+@section('script')
+    @vite(['resources/js/modules/stats.js'])
 @endsection

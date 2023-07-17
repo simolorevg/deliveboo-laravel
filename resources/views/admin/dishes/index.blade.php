@@ -32,15 +32,15 @@
                                 <td scope="row">{{ $item->restaurant->restaurant_name }}</td>
                                 <td scope="row" class="d-flex justify-content-center">
                                     <a class="btn btn-primary mx-1"
-                                        href="{{ route('admin.dishes.show', $item->slug) }}">Visualizza</a>
+                                        href="{{ route('admin.dishes.show', $item->slug) }}">&#128065;</a>
                                     <a class="btn btn-warning mx-1"
-                                        href="{{ route('admin.dishes.edit', $item->slug) }}">Modifica</a>
+                                        href="{{ route('admin.dishes.edit', $item->slug) }}">&#9881;</a>
                                     <form class="d-inline-block" action="{{ route('admin.dishes.destroy', $item->slug) }}"
                                         method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-delete"
-                                            data-dish-name="{{ $item->dish_name }}">Elimina</button>
+                                            data-dish-name="{{ $item->dish_name }}">&#128465;</button>
                                     </form>
                                 </td>
                             </tr>
