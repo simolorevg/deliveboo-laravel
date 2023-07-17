@@ -69,7 +69,7 @@
     }
 
     li::before {
-        content: '🎃'
+        content: '🍽'
     }
 
     table {
