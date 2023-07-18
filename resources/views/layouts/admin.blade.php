@@ -40,7 +40,7 @@
          <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-5 shadow">
              <div class="row justify-content-end justify-content-md-between">
                  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">
-                     <img src="{{ Vite::asset('resources/img/Ristoria.png') }}" alt="">
+                     <img src="{{ Vite::asset('resources/img/logo-white.png') }}" alt="">
                  </a>
                  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"
                      data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu"
